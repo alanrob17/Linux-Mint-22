@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Software-for-Linux-Mint-21-3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="linux-mint-213-setup">Linux Mint 22 setup</h1>
+<h2 id="setup-your-firewall">Setup your Firewall</h2>
+<p>assets/firewall-settings.png</p>
+<p>Change <strong>status</strong> to ON.</p>
+<h2 id="driver-manager">Driver Manager</h2>
+<p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
+<h2 id="install-preload">Install Preload</h2>
+<p>You can speed up the startup times  of your apps by installing <code>preload</code>.</p>
+<pre class="hljs"><code><div>    sudo apt install preload
+</div></code></pre>
+<p>Preload will load applications like Firefox quicker.</p>
+<h2 id="file-manager-changes">File Manager changes</h2>
+<p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
+<p>In the section, <strong>Executable Text Files</strong> select <em>View executable text files when they are opened</em>.</p>
+<p>This stops the display dialog from appearing when you click on an executable text file from Windows.</p>
+<h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
+<p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
+<p>Copy these files to the home directory.</p>
+<pre class="hljs"><code><div>    cp ./colours.sh /home/alanr
+</div></code></pre>
+<p>And.</p>
+<pre class="hljs"><code><div>    cp ./gc.sh /home/alanr
+</div></code></pre>
+<p>And.</p>
+<pre class="hljs"><code><div>    cp .bash_aliases /home/alanr
+</div></code></pre>
+<p>With my <code>.bashrc</code> file I need to add these lines to the bottom of the file.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Colour  man page output</span>
+<span class="hljs-built_in">export</span> PAGER=most
+
+<span class="hljs-comment"># Vertical format for docker ps</span>
+<span class="hljs-built_in">export</span> FORMAT=<span class="hljs-string">"ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"</span>
+
+<span class="hljs-comment"># Add to $PATH</span>
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin:<span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
+<h2 id="install-most">Install most</h2>
+<pre class="hljs"><code><div>    sudo apt-get install most -y
+</div></code></pre>
+<p>Exit your terminal and restart it. Type this command.</p>
+<pre class="hljs"><code><div>    man ls
+</div></code></pre>
+<p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
+<p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
+<h2 id="installing-docker">Installing Docker</h2>
+<p>Do an update.</p>
+<pre class="hljs"><code><div>   sudo apt update -y
+</div></code></pre>
+<p>Then install Docker.</p>
+<pre class="hljs"><code><div>   sudo apt install docker* -y
+</div></code></pre>
+<h3 id="manage-docker-as-a-non-root-user">Manage Docker as a non-root user</h3>
+<p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
+<p>Create the docker group.</p>
+<pre class="hljs"><code><div>    sudo groupadd docker
+</div></code></pre>
+<p>Add your user to the docker group.</p>
+<pre class="hljs"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
+</div></code></pre>
+<p>Reboot your system.</p>
+<p>To test (you shouldn't have to use root privileges).</p>
+<pre class="hljs"><code><div>    docker run hello-world
+</div></code></pre>
+<p>If successful you will get this message.</p>
+<blockquote>
+<p>Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...</p>
+</blockquote>
+<p>Test that Docker Compose is working.</p>
+<pre class="hljs"><code><div>    docker compose version
+</div></code></pre>
+<h2 id="install-azure-data-studio">Install Azure Data Studio</h2>
+<p><a href="https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable">Azure Data Studio link</a>.</p>
+<p>From your home folder run this.</p>
+<pre class="hljs"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
+</div></code></pre>
+<p>My package was.</p>
+<pre class="hljs"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
+</div></code></pre>
+<p>This installs Azure Data Studio.</p>
+<p>You may have to install the folowing dependancies.</p>
+<pre class="hljs"><code><div>    sudo apt-get install libunwind8
+</div></code></pre>
+<p>To run.</p>
+<blockquote>
+<p>azuredatastudio</p>
+</blockquote>
+<h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
+<p>Install from this link.</p>
+<pre class="hljs"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
+</div></code></pre>
+<p>In Downloads.</p>
+<pre class="hljs"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
+</div></code></pre>
+<p>My Visual Studio Account.</p>
+<blockquote>
+<p><a href="mailto:a.r@gmail.com">a.r@gmail.com</a></p>
+</blockquote>
+<h2 id="install-net-core">Install .Net Core</h2>
+<pre class="hljs"><code><div>    sudo apt-get install -y aspnetcore-runtime-8.0
+</div></code></pre>
+<p>This will install the .Net core runtime and the SDK.</p>
+<h2 id="install-brave-browser">Install Brave browser</h2>
+<pre class="hljs"><code><div>sudo apt install curl
+</div></code></pre>
+<pre class="hljs"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+</div></code></pre>
+<pre class="hljs"><code><div>sudo apt update
+</div></code></pre>
+<pre class="hljs"><code><div>sudo apt install brave-browser
+</div></code></pre>
+<h2 id="install-winrar">Install WinRar</h2>
+<pre class="hljs"><code><div>    sudo apt-get install rar unrar
+</div></code></pre>
+<p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
+<h3 id="extracting-files">Extracting files</h3>
+<pre class="hljs"><code><div>    unrar x license.rar
+</div></code></pre>
+<p>To extract to another directory.</p>
+<pre class="hljs"><code><div>    unrar e license.rar /home/alanr/Downloads
+</div></code></pre>
+<p>Listing all files in a rar file.</p>
+<pre class="hljs"><code><div>    rar l myfiles.rar
+</div></code></pre>
+<h3 id="testing-rar-files">Testing rar files</h3>
+<pre class="hljs"><code><div>    unrar t myfiles.rar
+</div></code></pre>
+<h3 id="copy-files-to-a-rar-file">Copy files to a rar file</h3>
+<pre class="hljs"><code><div>    rar a mytextfiles.rar *.txt
+</div></code></pre>
+<p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
+<pre class="hljs"><code><div>    rar u myfiles.rar hello.py
+</div></code></pre>
+<h2 id="installing-nord-vpn">Installing Nord VPN</h2>
+<p>Install with this command.</p>
+<pre class="hljs"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+</div></code></pre>
+<p>Add user to nordvpn group.</p>
+<pre class="hljs"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
+</div></code></pre>
+<p>Login.</p>
+<p>Reboot Linux.</p>
+<p>When you want to use Nord VPN.</p>
+<pre class="hljs"><code><div>    nordvpn connect
+</div></code></pre>
+<h2 id="change-the-hostname">Change the hostname</h2>
+<p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
+<pre class="hljs"><code><div>    sudo nano /etc/hostname
+</div></code></pre>
+<p>Change all references to the hostname in this file.</p>
+<pre class="hljs"><code><div>    sudo nano /etc/hosts
+</div></code></pre>
+<p>Now, you need to tell the operating system that the host name has changed and the PC has been renamed.</p>
+<pre class="hljs"><code><div>    sudo hostname lion
+</div></code></pre>
+<p>I would reboot after this step.</p>
+<p>Now my terminal window reflects my new hostname.</p>
+<blockquote>
+<p>alanr@lion:~$</p>
+</blockquote>
+
+</body>
+</html>

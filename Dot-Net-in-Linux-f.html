@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Using .Net Core in Linux Mint</title>
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/starter-template.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+<style type="text/css">
+html {
+	font-size: 90.0%;
+}
+
+h2 {
+	margin-top: 60px;
+}
+
+h4, h3 {
+	padding-top: 40px!;		
+}
+
+p {
+	font-size: 1.2em;
+}
+h4 {
+	font-size: 1.4em;
+}
+
+img, pre.prettyprint {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+    color:#007bff;
+
+}
+blockquote {
+    border-left: 4px solid #999;
+    padding-left: 1rem;
+    page-break-inside: avoid;
+}
+:target:before {
+  content: "";
+  display: block;
+  height: 80px; /* adjust this value to your needs */
+  margin: -80px 0 0; /* this should be a negative value of the height above */
+}
+</style>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Linux Mint 22</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Using .Net Core in Linux Mint <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="starter-template">
+
+
+<h1 id="working-with-net-in-linux">Working with .Net in Linux</h1>
+<h2 id="installing-in-linux-mint">Installing in Linux Mint</h2>
+<pre class="prettyprint"><code><div>    sudo apt-get install -y aspnetcore-runtime-8.0
+</div></code></pre>
+<p>This will install the .Net core runtime and the SDK.</p>
+<h2 id="creating-a-console-program">Creating a Console program</h2>
+<p>These are the instructions to create a simple .Net core Console application.</p>
+<p>First create a folder, e.g. <code>dotnetapp</code>. CD into this folder.</p>
+<pre class="prettyprint"><code><div>    dotnet new console
+</div></code></pre>
+<p>This will create a console application named <code>dotnetapp</code>.</p>
+<h3 id="compile-the-application">Compile the application</h3>
+<pre class="prettyprint"><code><div>    dotnet build .
+</div></code></pre>
+<h3 id="running-the-application">Running the application</h3>
+<p>From this folder.</p>
+<pre class="prettyprint"><code><div>    dotnet run
+</div></code></pre>
+<p><strong>Note:</strong> using <code>dotnet run</code> will compile and run the application at the same time so you don't really need to <code>dotnet build .</code>.</p>
+<h3 id="publishing-the-application">Publishing the application</h3>
+<p>It is okay to run the application from the root folder with <code>dotnet run</code> but if you want to create an application that can run from a <strong>$PATH</strong> folder you will need to publish the application.</p>
+<pre class="prettyprint"><code><div>    dotnet publish -r linux-x64
+</div></code></pre>
+<p>This will create a Linux version of your application. You can find the application in the folder.</p>
+<blockquote>
+<p>home\alanr\Source\dotnetapp\bin\Release\net9.0\linux-x64\publish</p>
+</blockquote>
+<p><strong>Note:</strong> this also works in <strong>WSL</strong>. I can also use this command in Powershell wth a Windows project and move the published file to a Linux machine and it will work as long as it has the .Net Core runtime.</p>
+<p>To be able to run this command you need three files from the publish folder.</p>
+<blockquote>
+<p>dotnetapp<br>
+dotnetapp.dll<br>
+dotnetapp.runtimeconfig.json</p>
+</blockquote>
+<p><strong>Note:</strong> the <code>dotnet</code> commands that I am running have a number of other options that I need to learn. Check the Microsoft documentation.</p>
+<p>In the publish process the binary should have execute permissions. If not you need to do this.</p>
+<pre class="prettyprint"><code><div>    sudo chmod +x /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<h2 id="running-the-application-from-path">Running the application from $PATH</h2>
+<p>I got into a lot of grief trying to get this binary to run from somewhere in the <strong>$PATH</strong> directories. Originally I named my project <code>test</code>. This was a problem because when I added the binary to a folder in my <strong>$PATH</strong> it wouldn't run. After a lot of investigation I found that <code>test</code> caused a name collision. ChatGPT was able to tell me.</p>
+<p>The name <code>test</code> is already a built-in command in most shells. You can verify this by running:</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">type</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the Output Shows:</p>
+<blockquote>
+<p>test is a shell builtin: Your command is being overridden by the shell's built-in test command.<br>
+/usr/bin/test or similar: Your command is being overridden by a system binary.</p>
+</blockquote>
+<p>It turned out that <code>test</code> is a built-in test command. Once I renamed my project it worked perfectly.</p>
+<p>Although this problem took me a while to solve I used ChatGPT to fix it and learnt a lot of things about Linux in the process.</p>
+<h2 id="copying-files-to-path">Copying files to #PATH</h2>
+<p>The <code>$PATH</code> command is Linux's path specification. To check this.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>Will show you the directories that are searchable.</p>
+<p>You can move your binaries to <code>/usr/local/bin</code> or <code>/opt</code> and they will run on your Linux system from anywhere.</p>
+<p>There is an issue with these two directories in that they seem to be system directories and you need to use <code>sudo</code> to run the copy commands.</p>
+<pre class="prettyprint"><code><div>    sudo cp -r bin/Release/net8.0/linux-x64/publish /usr/<span class="hljs-built_in">local</span>/bin
+</div></code></pre>
+<p>This will copy the whole publish directory to <code>bin</code>. There is a big problem with this because when I run this command it changes ownership to <strong>root</strong>. To run this command I have to use <code>sudo</code>.</p>
+<pre class="prettyprint"><code><div>    sudo dotnetapp
+</div></code></pre>
+<p>To get around this I need to change ownership.</p>
+<pre class="prettyprint"><code><div>    sudo chown -v -R alanr:alanr /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp.*
+    sudo chown -v -R alanr:alanr /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<p>Once again make sure the binary is executable.</p>
+<pre class="prettyprint"><code><div>    chmod -R u+rx,g+rx /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<p>This is a lot of effort to make sure you can access <code>dotnetapp</code> from anywhere.</p>
+<h2 id="create-a-user-writable-directory">Create a user-writable directory</h2>
+<p>If <code>/usr/local/bin</code> causes persistent permission issues, consider moving your app to a user-writable directory, such as <code>$HOME/.local/bin</code>.</p>
+<p>Create the directory if it doesn't exist:</p>
+<pre class="prettyprint"><code><div>    mkdir -p <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin
+</div></code></pre>
+<p>where <code>$HOME</code> is <code>/home/alanr</code>.</p>
+<p><strong>Note:</strong> in my case this directory existed and was being used by Docker.</p>
+<p>Copy <code>dotnetapp</code> and associated files to this directory. As you own this directory you won't have permissions issues.</p>
+<p>The next step is to add the <code>$HOME/.local/bin</code> directory to your <code>$PATH</code> variable.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-string">'export PATH=$HOME/.local/bin:$PATH'</span> &gt;&gt; ~/.bashrc
+</div></code></pre>
+<p>Or use Nano to add this text to the bottom of your <code>.bashrc</code> file.</p>
+<p><strong>Note:</strong> there is a minor issue with doing this if other users are using this Linux machine. It makes the files accessible only to you.</p>
+<p>You can now access this file from anywhere with.</p>
+<pre class="prettyprint"><code><div>    dotnetapp
+</div></code></pre>
+<h3 id="checking-your-path">Checking your path</h3>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>/home/alan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</p>
+</blockquote>
+<p>Each directory in the list is searched in order until the system finds the executable you’re trying to run. If your application's directory isn't in the PATH, you'll need to add it.</p>
+<h3 id="check-the-file-type">Check the File Type</h3>
+<p>This is what I did to check the <code>test</code> binary file that I originally created.</p>
+<p>Use the file command to confirm what type of file dotnetapp is:</p>
+<pre class="prettyprint"><code><div>    file <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>Output Examples:</p>
+<blockquote>
+<p>If it's a shell script: Bourne-Again shell script, ASCII text executable.<br>
+If it's a .NET app: ELF 64-bit LSB executable or something similar.</p>
+</blockquote>
+<p>In this case it was a ELF binary executable file and runnable.</p>
+<h3 id="run-the-program-with-debugging">Run the Program with Debugging</h3>
+<p>Try running the program directly to check for errors:</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the program doesn't run, it might be because:</p>
+<blockquote>
+<p>The file is not a native Linux executable.<br>
+It requires the .NET runtime.</p>
+</blockquote>
+<h3 id="check-for-dependencies">Check for Dependencies</h3>
+<p>If the app is not self-contained (i.e., published without --self-contained), it will depend on the .NET runtime being installed.</p>
+<p>Verify the runtime is available:</p>
+<pre class="prettyprint"><code><div>    dotnet --info
+</div></code></pre>
+<p>In my case .Net Core runtime was available.</p>
+<h3 id="check-executability">Check Executability</h3>
+<p>Ensure the test file is executable and in the correct location:</p>
+<pre class="prettyprint"><code><div>    ls -l <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<h3 id="name-collision-warning">Name Collision Warning</h3>
+<p>Ensure there isn't another command or system program named test. To check, run:</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">which</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If it points to something other than <code>$HOME/.local/bin/test</code>, you’re likely hitting a system utility or alias.</p>
+<p>This is where I realised that I had an issue with the binary file, <code>test</code>.</p>
+<h3 id="name-collision-with-system-command">Name Collision with System Command</h3>
+<p>The name test is already a built-in command in most shells. You can verify this by running:</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">type</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the Output Shows:</p>
+<blockquote>
+<p>test is a shell builtin: Your command is being overridden by the shell's built-in test command.<br>
+/usr/bin/test or similar: Your command is being overridden by a system binary.</p>
+</blockquote>
+<p><code>test</code> is a shell builtin and this is why my executable wasn't running.</p>
+
+
+
+</div><!-- starter-template -->
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"/>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>

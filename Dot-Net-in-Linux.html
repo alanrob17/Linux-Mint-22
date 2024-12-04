@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dot-Net-in-Linux.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="working-with-net-in-linux">Working with .Net in Linux</h1>
+<h2 id="installing-in-linux-mint">Installing in Linux Mint</h2>
+<pre class="hljs"><code><div>    sudo apt-get install -y aspnetcore-runtime-8.0
+</div></code></pre>
+<p>This will install the .Net core runtime and the SDK.</p>
+<h2 id="creating-a-console-program">Creating a Console program</h2>
+<p>These are the instructions to create a simple .Net core Console application.</p>
+<p>First create a folder, e.g. <code>dotnetapp</code>. CD into this folder.</p>
+<pre class="hljs"><code><div>    dotnet new console
+</div></code></pre>
+<p>This will create a console application named <code>dotnetapp</code>.</p>
+<h3 id="compile-the-application">Compile the application</h3>
+<pre class="hljs"><code><div>    dotnet build .
+</div></code></pre>
+<h3 id="running-the-application">Running the application</h3>
+<p>From this folder.</p>
+<pre class="hljs"><code><div>    dotnet run
+</div></code></pre>
+<p><strong>Note:</strong> using <code>dotnet run</code> will compile and run the application at the same time so you don't really need to <code>dotnet build .</code>.</p>
+<h3 id="publishing-the-application">Publishing the application</h3>
+<p>It is okay to run the application from the root folder with <code>dotnet run</code> but if you want to create an application that can run from a <strong>$PATH</strong> folder you will need to publish the application.</p>
+<pre class="hljs"><code><div>    dotnet publish -r linux-x64
+</div></code></pre>
+<p>This will create a Linux version of your application. You can find the application in the folder.</p>
+<blockquote>
+<p>home\alanr\Source\dotnetapp\bin\Release\net9.0\linux-x64\publish</p>
+</blockquote>
+<p><strong>Note:</strong> this also works in <strong>WSL</strong>. I can also use this command in Powershell wth a Windows project and move the published file to a Linux machine and it will work as long as it has the .Net Core runtime.</p>
+<p>To be able to run this command you need three files from the publish folder.</p>
+<blockquote>
+<p>dotnetapp<br>
+dotnetapp.dll<br>
+dotnetapp.runtimeconfig.json</p>
+</blockquote>
+<p><strong>Note:</strong> the <code>dotnet</code> commands that I am running have a number of other options that I need to learn. Check the Microsoft documentation.</p>
+<p>In the publish process the binary should have execute permissions. If not you need to do this.</p>
+<pre class="hljs"><code><div>    sudo chmod +x /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<h2 id="running-the-application-from-path">Running the application from $PATH</h2>
+<p>I got into a lot of grief trying to get this binary to run from somewhere in the <strong>$PATH</strong> directories. Originally I named my project <code>test</code>. This was a problem because when I added the binary to a folder in my <strong>$PATH</strong> it wouldn't run. After a lot of investigation I found that <code>test</code> caused a name collision. ChatGPT was able to tell me.</p>
+<p>The name <code>test</code> is already a built-in command in most shells. You can verify this by running:</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">type</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the Output Shows:</p>
+<blockquote>
+<p>test is a shell builtin: Your command is being overridden by the shell's built-in test command.<br>
+/usr/bin/test or similar: Your command is being overridden by a system binary.</p>
+</blockquote>
+<p>It turned out that <code>test</code> is a built-in test command. Once I renamed my project it worked perfectly.</p>
+<p>Although this problem took me a while to solve I used ChatGPT to fix it and learnt a lot of things about Linux in the process.</p>
+<h2 id="copying-files-to-path">Copying files to #PATH</h2>
+<p>The <code>$PATH</code> command is Linux's path specification. To check this.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>Will show you the directories that are searchable.</p>
+<p>You can move your binaries to <code>/usr/local/bin</code> or <code>/opt</code> and they will run on your Linux system from anywhere.</p>
+<p>There is an issue with these two directories in that they seem to be system directories and you need to use <code>sudo</code> to run the copy commands.</p>
+<pre class="hljs"><code><div>    sudo cp -r bin/Release/net8.0/linux-x64/publish /usr/<span class="hljs-built_in">local</span>/bin
+</div></code></pre>
+<p>This will copy the whole publish directory to <code>bin</code>. There is a big problem with this because when I run this command it changes ownership to <strong>root</strong>. To run this command I have to use <code>sudo</code>.</p>
+<pre class="hljs"><code><div>    sudo dotnetapp
+</div></code></pre>
+<p>To get around this I need to change ownership.</p>
+<pre class="hljs"><code><div>    sudo chown -v -R alanr:alanr /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp.*
+    sudo chown -v -R alanr:alanr /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<p>Once again make sure the binary is executable.</p>
+<pre class="hljs"><code><div>    chmod -R u+rx,g+rx /usr/<span class="hljs-built_in">local</span>/bin/dotnetapp
+</div></code></pre>
+<p>This is a lot of effort to make sure you can access <code>dotnetapp</code> from anywhere.</p>
+<h2 id="create-a-user-writable-directory">Create a user-writable directory</h2>
+<p>If <code>/usr/local/bin</code> causes persistent permission issues, consider moving your app to a user-writable directory, such as <code>$HOME/.local/bin</code>.</p>
+<p>Create the directory if it doesn't exist:</p>
+<pre class="hljs"><code><div>    mkdir -p <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin
+</div></code></pre>
+<p>where <code>$HOME</code> is <code>/home/alanr</code>.</p>
+<p><strong>Note:</strong> in my case this directory existed and was being used by Docker.</p>
+<p>Copy <code>dotnetapp</code> and associated files to this directory. As you own this directory you won't have permissions issues.</p>
+<p>The next step is to add the <code>$HOME/.local/bin</code> directory to your <code>$PATH</code> variable.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-string">'export PATH=$HOME/.local/bin:$PATH'</span> &gt;&gt; ~/.bashrc
+</div></code></pre>
+<p>Or use Nano to add this text to the bottom of your <code>.bashrc</code> file.</p>
+<p><strong>Note:</strong> there is a minor issue with doing this if other users are using this Linux machine. It makes the files accessible only to you.</p>
+<p>You can now access this file from anywhere with.</p>
+<pre class="hljs"><code><div>    dotnetapp
+</div></code></pre>
+<h3 id="checking-your-path">Checking your path</h3>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>/home/alan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</p>
+</blockquote>
+<p>Each directory in the list is searched in order until the system finds the executable you’re trying to run. If your application's directory isn't in the PATH, you'll need to add it.</p>
+<h3 id="check-the-file-type">Check the File Type</h3>
+<p>This is what I did to check the <code>test</code> binary file that I originally created.</p>
+<p>Use the file command to confirm what type of file dotnetapp is:</p>
+<pre class="hljs"><code><div>    file <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>Output Examples:</p>
+<blockquote>
+<p>If it's a shell script: Bourne-Again shell script, ASCII text executable.<br>
+If it's a .NET app: ELF 64-bit LSB executable or something similar.</p>
+</blockquote>
+<p>In this case it was a ELF binary executable file and runnable.</p>
+<h3 id="run-the-program-with-debugging">Run the Program with Debugging</h3>
+<p>Try running the program directly to check for errors:</p>
+<pre class="hljs"><code><div>    <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the program doesn't run, it might be because:</p>
+<blockquote>
+<p>The file is not a native Linux executable.<br>
+It requires the .NET runtime.</p>
+</blockquote>
+<h3 id="check-for-dependencies">Check for Dependencies</h3>
+<p>If the app is not self-contained (i.e., published without --self-contained), it will depend on the .NET runtime being installed.</p>
+<p>Verify the runtime is available:</p>
+<pre class="hljs"><code><div>    dotnet --info
+</div></code></pre>
+<p>In my case .Net Core runtime was available.</p>
+<h3 id="check-executability">Check Executability</h3>
+<p>Ensure the test file is executable and in the correct location:</p>
+<pre class="hljs"><code><div>    ls -l <span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin/<span class="hljs-built_in">test</span>
+</div></code></pre>
+<h3 id="name-collision-warning">Name Collision Warning</h3>
+<p>Ensure there isn't another command or system program named test. To check, run:</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">which</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If it points to something other than <code>$HOME/.local/bin/test</code>, you’re likely hitting a system utility or alias.</p>
+<p>This is where I realised that I had an issue with the binary file, <code>test</code>.</p>
+<h3 id="name-collision-with-system-command">Name Collision with System Command</h3>
+<p>The name test is already a built-in command in most shells. You can verify this by running:</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">type</span> <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>If the Output Shows:</p>
+<blockquote>
+<p>test is a shell builtin: Your command is being overridden by the shell's built-in test command.<br>
+/usr/bin/test or similar: Your command is being overridden by a system binary.</p>
+</blockquote>
+<p><code>test</code> is a shell builtin and this is why my executable wasn't running.</p>
+
+</body>
+</html>
