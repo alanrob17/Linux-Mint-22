@@ -333,6 +333,14 @@ Go to the bottom of this file and add this line.
     vm.swappiness=10
 ```
 
+## Install Stacer
+
+Stacer is a really impressive system checker.
+
+```bash
+    sudo nala stacer -y
+```
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.
