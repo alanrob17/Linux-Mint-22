@@ -80,7 +80,7 @@ blockquote {
     <div class="starter-template">
 
 
-<h1 id="linux-mint-213-setup">Linux Mint 22 setup</h1>
+<h1 id="linux-mint-22-setup">Linux Mint 22 setup</h1>
 <h2 id="setup-your-firewall">Setup your Firewall</h2>
 <p>assets/firewall-settings.png</p>
 <p>Change <strong>status</strong> to ON.</p>
@@ -228,6 +228,39 @@ This message shows that your installation appears to be working correctly.
 <p>Reboot Linux.</p>
 <p>When you want to use Nord VPN.</p>
 <pre class="prettyprint"><code><div>    nordvpn connect
+</div></code></pre>
+<h2 id="replace-apt">Replace APT</h2>
+<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
+<pre class="prettyprint"><code><div>    sudo apt install nala -y
+</div></code></pre>
+<h2 id="speed-up-your-installs">Speed up your installs</h2>
+<p>Use <code>Fetch</code>. First setup the repository.</p>
+<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+</div></code></pre>
+<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
+<pre class="prettyprint"><code><div>    sudo nala fetch
+</div></code></pre>
+<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
+<blockquote>
+<p>1,2,3,4,5,6,7,8,9,10</p>
+</blockquote>
+<p>This will show you the list and ask for confirmation.</p>
+<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
+<p>You will find that you install software much faster than with APT.</p>
+<h2 id="improve-ram-usage">Improve RAM usage</h2>
+<p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
+<p>You can check your settings with.</p>
+<pre class="prettyprint"><code><div>    cat /proc/sys/vm/swappiness
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>60</p>
+</blockquote>
+<p>You can change your threshold to 10 to speed up your machine.</p>
+<pre class="prettyprint"><code><div>    sudo nano /etc/sysctl.con
+</div></code></pre>
+<p>Go to the bottom of this file and add this line.</p>
+<pre class="prettyprint"><code><div>    vm.swappiness=10
 </div></code></pre>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>

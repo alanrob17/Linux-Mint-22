@@ -275,6 +275,64 @@ When you want to use Nord VPN.
     nordvpn connect
 ```
 
+## Replace APT
+
+There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.
+
+```bash
+    sudo apt install nala -y
+```
+
+## Speed up your installs
+
+Use ``Fetch``. First setup the repository.
+
+```bash
+    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+```
+
+Once this is added to your repository list you can install ``Fetch``.
+
+```bash
+    sudo nala fetch
+```
+
+This will create a list of the fastest servers for you. From this list ``Fast`` will select the fastest repository servers for you. Select the top 10 from the list with.
+
+> 1,2,3,4,5,6,7,8,9,10
+
+This will show you the list and ask for confirmation.
+
+![Nala mirrors](assets/images/mirrors.jpg "Nala mirrors")
+
+You will find that you install software much faster than with APT.
+
+## Improve RAM usage
+
+When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.
+
+You can check your settings with.
+
+```bash
+    cat /proc/sys/vm/swappiness
+```
+
+Returns.
+
+> 60
+
+You can change your threshold to 10 to speed up your machine.
+
+```bash
+    sudo nano /etc/sysctl.con
+```
+
+Go to the bottom of this file and add this line.
+
+```bash
+    vm.swappiness=10
+```
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.
@@ -300,3 +358,4 @@ I would reboot after this step.
 Now my terminal window reflects my new hostname.
 
 > alanr@lion:~$
+
