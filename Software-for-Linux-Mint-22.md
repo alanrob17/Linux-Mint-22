@@ -175,12 +175,18 @@ In Downloads.
 
 My Visual Studio Account.
 
-> <a.r@gmail.com>
+> Microsoft - <alanr@live.com.au>
 
 ## Install .Net Core
 
 ```bash
-    sudo apt-get install -y aspnetcore-runtime-8.0
+    sudo apt-get update    
+```
+
+Then.
+
+```bash
+    sudo apt-get install -y dotnet-sdk-9.0
 ```
 
 This will install the .Net core runtime and the SDK.

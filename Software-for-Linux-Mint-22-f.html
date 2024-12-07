@@ -80,208 +80,211 @@ blockquote {
     <div class="starter-template">
 
 
-<h1 id="linux-mint-22-setup">Linux Mint 22 setup</h1>
-<h2 id="setup-your-firewall">Setup your Firewall</h2>
-<p>assets/firewall-settings.png</p>
-<p>Change <strong>status</strong> to ON.</p>
-<h2 id="driver-manager">Driver Manager</h2>
-<p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
-<h2 id="install-preload">Install Preload</h2>
-<p>You can speed up the startup times  of your apps by installing <code>preload</code>.</p>
-<pre class="prettyprint"><code><div>    sudo apt install preload
-</div></code></pre>
-<p>Preload will load applications like Firefox quicker.</p>
-<h2 id="file-manager-changes">File Manager changes</h2>
-<p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
-<p>In the section, <strong>Executable Text Files</strong> select <em>View executable text files when they are opened</em>.</p>
-<p>This stops the display dialog from appearing when you click on an executable text file from Windows.</p>
-<h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
-<p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
-<p>Copy these files to the home directory.</p>
-<pre class="prettyprint"><code><div>    cp ./colours.sh /home/alanr
-</div></code></pre>
-<p>And.</p>
-<pre class="prettyprint"><code><div>    cp ./gc.sh /home/alanr
-</div></code></pre>
-<p>And.</p>
-<pre class="prettyprint"><code><div>    cp .bash_aliases /home/alanr
-</div></code></pre>
-<p>With my <code>.bashrc</code> file I need to add these lines to the bottom of the file.</p>
-<pre class="prettyprint"><code><div><span class="hljs-comment"># Colour  man page output</span>
-<span class="hljs-built_in">export</span> PAGER=most
-
-<span class="hljs-comment"># Vertical format for docker ps</span>
-<span class="hljs-built_in">export</span> FORMAT=<span class="hljs-string">"ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"</span>
-
-<span class="hljs-comment"># Add to $PATH</span>
-<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin:<span class="hljs-variable">$PATH</span>
-</div></code></pre>
-<p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
-<h2 id="install-most">Install most</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install most -y
-</div></code></pre>
-<p>Exit your terminal and restart it. Type this command.</p>
-<pre class="prettyprint"><code><div>    man ls
-</div></code></pre>
-<p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
-<p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
-<h2 id="installing-docker">Installing Docker</h2>
-<p>Do an update.</p>
-<pre class="prettyprint"><code><div>   sudo apt update -y
-</div></code></pre>
-<p>Then install Docker.</p>
-<pre class="prettyprint"><code><div>   sudo apt install docker* -y
-</div></code></pre>
-<h3 id="manage-docker-as-a-non-root-user">Manage Docker as a non-root user</h3>
-<p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
-<p>Create the docker group.</p>
-<pre class="prettyprint"><code><div>    sudo groupadd docker
-</div></code></pre>
-<p>Add your user to the docker group.</p>
-<pre class="prettyprint"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
-</div></code></pre>
-<p>Reboot your system.</p>
-<p>To test (you shouldn't have to use root privileges).</p>
-<pre class="prettyprint"><code><div>    docker run hello-world
-</div></code></pre>
-<p>If successful you will get this message.</p>
-<blockquote>
-<p>Hello from Docker!
-This message shows that your installation appears to be working correctly.
-...</p>
-</blockquote>
-<p>Test that Docker Compose is working.</p>
-<pre class="prettyprint"><code><div>    docker compose version
-</div></code></pre>
-<h2 id="install-azure-data-studio">Install Azure Data Studio</h2>
-<p><a href="https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable">Azure Data Studio link</a>.</p>
-<p>From your home folder run this.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
-</div></code></pre>
-<p>My package was.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
-</div></code></pre>
-<p>This installs Azure Data Studio.</p>
-<p>You may have to install the folowing dependancies.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get install libunwind8
-</div></code></pre>
-<p>To run.</p>
-<blockquote>
-<p>azuredatastudio</p>
-</blockquote>
-<h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
-<p>Install from this link.</p>
-<pre class="prettyprint"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
-</div></code></pre>
-<p>In Downloads.</p>
-<pre class="prettyprint"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
-</div></code></pre>
-<p>My Visual Studio Account.</p>
-<blockquote>
-<p><a href="mailto:a.r@gmail.com">a.r@gmail.com</a></p>
-</blockquote>
-<h2 id="install-net-core">Install .Net Core</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install -y aspnetcore-runtime-8.0
-</div></code></pre>
-<p>This will install the .Net core runtime and the SDK.</p>
-<h2 id="install-brave-browser">Install Brave browser</h2>
-<pre class="prettyprint"><code><div>sudo apt install curl
-</div></code></pre>
-<pre class="prettyprint"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-</div></code></pre>
-<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-</div></code></pre>
-<pre class="prettyprint"><code><div>sudo apt update
-</div></code></pre>
-<pre class="prettyprint"><code><div>sudo apt install brave-browser
-</div></code></pre>
-<h2 id="install-winrar">Install WinRar</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install rar unrar
-</div></code></pre>
-<p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
-<h3 id="extracting-files">Extracting files</h3>
-<pre class="prettyprint"><code><div>    unrar x license.rar
-</div></code></pre>
-<p>To extract to another directory.</p>
-<pre class="prettyprint"><code><div>    unrar e license.rar /home/alanr/Downloads
-</div></code></pre>
-<p>Listing all files in a rar file.</p>
-<pre class="prettyprint"><code><div>    rar l myfiles.rar
-</div></code></pre>
-<h3 id="testing-rar-files">Testing rar files</h3>
-<pre class="prettyprint"><code><div>    unrar t myfiles.rar
-</div></code></pre>
-<h3 id="copy-files-to-a-rar-file">Copy files to a rar file</h3>
-<pre class="prettyprint"><code><div>    rar a mytextfiles.rar *.txt
-</div></code></pre>
-<p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
-<pre class="prettyprint"><code><div>    rar u myfiles.rar hello.py
-</div></code></pre>
-<h2 id="installing-nord-vpn">Installing Nord VPN</h2>
-<p>Install with this command.</p>
-<pre class="prettyprint"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
-</div></code></pre>
-<p>Add user to nordvpn group.</p>
-<pre class="prettyprint"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
-</div></code></pre>
-<p>Login.</p>
-<p>Reboot Linux.</p>
-<p>When you want to use Nord VPN.</p>
-<pre class="prettyprint"><code><div>    nordvpn connect
-</div></code></pre>
-<h2 id="replace-apt">Replace APT</h2>
-<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
-<pre class="prettyprint"><code><div>    sudo apt install nala -y
-</div></code></pre>
-<h2 id="speed-up-your-installs">Speed up your installs</h2>
-<p>Use <code>Fetch</code>. First setup the repository.</p>
-<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-</div></code></pre>
-<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
-<pre class="prettyprint"><code><div>    sudo nala fetch
-</div></code></pre>
-<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
-<blockquote>
-<p>1,2,3,4,5,6,7,8,9,10</p>
-</blockquote>
-<p>This will show you the list and ask for confirmation.</p>
-<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
-<p>You will find that you install software much faster than with APT.</p>
-<h2 id="improve-ram-usage">Improve RAM usage</h2>
-<p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
-<p>You can check your settings with.</p>
-<pre class="prettyprint"><code><div>    cat /proc/sys/vm/swappiness
-</div></code></pre>
-<p>Returns.</p>
-<blockquote>
-<p>60</p>
-</blockquote>
-<p>You can change your threshold to 10 to speed up your machine.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/sysctl.con
-</div></code></pre>
-<p>Go to the bottom of this file and add this line.</p>
-<pre class="prettyprint"><code><div>    vm.swappiness=10
-</div></code></pre>
-<h2 id="install-stacer">Install Stacer</h2>
-<p>Stacer is a really impressive system checker.</p>
-<pre class="prettyprint"><code><div>    sudo nala stacer -y
-</div></code></pre>
-<h2 id="change-the-hostname">Change the hostname</h2>
-<p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/hostname
-</div></code></pre>
-<p>Change all references to the hostname in this file.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/hosts
-</div></code></pre>
-<p>Now, you need to tell the operating system that the host name has changed and the PC has been renamed.</p>
-<pre class="prettyprint"><code><div>    sudo hostname lion
-</div></code></pre>
-<p>I would reboot after this step.</p>
-<p>Now my terminal window reflects my new hostname.</p>
-<blockquote>
-<p>alanr@lion:~$</p>
-</blockquote>
-
+        <h1 id="linux-mint-22-setup">Linux Mint 22 setup</h1>
+        <h2 id="setup-your-firewall">Setup your Firewall</h2>
+        <p>assets/firewall-settings.png</p>
+        <p>Change <strong>status</strong> to ON.</p>
+        <h2 id="driver-manager">Driver Manager</h2>
+        <p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
+        <h2 id="install-preload">Install Preload</h2>
+        <p>You can speed up the startup times  of your apps by installing <code>preload</code>.</p>
+        <pre class="prettyprint"><code><div>    sudo apt install preload
+        </div></code></pre>
+        <p>Preload will load applications like Firefox quicker.</p>
+        <h2 id="file-manager-changes">File Manager changes</h2>
+        <p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
+        <p>In the section, <strong>Executable Text Files</strong> select <em>View executable text files when they are opened</em>.</p>
+        <p>This stops the display dialog from appearing when you click on an executable text file from Windows.</p>
+        <h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
+        <p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
+        <p>Copy these files to the home directory.</p>
+        <pre class="prettyprint"><code><div>    cp ./colours.sh /home/alanr
+        </div></code></pre>
+        <p>And.</p>
+        <pre class="prettyprint"><code><div>    cp ./gc.sh /home/alanr
+        </div></code></pre>
+        <p>And.</p>
+        <pre class="prettyprint"><code><div>    cp .bash_aliases /home/alanr
+        </div></code></pre>
+        <p>With my <code>.bashrc</code> file I need to add these lines to the bottom of the file.</p>
+        <pre class="prettyprint"><code><div><span class="hljs-comment"># Colour  man page output</span>
+        <span class="hljs-built_in">export</span> PAGER=most
+        
+        <span class="hljs-comment"># Vertical format for docker ps</span>
+        <span class="hljs-built_in">export</span> FORMAT=<span class="hljs-string">"ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"</span>
+        
+        <span class="hljs-comment"># Add to $PATH</span>
+        <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin:<span class="hljs-variable">$PATH</span>
+        </div></code></pre>
+        <p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
+        <h2 id="install-most">Install most</h2>
+        <pre class="prettyprint"><code><div>    sudo apt-get install most -y
+        </div></code></pre>
+        <p>Exit your terminal and restart it. Type this command.</p>
+        <pre class="prettyprint"><code><div>    man ls
+        </div></code></pre>
+        <p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
+        <p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
+        <h2 id="installing-docker">Installing Docker</h2>
+        <p>Do an update.</p>
+        <pre class="prettyprint"><code><div>   sudo apt update -y
+        </div></code></pre>
+        <p>Then install Docker.</p>
+        <pre class="prettyprint"><code><div>   sudo apt install docker* -y
+        </div></code></pre>
+        <h3 id="manage-docker-as-a-non-root-user">Manage Docker as a non-root user</h3>
+        <p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
+        <p>Create the docker group.</p>
+        <pre class="prettyprint"><code><div>    sudo groupadd docker
+        </div></code></pre>
+        <p>Add your user to the docker group.</p>
+        <pre class="prettyprint"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
+        </div></code></pre>
+        <p>Reboot your system.</p>
+        <p>To test (you shouldn't have to use root privileges).</p>
+        <pre class="prettyprint"><code><div>    docker run hello-world
+        </div></code></pre>
+        <p>If successful you will get this message.</p>
+        <blockquote>
+        <p>Hello from Docker!
+        This message shows that your installation appears to be working correctly.
+        ...</p>
+        </blockquote>
+        <p>Test that Docker Compose is working.</p>
+        <pre class="prettyprint"><code><div>    docker compose version
+        </div></code></pre>
+        <h2 id="install-azure-data-studio">Install Azure Data Studio</h2>
+        <p><a href="https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable">Azure Data Studio link</a>.</p>
+        <p>From your home folder run this.</p>
+        <pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
+        </div></code></pre>
+        <p>My package was.</p>
+        <pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
+        </div></code></pre>
+        <p>This installs Azure Data Studio.</p>
+        <p>You may have to install the folowing dependancies.</p>
+        <pre class="prettyprint"><code><div>    sudo apt-get install libunwind8
+        </div></code></pre>
+        <p>To run.</p>
+        <blockquote>
+        <p>azuredatastudio</p>
+        </blockquote>
+        <h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
+        <p>Install from this link.</p>
+        <pre class="prettyprint"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
+        </div></code></pre>
+        <p>In Downloads.</p>
+        <pre class="prettyprint"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
+        </div></code></pre>
+        <p>My Visual Studio Account.</p>
+        <blockquote>
+        <p>Microsoft - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
+        </blockquote>
+        <h2 id="install-net-core">Install .Net Core</h2>
+        <pre class="prettyprint"><code><div>    sudo apt-get update    
+        </div></code></pre>
+        <p>Then.</p>
+        <pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
+        </div></code></pre>
+        <p>This will install the .Net core runtime and the SDK.</p>
+        <h2 id="install-brave-browser">Install Brave browser</h2>
+        <pre class="prettyprint"><code><div>sudo apt install curl
+        </div></code></pre>
+        <pre class="prettyprint"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        </div></code></pre>
+        <pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+        </div></code></pre>
+        <pre class="prettyprint"><code><div>sudo apt update
+        </div></code></pre>
+        <pre class="prettyprint"><code><div>sudo apt install brave-browser
+        </div></code></pre>
+        <h2 id="install-winrar">Install WinRar</h2>
+        <pre class="prettyprint"><code><div>    sudo apt-get install rar unrar
+        </div></code></pre>
+        <p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
+        <h3 id="extracting-files">Extracting files</h3>
+        <pre class="prettyprint"><code><div>    unrar x license.rar
+        </div></code></pre>
+        <p>To extract to another directory.</p>
+        <pre class="prettyprint"><code><div>    unrar e license.rar /home/alanr/Downloads
+        </div></code></pre>
+        <p>Listing all files in a rar file.</p>
+        <pre class="prettyprint"><code><div>    rar l myfiles.rar
+        </div></code></pre>
+        <h3 id="testing-rar-files">Testing rar files</h3>
+        <pre class="prettyprint"><code><div>    unrar t myfiles.rar
+        </div></code></pre>
+        <h3 id="copy-files-to-a-rar-file">Copy files to a rar file</h3>
+        <pre class="prettyprint"><code><div>    rar a mytextfiles.rar *.txt
+        </div></code></pre>
+        <p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
+        <pre class="prettyprint"><code><div>    rar u myfiles.rar hello.py
+        </div></code></pre>
+        <h2 id="installing-nord-vpn">Installing Nord VPN</h2>
+        <p>Install with this command.</p>
+        <pre class="prettyprint"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+        </div></code></pre>
+        <p>Add user to nordvpn group.</p>
+        <pre class="prettyprint"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
+        </div></code></pre>
+        <p>Login.</p>
+        <p>Reboot Linux.</p>
+        <p>When you want to use Nord VPN.</p>
+        <pre class="prettyprint"><code><div>    nordvpn connect
+        </div></code></pre>
+        <h2 id="replace-apt">Replace APT</h2>
+        <p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
+        <pre class="prettyprint"><code><div>    sudo apt install nala -y
+        </div></code></pre>
+        <h2 id="speed-up-your-installs">Speed up your installs</h2>
+        <p>Use <code>Fetch</code>. First setup the repository.</p>
+        <pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+        </div></code></pre>
+        <p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
+        <pre class="prettyprint"><code><div>    sudo nala fetch
+        </div></code></pre>
+        <p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
+        <blockquote>
+        <p>1,2,3,4,5,6,7,8,9,10</p>
+        </blockquote>
+        <p>This will show you the list and ask for confirmation.</p>
+        <p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
+        <p>You will find that you install software much faster than with APT.</p>
+        <h2 id="improve-ram-usage">Improve RAM usage</h2>
+        <p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
+        <p>You can check your settings with.</p>
+        <pre class="prettyprint"><code><div>    cat /proc/sys/vm/swappiness
+        </div></code></pre>
+        <p>Returns.</p>
+        <blockquote>
+        <p>60</p>
+        </blockquote>
+        <p>You can change your threshold to 10 to speed up your machine.</p>
+        <pre class="prettyprint"><code><div>    sudo nano /etc/sysctl.con
+        </div></code></pre>
+        <p>Go to the bottom of this file and add this line.</p>
+        <pre class="prettyprint"><code><div>    vm.swappiness=10
+        </div></code></pre>
+        <h2 id="install-stacer">Install Stacer</h2>
+        <p>Stacer is a really impressive system checker.</p>
+        <pre class="prettyprint"><code><div>    sudo nala stacer -y
+        </div></code></pre>
+        <h2 id="change-the-hostname">Change the hostname</h2>
+        <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
+        <pre class="prettyprint"><code><div>    sudo nano /etc/hostname
+        </div></code></pre>
+        <p>Change all references to the hostname in this file.</p>
+        <pre class="prettyprint"><code><div>    sudo nano /etc/hosts
+        </div></code></pre>
+        <p>Now, you need to tell the operating system that the host name has changed and the PC has been renamed.</p>
+        <pre class="prettyprint"><code><div>    sudo hostname lion
+        </div></code></pre>
+        <p>I would reboot after this step.</p>
+        <p>Now my terminal window reflects my new hostname.</p>
+        <blockquote>
+        <p>alanr@lion:~$</p>
+        </blockquote>
+        
 
 
 </div><!-- starter-template -->
