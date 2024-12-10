@@ -179,11 +179,23 @@ My Visual Studio Account.
 
 ## Install .Net Core
 
+Add the Microsoft package signing key to your list of trusted keys and add the package repository.
+
+```bash
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+sudo dpkg -i packages-microsoft-prod.deb
+
+rm packages-microsoft-prod.deb
+```
+
+Then do an update.
+
 ```bash
     sudo apt-get update    
 ```
 
-Then.
+Then install .Net.
 
 ```bash
     sudo apt-get install -y dotnet-sdk-9.0

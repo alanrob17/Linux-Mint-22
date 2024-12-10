@@ -466,9 +466,17 @@ This message shows that your installation appears to be working correctly.
 <p>Microsoft - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
 </blockquote>
 <h2 id="install-net-core">Install .Net Core</h2>
+<p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
+<pre class="hljs"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+sudo dpkg -i packages-microsoft-prod.deb
+
+rm packages-microsoft-prod.deb
+</div></code></pre>
+<p>Then do an update.</p>
 <pre class="hljs"><code><div>    sudo apt-get update    
 </div></code></pre>
-<p>Then.</p>
+<p>Then install .Net.</p>
 <pre class="hljs"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
