@@ -1,9 +1,27 @@
 # Working with .Net in Linux
 
-## Installing in Linux Mint
+## Install .Net Core
+
+Add the Microsoft package signing key to your list of trusted keys and add the package repository.
 
 ```bash
-    sudo apt-get install -y aspnetcore-runtime-8.0
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+sudo dpkg -i packages-microsoft-prod.deb
+
+rm packages-microsoft-prod.deb
+```
+
+Then do an update.
+
+```bash
+    sudo apt-get update    
+```
+
+Then install .Net.
+
+```bash
+    sudo apt-get install -y dotnet-sdk-9.0
 ```
 
 This will install the .Net core runtime and the SDK.

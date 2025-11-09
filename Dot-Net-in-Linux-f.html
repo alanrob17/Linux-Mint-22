@@ -81,8 +81,19 @@ blockquote {
 
 
 <h1 id="working-with-net-in-linux">Working with .Net in Linux</h1>
-<h2 id="installing-in-linux-mint">Installing in Linux Mint</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install -y aspnetcore-runtime-8.0
+<h2 id="install-net-core">Install .Net Core</h2>
+<p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
+<pre class="prettyprint"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+sudo dpkg -i packages-microsoft-prod.deb
+
+rm packages-microsoft-prod.deb
+</div></code></pre>
+<p>Then do an update.</p>
+<pre class="prettyprint"><code><div>    sudo apt-get update    
+</div></code></pre>
+<p>Then install .Net.</p>
+<pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
 <h2 id="creating-a-console-program">Creating a Console program</h2>
