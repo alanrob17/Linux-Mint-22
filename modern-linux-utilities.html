@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>modern-linux-utilities.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="installing-modern-linux-utilities">Installing modern linux utilities</h1>
+<p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
+<p>These are documented at Github - <a href="https://github.com/ibraheemdev/modern-unix">Modern Unix utilities</a>.</p>
+<p>Rust is increasingly used to develop modern Unix applications and tools, often as replacements or enhancements for traditional C-based utilities. This trend is driven by Rust's focus on memory safety, performance, and concurrency, addressing common challenges faced in system programming.</p>
+<p>Here are some examples of modern Unix applications and tools written in Rust:</p>
+<h2 id="core-utilities--replacements">Core Utilities &amp; Replacements</h2>
+<p><strong>ripgrep (rg)</strong>: A faster and more feature-rich alternative to grep for searching regex patterns.</p>
+<p><strong>fd</strong>: A simpler and more intuitive alternative to find.</p>
+<p><strong>sd</strong>: An intuitive find-and-replace CLI, serving as a modern alternative to sed and awk.</p>
+<p><strong>zoxide</strong>: A smarter cd replacement that learns your navigation patterns.</p>
+<p><strong>Dust</strong>: A du alternative with improved visualization for disk usage.</p>
+<p><strong>procs</strong>: A ps replacement offering enhanced process information.</p>
+<p><strong>bottom</strong>: A top replacement with a modern terminal UI.</p>
+<p><strong>rip</strong>: An improved, safer, and user-friendly version of rm.</p>
+<p><strong>xcp</strong>: A faster and more user-friendly cp alternative with progress bars and parallel copying.</p>
+<h3 id="other-notable-tools">Other Notable Tools</h3>
+<p><strong>Broot</strong>: A tree alternative with a better user experience for navigating file structures.</p>
+<p><strong>Tokei</strong>: A utility for counting lines and statistics of code.</p>
+<p><strong>Topgrade</strong>: A utility to keep your system and tools updated.</p>
+<p><strong>gping</strong>: A ping replacement that visualizes ping times with a graph.</p>
+<p><strong>miniserve</strong>: A CLI tool to serve files and directories over HTTP.</p>
+<p><strong>macchina</strong>: A fast, minimal, and customizable system information frontend.</p>
+<p><strong>pastel</strong>: A command-line tool for colour manipulation and analysis.</p>
+<h3 id="why-rust-for-unix-applications">Why Rust for Unix Applications?</h3>
+<p>Memory Safety: Rust's ownership system and borrow checker prevent common memory-related bugs, enhancing security and stability.</p>
+<p>Performance: Rust offers performance comparable to C/C++, making it suitable for low-level system tools.</p>
+<p>Concurrency: Rust's features for safe concurrency make it easier to write performant multi-threaded applications without data races.</p>
+<p>Modern Tooling: Rust's ecosystem, including Cargo (package manager and build system), provides a streamlined development experience.</p>
+<h3 id="bat">Bat</h3>
+<h4 id="installation">Installation</h4>
+<p><code>Linux</code>.</p>
+<pre class="hljs"><code><div>    sudo apt install bat
+</div></code></pre>
+<p><code>Windows</code>.</p>
+<p><strong>Note:</strong> use the Administrator account to install all software through <code>choco</code>.</p>
+<pre class="hljs"><code><div>    choco install bat
+</div></code></pre>
+<p><code>BatCat</code> is a replacement for <code>Cat</code> with an impressive coloured output.</p>
+<p><strong>Note:</strong> we can't use <code>bat</code> as a shortcut because it conflicts with a system application.</p>
+<h4 id="create-an-alias">Create an alias</h4>
+<p>To get around the name conflict we create an alias and add it to <code>.bash_aliases</code>.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
+</div></code></pre>
+<p>Now to test this out.</p>
+<pre class="hljs"><code><div>    bc Program.cs
+</div></code></pre>
+<p>Returns.</p>
+<p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
+<p>This is BatCat running in DOS.</p>
+<p><img src="assets/images/batcat-output2.jpg" alt="DOS BatCat output" title="DOS BatCat output"></p>
+<h3 id="eza">Eza</h3>
+<p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
+<p>Documentation.</p>
+<p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
+<p>Standard usage.</p>
+<pre class="hljs"><code><div>    eza
+</div></code></pre>
+<p>Or.</p>
+<pre class="hljs"><code><div>    eza -la
+</div></code></pre>
+<p>Returns.</p>
+<p><img src="assets/images/eza-output.jpg" alt="eza output" title="eza output"></p>
+<p>It gets more interesting here.</p>
+<pre class="hljs"><code><div>    eza -lT
+</div></code></pre>
+<p><img src="assets/images/tree-view.jpg" alt="Tree view" title="Tree view"></p>
+<p>This command can be used to provide a similar output to my Windows <code>search</code> command that limits the search to 2 directory levels.</p>
+<pre class="hljs"><code><div>    eza -TL 2
+</div></code></pre>
+<p>Windows output.</p>
+<p><img src="assets/images/eza-tree-view.jpg" alt="Eza tree view" title="Eza tree view"></p>
+<h3 id="fd">fd</h3>
+<p>The <code>fd</code> command is a file system utility, serving as a modern, faster, and more user-friendly alternative to the traditional <code>find</code> command in Linux. It offers a simpler syntax and sensible defaults for common use cases.</p>
+<h4 id="installation">Installation</h4>
+<p>Linux.</p>
+<pre class="hljs"><code><div>    sudo apt install fd-find
+</div></code></pre>
+<p>Create an alias to use this command as <code>fd</code> in <code>.bash_aliases</code>.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
+</div></code></pre>
+<h4 id="usage">Usage</h4>
+<p>fd PATTERN</p>
+<p><code>fd</code> is case insensitive</p>
+<pre class="hljs"><code><div>    fd program.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p>Search in a specific directory.</p>
+<pre class="hljs"><code><div>    fd Program.cs Documents/
+</div></code></pre>
+<p><strong>Note:</strong> you can use -i for case insensitive searches.</p>
+<p>Searching for multiple files with the same extension.</p>
+<pre class="hljs"><code><div>    fd -g *.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p><strong>Note:</strong> -g is for file globbing and this allows you to do wildcard searches.</p>
+<p>Only search in the current directory</p>
+<pre class="hljs"><code><div>    fd -gd 2 *.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p>Search for files with an extension.</p>
+<pre class="hljs"><code><div>    fd -e sh
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>colours.sh<br>
+gc.sh<br>
+status.sh</p>
+</blockquote>
+<p>To list all files in a specific directory, use the wild card symbol <strong>.</strong> as the search pattern.</p>
+<pre class="hljs"><code><div>    fd . Documents/
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs<br>
+Documents/file.txt</p>
+</blockquote>
+<p>There are a huge number options with the <code>fd</code> command.</p>
+<h3 id="glow">Glow</h3>
+<p>(Glow github page)[https://github.com/charmbracelet/glow].</p>
+<h4 id="installation">Installation</h4>
+<p>Linux.</p>
+<pre class="hljs"><code><div>    sudo mkdir -p /etc/apt/keyrings
+</div></code></pre>
+<p>Get the key.</p>
+<pre class="hljs"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+</div></code></pre>
+<p>.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
+</div></code></pre>
+<p>Update the packages.</p>
+<pre class="hljs"><code><div>    sudo apt update 
+</div></code></pre>
+<p>Install.</p>
+<pre class="hljs"><code><div>    sudo apt install glow
+</div></code></pre>
+<p>Windows.</p>
+<pre class="hljs"><code><div>    choco install glow -y
+</div></code></pre>
+<h4 id="usage">Usage</h4>
+<pre class="hljs"><code><div>    glow
+</div></code></pre>
+<p>This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.</p>
+<p>To select a single file.</p>
+<pre class="hljs"><code><div>    glow -p linux-files.md
+</div></code></pre>
+<p><code>-p</code> will add the paging system you are using</p>
+<p><strong>Word Wrapping</strong></p>
+<p>The  <code>-w</code>  flag lets you set a maximum width at which the output will be  wrapped:</p>
+<pre class="hljs"><code><div>    glow -w 60
+</div></code></pre>
+<p><strong>Themes</strong></p>
+<p>Glow also has themes.</p>
+<pre class="hljs"><code><div>    glow -p --style tokyo-night linux-notes.md
+</div></code></pre>
+<p><strong>Note:</strong> you can use <code>-s</code> in place of <code>--style</code>.</p>
+<p>All current themes.</p>
+<ul>
+<li>light -- faulty on mine.</li>
+<li>dark -- default</li>
+<li>notty -- black and white</li>
+<li>dracula -- I like this</li>
+<li>pink -- pink headers</li>
+<li>tokyo-night -- nice</li>
+</ul>
+<p>You can create your own.</p>
+
+</body>
+</html>

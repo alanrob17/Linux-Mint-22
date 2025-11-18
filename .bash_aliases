@@ -20,3 +20,6 @@ alias fd='fdfind'
 alias nan='nano $(fzf --preview="batcat --color=always {}")'
 alias gcom='git log --oneline | fzf --preview "git show --name-only {1}"'
 alias pf='fzf --preview="less {}" --bind shift-up:preview-page-up,shift-down:preview-page-down'
+alias f=fzf
+alias la=eza
+alias co=code
