@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Linux</title>
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/starter-template.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+<style type="text/css">
+html {
+	font-size: 90.0%;
+}
+
+h2 {
+	margin-top: 60px;
+}
+
+h4, h3 {
+	padding-top: 40px!;		
+}
+
+p {
+	font-size: 1.2em;
+}
+h4 {
+	font-size: 1.4em;
+}
+
+img, pre.prettyprint {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+    color:#007bff;
+
+}
+blockquote {
+    border-left: 4px solid #999;
+    padding-left: 1rem;
+    page-break-inside: avoid;
+}
+:target:before {
+  content: "";
+  display: block;
+  height: 80px; /* adjust this value to your needs */
+  margin: -80px 0 0; /* this should be a negative value of the height above */
+}
+</style>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Modern Linux Utilities</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Utilities <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="starter-template">
+
+
+<h1 id="installing-modern-linux-utilities">Installing modern linux utilities</h1>
+<p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
+<p>These are documented at Github - <a href="https://github.com/ibraheemdev/modern-unix">Modern Unix utilities</a>.</p>
+<p>Rust is increasingly used to develop modern Unix applications and tools, often as replacements or enhancements for traditional C-based utilities. This trend is driven by Rust's focus on memory safety, performance, and concurrency, addressing common challenges faced in system programming.</p>
+<p>Here are some examples of modern Unix applications and tools written in Rust:</p>
+<h2 id="core-utilities--replacements">Core Utilities &amp; Replacements</h2>
+<p><strong>ripgrep (rg)</strong>: A faster and more feature-rich alternative to grep for searching regex patterns.</p>
+<p><strong>fd</strong>: A simpler and more intuitive alternative to find.</p>
+<p><strong>sd</strong>: An intuitive find-and-replace CLI, serving as a modern alternative to sed and awk.</p>
+<p><strong>zoxide</strong>: A smarter cd replacement that learns your navigation patterns.</p>
+<p><strong>Dust</strong>: A du alternative with improved visualization for disk usage.</p>
+<p><strong>procs</strong>: A ps replacement offering enhanced process information.</p>
+<p><strong>bottom</strong>: A top replacement with a modern terminal UI.</p>
+<p><strong>rip</strong>: An improved, safer, and user-friendly version of rm.</p>
+<p><strong>xcp</strong>: A faster and more user-friendly cp alternative with progress bars and parallel copying.</p>
+<h3 id="other-notable-tools">Other Notable Tools</h3>
+<p><strong>Broot</strong>: A tree alternative with a better user experience for navigating file structures.</p>
+<p><strong>Tokei</strong>: A utility for counting lines and statistics of code.</p>
+<p><strong>Topgrade</strong>: A utility to keep your system and tools updated.</p>
+<p><strong>gping</strong>: A ping replacement that visualizes ping times with a graph.</p>
+<p><strong>miniserve</strong>: A CLI tool to serve files and directories over HTTP.</p>
+<p><strong>macchina</strong>: A fast, minimal, and customizable system information frontend.</p>
+<p><strong>pastel</strong>: A command-line tool for colour manipulation and analysis.</p>
+<h3 id="why-rust-for-unix-applications">Why Rust for Unix Applications?</h3>
+<p>Memory Safety: Rust's ownership system and borrow checker prevent common memory-related bugs, enhancing security and stability.</p>
+<p>Performance: Rust offers performance comparable to C/C++, making it suitable for low-level system tools.</p>
+<p>Concurrency: Rust's features for safe concurrency make it easier to write performant multi-threaded applications without data races.</p>
+<p>Modern Tooling: Rust's ecosystem, including Cargo (package manager and build system), provides a streamlined development experience.</p>
+<h3 id="bat">Bat</h3>
+<h4 id="installation">Installation</h4>
+<p><code>Linux</code>.</p>
+<pre class="prettyprint"><code><div>    sudo apt install bat
+</div></code></pre>
+<p><code>Windows</code>.</p>
+<p><strong>Note:</strong> use the Administrator account to install all software through <code>choco</code>.</p>
+<pre class="prettyprint"><code><div>    choco install bat
+</div></code></pre>
+<p><code>BatCat</code> is a replacement for <code>Cat</code> with an impressive coloured output.</p>
+<p><strong>Note:</strong> we can't use <code>bat</code> as a shortcut because it conflicts with a system application.</p>
+<h4 id="create-an-alias">Create an alias</h4>
+<p>To get around the name conflict we create an alias and add it to <code>.bash_aliases</code>.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
+</div></code></pre>
+<p>On Linux I can create an alias for <code>cat</code> and it should work. This alias won't work on Windows.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> cat=<span class="hljs-string">'batcat'</span>
+</div></code></pre>
+<p>Now to test this out.</p>
+<pre class="prettyprint"><code><div>    cat Program.cs
+</div></code></pre>
+<p>Returns.</p>
+<p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
+<p>This is BatCat running in DOS.</p>
+<p><img src="assets/images/batcat-output2.jpg" alt="DOS BatCat output" title="DOS BatCat output"></p>
+<h3 id="eza">Eza</h3>
+<p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
+<p>Once again I can create an alias for <code>eza</code>.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> ls=<span class="hljs-string">'eza'</span>
+</div></code></pre>
+<p>For consistency with Windows I have also created another alias.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> la=<span class="hljs-string">'eza'</span>
+</div></code></pre>
+<p>In Windows Powershell.</p>
+<pre class="prettyprint"><code><div>    new-item <span class="hljs-built_in">alias</span>:la -value eza
+</div></code></pre>
+<p>Documentation.</p>
+<p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
+<p>Standard usage.</p>
+<pre class="prettyprint"><code><div>    eza
+</div></code></pre>
+<p>Or.</p>
+<pre class="prettyprint"><code><div>    eza -la
+</div></code></pre>
+<p>Returns.</p>
+<p><img src="assets/images/eza-output.jpg" alt="eza output" title="eza output"></p>
+<p>It gets more interesting here.</p>
+<pre class="prettyprint"><code><div>    eza -lT
+</div></code></pre>
+<p><img src="assets/images/tree-view.jpg" alt="Tree view" title="Tree view"></p>
+<p>This command can be used to provide a similar output to my Windows <code>search</code> command that limits the search to 2 directory levels.</p>
+<pre class="prettyprint"><code><div>    eza -TL 2
+</div></code></pre>
+<p>Windows output.</p>
+<p><img src="assets/images/eza-tree-view.jpg" alt="Eza tree view" title="Eza tree view"></p>
+<h3 id="fd">fd</h3>
+<p>The <code>fd</code> command is a file system utility, serving as a modern, faster, and more user-friendly alternative to the traditional <code>find</code> command in Linux. It offers a simpler syntax and sensible defaults for common use cases.</p>
+<h4 id="installation">Installation</h4>
+<p>Linux.</p>
+<pre class="prettyprint"><code><div>    sudo apt install fd-find
+</div></code></pre>
+<p>Create an alias to use this command as <code>fd</code> in <code>.bash_aliases</code>.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
+</div></code></pre>
+<h4 id="usage">Usage</h4>
+<p>fd PATTERN</p>
+<p><code>fd</code> is case insensitive</p>
+<pre class="prettyprint"><code><div>    fd program.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p>Search in a specific directory.</p>
+<pre class="prettyprint"><code><div>    fd Program.cs Documents/
+</div></code></pre>
+<p><strong>Note:</strong> you can use -i for case insensitive searches.</p>
+<p>Searching for multiple files with the same extension.</p>
+<pre class="prettyprint"><code><div>    fd -g *.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p><strong>Note:</strong> -g is for file globbing and this allows you to do wildcard searches.</p>
+<p>Only search in the current directory</p>
+<pre class="prettyprint"><code><div>    fd -gd 2 *.cs
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs</p>
+</blockquote>
+<p>Search for files with an extension.</p>
+<pre class="prettyprint"><code><div>    fd -e sh
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>colours.sh<br>
+gc.sh<br>
+status.sh</p>
+</blockquote>
+<p>To list all files in a specific directory, use the wild card symbol <strong>.</strong> as the search pattern.</p>
+<pre class="prettyprint"><code><div>    fd . Documents/
+</div></code></pre>
+<p>Returns.</p>
+<blockquote>
+<p>Documents/Program.cs<br>
+Documents/file.txt</p>
+</blockquote>
+<p>There are a huge number options with the <code>fd</code> command.</p>
+<h3 id="glow">Glow</h3>
+<p>(Glow github page)[https://github.com/charmbracelet/glow].</p>
+<h4 id="installation">Installation</h4>
+<p>Linux.</p>
+<pre class="prettyprint"><code><div>    sudo mkdir -p /etc/apt/keyrings
+</div></code></pre>
+<p>Get the key.</p>
+<pre class="prettyprint"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+</div></code></pre>
+<p>.</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
+</div></code></pre>
+<p>Update the packages.</p>
+<pre class="prettyprint"><code><div>    sudo apt update 
+</div></code></pre>
+<p>Install.</p>
+<pre class="prettyprint"><code><div>    sudo apt install glow
+</div></code></pre>
+<p>Windows.</p>
+<pre class="prettyprint"><code><div>    choco install glow -y
+</div></code></pre>
+<h4 id="usage">Usage</h4>
+<pre class="prettyprint"><code><div>    glow
+</div></code></pre>
+<p>This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.</p>
+<p>To select a single file.</p>
+<pre class="prettyprint"><code><div>    glow -p linux-files.md
+</div></code></pre>
+<p><code>-p</code> will add the paging system you are using</p>
+<p><strong>Word Wrapping</strong></p>
+<p>The  <code>-w</code>  flag lets you set a maximum width at which the output will be  wrapped:</p>
+<pre class="prettyprint"><code><div>    glow -w 60
+</div></code></pre>
+<p><strong>Themes</strong></p>
+<p>Glow also has themes.</p>
+<pre class="prettyprint"><code><div>    glow -p --style tokyo-night linux-notes.md
+</div></code></pre>
+<p><strong>Note:</strong> you can use <code>-s</code> in place of <code>--style</code>.</p>
+<p>All current themes.</p>
+<ul>
+<li>light -- faulty on mine.</li>
+<li>dark -- default</li>
+<li>notty -- black and white</li>
+<li>dracula -- I like this</li>
+<li>pink -- pink headers</li>
+<li>tokyo-night -- nice</li>
+</ul>
+<p>You can create your own.</p>
+
+
+
+</div><!-- starter-template -->
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"/>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
