@@ -359,6 +359,183 @@ Stacer is a really impressive system checker.
     sudo nala stacer -y
 ```
 
+## Installing utilities
+
+There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.
+
+These are documented at Github - [Modern Unix utilities](https://github.com/ibraheemdev/modern-unix).
+
+### Bat
+
+#### Installation
+
+``Linux``.
+
+```bash
+    sudo apt install bat
+```
+
+``Windows``.
+
+```bash
+    choco install bat
+```
+
+``BatCat`` is a replacement for ``Cat`` with an impressive coloured output.
+
+**Note:** we can't use ``bat`` as a shortcut because it conflicts with a system application.
+
+#### Create an alias
+
+To get around the name conflict we create an alias and add it to ``.bash_aliases``.
+
+```bash
+    alias bc='batcat'
+```
+
+Now to test this out.
+
+```bash
+    bc Program.cs
+```
+
+Returns.
+
+![BatCat output](assets/images/batcat-output.jpg "BatCat output")
+
+This is BatCat running in DOS.
+
+![DOS BatCat output](assets/images/batcat-output2.jpg "DOS BatCat output")
+
+### Eza
+
+``eza`` is a coloured replacement for ``ls``. It seems to have all of the options that ``ls`` has plus a lot of extras. Once again this works on a Windows PC.
+
+Documentation.
+
+(Eza community Github site)[https://github.com/eza-community/eza].
+
+Standard usage.
+
+```bash
+    eza
+```
+
+Or.
+
+```bash
+    eza -la
+```
+
+Returns.
+
+![eza output](assets/images/eza-output.jpg "eza output")
+
+It gets more interesting here.
+
+```bash
+    eza -lT
+```
+
+![Tree view](assets/images/tree-view.jpg "Tree view")
+
+This command can be used to provide a similar output to my Windows ``search`` command that limits the search to 2 directory levels.
+
+```bash
+    eza -TL 2
+```
+
+Windows output.
+
+![Eza tree view](assets/images/eza-tree-view.jpg "Eza tree view")
+
+### fd
+
+The ``fd`` command is a file system utility, serving as a modern, faster, and more user-friendly alternative to the traditional ``find`` command in Linux. It offers a simpler syntax and sensible defaults for common use cases.
+
+#### Installation
+
+Linux.
+
+```bash
+    sudo apt install fd-find
+```
+
+Create an alias to use this command as ``fd`` in ``.bash_aliases``.
+
+```bash
+    alias fd='fdfind'
+```
+
+#### Usage
+
+fd PATTERN
+
+``fd`` is case insensitive
+
+```bash
+    fd program.cs
+```
+
+Returns.
+
+> Documents/Program.cs
+
+Search in a specific directory.
+
+```bash
+    fd Program.cs Documents/
+```
+
+**Note:** you can use -i for case insensitive searches.
+
+Searching for multiple files with the same extension.
+
+```bash
+    fd -g *.cs
+```
+
+Returns.
+
+> Documents/Program.cs
+
+**Note:** -g is for file globbing and this allows you to do wildcard searches.
+
+Only search in the current directory
+
+```bash
+    fd -gd 2 *.cs
+```
+
+Returns.
+
+> Documents/Program.cs
+
+Search for files with an extension.
+
+```bash
+    fd -e sh
+```
+
+Returns.
+
+> colours.sh        
+> gc.sh     
+> status.sh
+
+To list all files in a specific directory, use the wild card symbol **.** as the search pattern.
+
+```bash
+    fd . Documents/
+```
+
+Returns.
+
+> Documents/Program.cs      
+> Documents/file.txt
+
+There are a huge number options with the ``fd`` command.
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.

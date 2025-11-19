@@ -408,8 +408,11 @@ code {
 <p>To get around the name conflict we create an alias and add it to <code>.bash_aliases</code>.</p>
 <pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
 </div></code></pre>
+<p>On Linux I can create an alias for <code>cat</code> and it should work. This alias won't work on Windows.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> cat=<span class="hljs-string">'batcat'</span>
+</div></code></pre>
 <p>Now to test this out.</p>
-<pre class="hljs"><code><div>    bc Program.cs
+<pre class="hljs"><code><div>    cat Program.cs
 </div></code></pre>
 <p>Returns.</p>
 <p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
@@ -417,6 +420,15 @@ code {
 <p><img src="assets/images/batcat-output2.jpg" alt="DOS BatCat output" title="DOS BatCat output"></p>
 <h3 id="eza">Eza</h3>
 <p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
+<p>Once again I can create an alias for <code>eza</code>.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> ls=<span class="hljs-string">'eza'</span>
+</div></code></pre>
+<p>For consistency with Windows I have also created another alias.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> la=<span class="hljs-string">'eza'</span>
+</div></code></pre>
+<p>In Windows Powershell.</p>
+<pre class="hljs"><code><div>    new-item <span class="hljs-built_in">alias</span>:la -value eza
+</div></code></pre>
 <p>Documentation.</p>
 <p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
 <p>Standard usage.</p>
