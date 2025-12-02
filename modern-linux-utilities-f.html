@@ -266,6 +266,52 @@ Documents/file.txt</p>
 <li>tokyo-night -- nice</li>
 </ul>
 <p>You can create your own.</p>
+<h3 id="zoxide">zoxide</h3>
+<p><code>zoxide</code> is an alternative to the cd command, offering faster performance and smarter navigation capabilities. Like the tools mentioned below, much of the power of <code>zoxide</code> is in its directory ranking based on your usage. Its ranking algorithm can quickly match partial paths, even single search terms, with one of your most used directories.</p>
+<h4 id="installation">Installation</h4>
+<pre class="prettyprint"><code><div>	sudo apt update &amp;&amp; sudo apt upgrade -y
+</div></code></pre>
+<p>Install with.</p>
+<pre class="prettyprint"><code><div>	sudo apt install zoxide
+</div></code></pre>
+<p>Have your shell initialize <code>zoxide</code> with each shell session. You can do so by adding the following line to the end of your <code>~/.bashrc</code> file.</p>
+<p><strong>File: ~/.bashrc</strong></p>
+<pre class="prettyprint"><code><div>	<span class="hljs-comment">#...</span>
+	<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
+</div></code></pre>
+<h4 id="how-to-use-zoxide">How to Use zoxide</h4>
+<p>As with similar tools, <code>zoxide</code> has to first “learn” directories for its ranking algorithm. So, to begin, navigate to some directories just like you would with <code>cd</code>, but using the <code>z</code> command instead.</p>
+<p>You can use the following series of commands to do just that. The examples that follow in this guide use these commands as a baseline to show you how the zoxide algorithm operates:</p>
+<pre class="prettyprint"><code><div>z /etc/opt
+z /etc/ssh
+z /etc/ssh/ssh_config.d
+z /usr/<span class="hljs-built_in">local</span>/bin
+z /var/<span class="hljs-built_in">log</span>
+</div></code></pre>
+<p>Once you’ve taught zoxide your frequently visited directories, you can begin using abbreviated directory searches. For instance, to navigate into the <code>/etc/ssh</code> directory after using the above commands, you can enter <code>z ssh</code>.</p>
+<p>Notice that using <code>z ssh</code> command takes you to <code>/etc/ssh</code>. However, try using the following command three or four times:</p>
+<pre class="prettyprint"><code><div>z config
+</div></code></pre>
+<p>After doing that, the next time you use the z ssh command, you are taken to the <code>/etc/ssh/ssh_config.d</code> directory. Why? Because <code>zoxide</code> has ranked it as your most frequent visited directory that matches the search query ssh.</p>
+<p>You can use the following command to get back to <code>/etc/ssh</code>. This works because the provided search terms more closely match the directory.</p>
+<pre class="prettyprint"><code><div>z etc ssh
+</div></code></pre>
+<p><code>zoxide</code> also supports partial search terms, as you can see above with config. You can also use this feature for something like the following command, which still gets you to <code>/usr/local/bin</code>:</p>
+<pre class="prettyprint"><code><div>z lo b
+</div></code></pre>
+<p>Be aware that your <code>zoxide</code> search needs to include something of the destination directory. For instance, <code>z</code> var doesn’t get you to the <code>/var/log directory</code>, but searches like <code>z log</code> or <code>z var l</code> do.</p>
+<h4 id="interactive-searches-with-fzf">Interactive Searches with fzf</h4>
+<p>If you have <code>fzf</code> installed, <code>zoxide</code> can use it to let you select from a list of all directories it matches for a given search term or terms. For instance, the following command matches both <code>/etc/ssh</code> and <code>/etc/ssh/ssh_config.d</code>, and so the interactive zoxide command gives you an option to select between the two directories:</p>
+<pre class="prettyprint"><code><div>zi ssh
+</div></code></pre>
+<p>Returns.</p>
+<p><img src="assets/images/zoxide-interactive-selection.jpg" alt="Zoxide selection" title="Zoxide selection"></p>
+<p>Another example. From my home directory type.</p>
+<pre class="prettyprint"><code><div>	z D &lt;SPACE&gt;&lt;TAB&gt;
+</div></code></pre>
+<p>Will print out.</p>
+<p><img src="assets/images/z-with-fzf.jpg" alt="Zoxide with FZF" title="Zoxide with FZF"></p>
+<p>You can then move to <code>Documents</code> or <code>Downloads</code>.</p>
 
 
 

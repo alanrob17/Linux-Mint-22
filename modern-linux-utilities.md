@@ -337,3 +337,90 @@ All current themes.
 * tokyo-night -- nice
 
 You can create your own.
+
+### zoxide
+
+``zoxide`` is an alternative to the cd command, offering faster performance and smarter navigation capabilities. Like the tools mentioned below, much of the power of ``zoxide`` is in its directory ranking based on your usage. Its ranking algorithm can quickly match partial paths, even single search terms, with one of your most used directories.
+
+#### Installation
+
+```bash
+	sudo apt update && sudo apt upgrade -y
+```
+
+Install with.
+
+```bash
+	sudo apt install zoxide
+```
+
+Have your shell initialize ``zoxide`` with each shell session. You can do so by adding the following line to the end of your ``~/.bashrc`` file.
+
+**File: ~/.bashrc**
+
+```bash
+	#...
+	eval "$(zoxide init bash)"
+```
+
+#### How to Use zoxide
+
+As with similar tools, ``zoxide`` has to first “learn” directories for its ranking algorithm. So, to begin, navigate to some directories just like you would with ``cd``, but using the ``z`` command instead.
+
+You can use the following series of commands to do just that. The examples that follow in this guide use these commands as a baseline to show you how the zoxide algorithm operates:
+
+```bash
+z /etc/opt
+z /etc/ssh
+z /etc/ssh/ssh_config.d
+z /usr/local/bin
+z /var/log
+```
+
+Once you’ve taught zoxide your frequently visited directories, you can begin using abbreviated directory searches. For instance, to navigate into the ``/etc/ssh`` directory after using the above commands, you can enter ``z ssh``.
+
+Notice that using ``z ssh`` command takes you to ``/etc/ssh``. However, try using the following command three or four times:
+
+```bash
+z config
+```
+
+After doing that, the next time you use the z ssh command, you are taken to the ``/etc/ssh/ssh_config.d`` directory. Why? Because ``zoxide`` has ranked it as your most frequent visited directory that matches the search query ssh.
+
+You can use the following command to get back to ``/etc/ssh``. This works because the provided search terms more closely match the directory.
+
+```bash
+z etc ssh
+```
+
+``zoxide`` also supports partial search terms, as you can see above with config. You can also use this feature for something like the following command, which still gets you to ``/usr/local/bin``:
+
+```bash
+z lo b
+```
+
+Be aware that your ``zoxide`` search needs to include something of the destination directory. For instance, ``z`` var doesn’t get you to the ``/var/log directory``, but searches like ``z log`` or ``z var l`` do.
+
+#### Interactive Searches with fzf
+
+If you have ``fzf`` installed, ``zoxide`` can use it to let you select from a list of all directories it matches for a given search term or terms. For instance, the following command matches both ``/etc/ssh`` and ``/etc/ssh/ssh_config.d``, and so the interactive zoxide command gives you an option to select between the two directories:
+
+```bash
+zi ssh
+```
+
+Returns.
+
+![Zoxide selection](assets/images/zoxide-interactive-selection.jpg "Zoxide selection")
+
+Another example. From my home directory type.
+
+```bash
+	z D <SPACE><TAB>
+```
+
+Will print out.
+
+![Zoxide with FZF](assets/images/z-with-fzf.jpg "Zoxide with FZF")
+
+You can then move to ``Documents`` or ``Downloads``.

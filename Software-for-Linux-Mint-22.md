@@ -555,6 +555,31 @@ Returns.
 
 There are a huge number options with the ``fd`` command.
 
+### zoxide
+
+``zoxide`` is an alternative to the cd command, offering faster performance and smarter navigation capabilities. Like the tools mentioned below, much of the power of ``zoxide`` is in its directory ranking based on your usage. Its ranking algorithm can quickly match partial paths, even single search terms, with one of your most used directories.
+
+#### Installation
+
+```bash
+	sudo apt update && sudo apt upgrade -y
+```
+
+Install with.
+
+```bash
+	sudo apt install zoxide
+```
+
+Have your shell initialize ``zoxide`` with each shell session. You can do so by adding the following line to the end of your ``~/.bashrc`` file.
+
+**File: ~/.bashrc**
+
+```bash
+	#...
+	eval "$(zoxide init bash)"
+```
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.
