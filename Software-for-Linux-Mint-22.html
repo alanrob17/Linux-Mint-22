@@ -396,10 +396,29 @@ code {
 <span class="hljs-built_in">export</span> PAGER=most
 
 <span class="hljs-comment"># Vertical format for docker ps</span>
-<span class="hljs-built_in">export</span> FORMAT=<span class="hljs-string">"ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"</span>
+<span class="hljs-built_in">export</span> FORMAT=<span class="hljs-string">"ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREA
+TED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"</span>
+
+<span class="hljs-comment"># Run my shell scripts</span>
+<span class="hljs-comment"># if [ -f ~/.config/shell_funcs.sh ]; then</span>
+   . ~/.config/shell_funcs.sh
+<span class="hljs-comment"># fi</span>
 
 <span class="hljs-comment"># Add to $PATH</span>
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin:<span class="hljs-variable">$PATH</span>
+
+<span class="hljs-built_in">export</span> MANPATH=<span class="hljs-string">":/usr/shar/man"</span>
+
+<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
+
+<span class="hljs-comment"># delete these files on wsl ubuntu</span>
+find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">'*:Zone.Identifier*'</span> -delete
+find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">'*:mshield'</span> -delete
+
+<span class="hljs-comment"># Set up fzf key bindings and fuzzy completion</span>
+<span class="hljs-comment"># export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'</span>
+<span class="hljs-built_in">set</span> FZF_DEFAULT_OPTS <span class="hljs-string">"--layout=reverse --border=bold --border=rounded --margin=3% --color=dark"</span>
+[ -f ~/.fzf.bash ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.fzf.bash
 </div></code></pre>
 <p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
 <h2 id="install-most">Install most</h2>
