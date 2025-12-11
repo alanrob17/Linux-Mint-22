@@ -434,7 +434,53 @@ Documentation.
 
 (Eza community Github site)[https://github.com/eza-community/eza].
 
-Standard usage.
+#### Installation
+
+To install ``eza`` on Ubuntu, you can use the official repository method. First, ensure you have the GPG package installed by running:
+
+```bash
+sudo apt update && sudo apt install -y gpg
+```
+
+Then, add the eza repository and its signing key:
+
+```bash
+sudo mkdir -p /etc/apt/keyrings
+```
+
+Then.
+
+```bash
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+```
+
+Next.
+
+```bash
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+```
+
+Finally.
+
+```bash
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+```
+
+Update the package list and install eza.
+
+```bash
+sudo apt update && sudo apt install -y eza
+```
+
+#### Bash aliases
+
+Add to ``.bash_aliases``.
+
+```bash
+    alias ls=eza
+```
+
+#### Usage
 
 ```bash
     eza
@@ -579,6 +625,55 @@ Have your shell initialize ``zoxide`` with each shell session. You can do so by 
 	#...
 	eval "$(zoxide init bash)"
 ```
+
+### Install fzf
+
+Don't install ``fzf`` with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install ``fzf`` directly from the GitHub repository using the following commands:
+
+**Note:** Make sure this command is on 2 lines.
+
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+During the installation process, you will be prompted to enable key bindings, fuzzy completion, and update your shell configuration file; answering ``'y'`` for these options will set up the full functionality of fzf.
+
+After installation, you may need to restart your shell or source your profile (e.g., ``source ~/.bashrc``) for the changes to take effect.
+
+#### Key bindings
+
+Once shell integration is set up, the following key bindings are available in your terminal.
+
+**Ctrl+T**: Fuzzy find all files and subdirectories of the working directory and insert the selected items onto the command line.
+
+**Ctrl+R**: Search through your shell command history using fuzzy matching. Pressing Ctrl+R again toggles sorting by relevance.
+
+**Alt+C**: Fuzzy find all subdirectories and cd (change directory) into the selected one. 
+
+### Ripgrep
+
+```
+	sudo apt install ripgrep
+```
+
+#### Usage
+
+rg --help
+
+man ripgrep
+
+rg -i Linux
+
+rg -i Linux -g '*.md'
+
+rg Main -C 2 -t cs
+
+ls -R *.md | rg "README.md"
+
+rg text alan.txt
+
+rg -i Linux Documents/
 
 ## Change the hostname
 

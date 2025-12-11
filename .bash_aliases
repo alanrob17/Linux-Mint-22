@@ -1,5 +1,5 @@
-alias lla='ls -la'
-alias lt='ls --human-readable --size -1 -S --classify'
+alias lla='eza -la --group-directories-first'
+alias lt='eza --size -1 -S --classify'
 alias gh='history|grep'
 alias cls='clear'
 alias upd='sudo apt-get update -y && sudo apt-get upgrade -y'

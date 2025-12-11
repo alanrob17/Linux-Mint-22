@@ -609,7 +609,30 @@ rm packages-microsoft-prod.deb
 <p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
 <p>Documentation.</p>
 <p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
-<p>Standard usage.</p>
+<h4 id="installation">Installation</h4>
+<p>To install <code>eza</code> on Ubuntu, you can use the official repository method. First, ensure you have the GPG package installed by running:</p>
+<pre class="hljs"><code><div>sudo apt update &amp;&amp; sudo apt install -y gpg
+</div></code></pre>
+<p>Then, add the eza repository and its signing key:</p>
+<pre class="hljs"><code><div>sudo mkdir -p /etc/apt/keyrings
+</div></code></pre>
+<p>Then.</p>
+<pre class="hljs"><code><div>wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+</div></code></pre>
+<p>Next.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"</span> | sudo tee /etc/apt/sources.list.d/gierens.list
+</div></code></pre>
+<p>Finally.</p>
+<pre class="hljs"><code><div>sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+</div></code></pre>
+<p>Update the package list and install eza.</p>
+<pre class="hljs"><code><div>sudo apt update &amp;&amp; sudo apt install -y eza
+</div></code></pre>
+<h4 id="bash-aliases">Bash aliases</h4>
+<p>Add to <code>.bash_aliases</code>.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
+</div></code></pre>
+<h4 id="usage">Usage</h4>
 <pre class="hljs"><code><div>    eza
 </div></code></pre>
 <p>Or.</p>
@@ -694,6 +717,31 @@ Documents/file.txt</p>
 <pre class="hljs"><code><div>	<span class="hljs-comment">#...</span>
 	<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
 </div></code></pre>
+<h3 id="install-fzf">Install fzf</h3>
+<p>Don't install <code>fzf</code> with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install <code>fzf</code> directly from the GitHub repository using the following commands:</p>
+<p><strong>Note:</strong> Make sure this command is on 2 lines.</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+</div></code></pre>
+<p>During the installation process, you will be prompted to enable key bindings, fuzzy completion, and update your shell configuration file; answering <code>'y'</code> for these options will set up the full functionality of fzf.</p>
+<p>After installation, you may need to restart your shell or source your profile (e.g., <code>source ~/.bashrc</code>) for the changes to take effect.</p>
+<h4 id="key-bindings">Key bindings</h4>
+<p>Once shell integration is set up, the following key bindings are available in your terminal.</p>
+<p><strong>Ctrl+T</strong>: Fuzzy find all files and subdirectories of the working directory and insert the selected items onto the command line.</p>
+<p><strong>Ctrl+R</strong>: Search through your shell command history using fuzzy matching. Pressing Ctrl+R again toggles sorting by relevance.</p>
+<p><strong>Alt+C</strong>: Fuzzy find all subdirectories and cd (change directory) into the selected one.</p>
+<h3 id="ripgrep">Ripgrep</h3>
+<pre class="hljs"><code><div>	sudo apt install ripgrep
+</div></code></pre>
+<h4 id="usage">Usage</h4>
+<p>rg --help</p>
+<p>man ripgrep</p>
+<p>rg -i Linux</p>
+<p>rg -i Linux -g '*.md'</p>
+<p>rg Main -C 2 -t cs</p>
+<p>ls -R *.md | rg &quot;README.md&quot;</p>
+<p>rg text alan.txt</p>
+<p>rg -i Linux Documents/</p>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="hljs"><code><div>    sudo nano /etc/hostname
