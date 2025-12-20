@@ -742,6 +742,52 @@ Documents/file.txt</p>
 <p>ls -R *.md | rg &quot;README.md&quot;</p>
 <p>rg text alan.txt</p>
 <p>rg -i Linux Documents/</p>
+<h2 id="tldr">TLDR</h2>
+<p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
+<h3 id="install">Install</h3>
+<pre class="hljs"><code><div>    sudo apt install tldr
+</div></code></pre>
+<h3 id="usage">Usage</h3>
+<ul>
+<li>Print the tldr page for a specific command:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span>
+</div></code></pre>
+<ul>
+<li>Print the tldr page for a specific subcommand:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span> subcommand
+</div></code></pre>
+<ul>
+<li>Print the tldr page for a command in the given language (if available, otherwise fall back to English):</li>
+</ul>
+<pre class="hljs"><code><div>  tldr [-L|--language] language_code <span class="hljs-built_in">command</span>
+</div></code></pre>
+<ul>
+<li>Print the tldr page for a command from a specific platform:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
+</div></code></pre>
+<ul>
+<li>Update the local cache of tldr pages:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr [-u|--update]
+</div></code></pre>
+<ul>
+<li>List all pages for the current platform and common:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr [-l|--list]
+</div></code></pre>
+<ul>
+<li>List all available subcommand pages for a command:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr [-l|--list] | grep <span class="hljs-built_in">command</span> | column
+</div></code></pre>
+<ul>
+<li>Print the tldr page for a random command:</li>
+</ul>
+<pre class="hljs"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+</div></code></pre>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="hljs"><code><div>    sudo nano /etc/hostname

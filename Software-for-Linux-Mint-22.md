@@ -675,6 +675,66 @@ rg text alan.txt
 
 rg -i Linux Documents/
 
+## TLDR
+
+The Linux ``tldr`` (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder. 
+
+### Install
+
+```bash
+    sudo apt install tldr
+```
+
+### Usage
+
+- Print the tldr page for a specific command:
+
+```bash
+   tldr command
+```
+
+- Print the tldr page for a specific subcommand:
+
+```bash
+   tldr command subcommand
+```
+
+- Print the tldr page for a command in the given language (if available, otherwise fall back to English):
+
+ ```bash
+   tldr [-L|--language] language_code command
+```
+
+- Print the tldr page for a command from a specific platform:
+
+```bash
+   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows command
+```
+
+- Update the local cache of tldr pages:
+
+```bash
+   tldr [-u|--update]
+```
+
+- List all pages for the current platform and common:
+
+```bash
+   tldr [-l|--list]
+```
+
+- List all available subcommand pages for a command:
+
+```bash
+   tldr [-l|--list] | grep command | column
+```
+
+- Print the tldr page for a random command:
+
+```bash
+   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+```
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.
