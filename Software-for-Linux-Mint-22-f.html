@@ -456,7 +456,7 @@ Documents/file.txt</p>
 <p>rg Main -C 2 -t cs</p>
 <p>ls -R *.md | rg &quot;README.md&quot;</p>
 <p>rg text alan.txt</p>
-<p>rg -i Linux Documents/</p>
+<p>rg -i -d 2 '\bPartition\b' -g *.md</p>
 <h2 id="tldr">TLDR</h2>
 <p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
 <h3 id="install">Install</h3>

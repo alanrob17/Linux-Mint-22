@@ -675,6 +675,8 @@ rg text alan.txt
 
 rg -i Linux Documents/
 
+rg -i -d 2 '\bPartition\b' -g *.md
+
 ## TLDR
 
 The Linux ``tldr`` (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder. 
