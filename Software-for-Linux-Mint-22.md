@@ -312,38 +312,6 @@ When you want to use Nord VPN.
     nordvpn connect
 ```
 
-## Replace APT
-
-There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.
-
-```bash
-    sudo apt install nala -y
-```
-
-## Speed up your installs
-
-Use ``Fetch``. First setup the repository.
-
-```bash
-    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-```
-
-Once this is added to your repository list you can install ``Fetch``.
-
-```bash
-    sudo nala fetch
-```
-
-This will create a list of the fastest servers for you. From this list ``Fast`` will select the fastest repository servers for you. Select the top 10 from the list with.
-
-> 1,2,3,4,5,6,7,8,9,10
-
-This will show you the list and ask for confirmation.
-
-![Nala mirrors](assets/images/mirrors.jpg "Nala mirrors")
-
-You will find that you install software much faster than with APT.
-
 ## Improve RAM usage
 
 When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.
@@ -649,7 +617,17 @@ Once shell integration is set up, the following key bindings are available in yo
 
 **Ctrl+R**: Search through your shell command history using fuzzy matching. Pressing Ctrl+R again toggles sorting by relevance.
 
-**Alt+C**: Fuzzy find all subdirectories and cd (change directory) into the selected one. 
+**Alt+C**: Fuzzy find all subdirectories and cd (change directory) into the selected one.
+
+#### Installing Fuzzy Finder in the .zsh shell
+
+Run this command to set up the key bindings.
+
+```bash
+    ~/.fzf/install
+```
+
+This will setup ``fzf`` and key bindings in the ``.zshrc`` setup file.
 
 ### Ripgrep
 
@@ -762,3 +740,37 @@ I would reboot after this step.
 Now my terminal window reflects my new hostname.
 
 > alanr@lion:~$
+
+## Replace APT
+
+**Note:** I had some minor issues with Nala so I stopped using it.
+
+There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.
+
+```bash
+    sudo apt install nala -y
+```
+
+## Speed up your installs
+
+Use ``Fetch``. First setup the repository.
+
+```bash
+    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+```
+
+Once this is added to your repository list you can install ``Fetch``.
+
+```bash
+    sudo nala fetch
+```
+
+This will create a list of the fastest servers for you. From this list ``Fast`` will select the fastest repository servers for you. Select the top 10 from the list with.
+
+> 1,2,3,4,5,6,7,8,9,10
+
+This will show you the list and ask for confirmation.
+
+![Nala mirrors](assets/images/mirrors.jpg "Nala mirrors")
+
+You will find that you install software much faster than with APT.
