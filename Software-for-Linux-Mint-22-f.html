@@ -414,6 +414,26 @@ Documents/file.txt</p>
 <pre class="prettyprint"><code><div>	<span class="hljs-comment">#...</span>
 	<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
 </div></code></pre>
+<h3 id="install-zsh">Install zsh</h3>
+<p>I have been testing the <code>zsh</code> shell and have found that I prefer it to <code>bash</code>.</p>
+<p>I can change the <code>bash</code> shell for <code>zsh</code> with this command.</p>
+<pre class="prettyprint"><code><div>    sudo apt install zsh -y
+</div></code></pre>
+<p>The next thing to do is install <code>OhMyZsh</code>.</p>
+<pre class="prettyprint"><code><div>sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
+</div></code></pre>
+<p>When you install <code>OhMyZsh</code> it will ask you if you want to make it your default shell. Type <code>y</code> to allow this.</p>
+<p><strong>Note:</strong> you also have the option to replace the <code>.zshrc</code> file. If you accept this option it will do the replace and save the original <code>.zshrc</code> file as <code>.zshrc.pre-oh-my-zshrc</code>. You will need this to add back your changes to the <code>.zshrc</code> file that you previously had in the original file.</p>
+<h4 id="zsh-aliases">.zsh aliases</h4>
+<p>You could load your aliases in the <code>.zshrc</code> file but a better idea is to add them to a file named <code>.zshrc_aliases</code>. Now just add all of the aliases from your original <code>.bash_aliases</code> file.</p>
+<p>You will need to add this line into your <code>.zshrc</code> file.</p>
+<pre class="prettyprint"><code><div>[ -f ~/.zsh_aliases ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.zsh_aliases
+</div></code></pre>
+<h4 id="plugins">Plugins</h4>
+<p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have one plugin installed.</p>
+<pre class="prettyprint"><code><div> plugins=(git)
+</div></code></pre>
+<p>This is where you can find a list of <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins">zsh plugins</a>.</p>
 <h3 id="install-fzf">Install fzf</h3>
 <p>Don't install <code>fzf</code> with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install <code>fzf</code> directly from the GitHub repository using the following commands:</p>
 <p><strong>Note:</strong> Make sure this command is on 2 lines.</p>

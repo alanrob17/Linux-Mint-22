@@ -594,6 +594,46 @@ Have your shell initialize ``zoxide`` with each shell session. You can do so by 
 	eval "$(zoxide init bash)"
 ```
 
+### Install zsh
+
+I have been testing the ``zsh`` shell and have found that I prefer it to ``bash``.
+
+I can change the ``bash`` shell for ``zsh`` with this command.
+
+```bash
+    sudo apt install zsh -y
+```
+
+The next thing to do is install ``OhMyZsh``.
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+When you install ``OhMyZsh`` it will ask you if you want to make it your default shell. Type ``y`` to allow this.
+
+**Note:** you also have the option to replace the ``.zshrc`` file. If you accept this option it will do the replace and save the original ``.zshrc`` file as ``.zshrc.pre-oh-my-zshrc``. You will need this to add back your changes to the ``.zshrc`` file that you previously had in the original file.
+
+#### .zsh aliases
+
+You could load your aliases in the ``.zshrc`` file but a better idea is to add them to a file named ``.zshrc_aliases``. Now just add all of the aliases from your original ``.bash_aliases`` file.
+
+You will need to add this line into your ``.zshrc`` file.
+
+```bash
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+```
+
+#### Plugins
+
+Zsh allows you to add plugins to it ``.zshrc`` startup file. I have one plugin installed.
+
+```bash
+ plugins=(git)
+```
+
+This is where you can find a list of [zsh plugins](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins).
+
 ### Install fzf
 
 Don't install ``fzf`` with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install ``fzf`` directly from the GitHub repository using the following commands:
