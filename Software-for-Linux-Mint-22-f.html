@@ -259,24 +259,6 @@ rm packages-microsoft-prod.deb
 <p>When you want to use Nord VPN.</p>
 <pre class="prettyprint"><code><div>    nordvpn connect
 </div></code></pre>
-<h2 id="replace-apt">Replace APT</h2>
-<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
-<pre class="prettyprint"><code><div>    sudo apt install nala -y
-</div></code></pre>
-<h2 id="speed-up-your-installs">Speed up your installs</h2>
-<p>Use <code>Fetch</code>. First setup the repository.</p>
-<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-</div></code></pre>
-<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
-<pre class="prettyprint"><code><div>    sudo nala fetch
-</div></code></pre>
-<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
-<blockquote>
-<p>1,2,3,4,5,6,7,8,9,10</p>
-</blockquote>
-<p>This will show you the list and ask for confirmation.</p>
-<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
-<p>You will find that you install software much faster than with APT.</p>
 <h2 id="improve-ram-usage">Improve RAM usage</h2>
 <p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
 <p>You can check your settings with.</p>
@@ -445,6 +427,11 @@ Documents/file.txt</p>
 <p><strong>Ctrl+T</strong>: Fuzzy find all files and subdirectories of the working directory and insert the selected items onto the command line.</p>
 <p><strong>Ctrl+R</strong>: Search through your shell command history using fuzzy matching. Pressing Ctrl+R again toggles sorting by relevance.</p>
 <p><strong>Alt+C</strong>: Fuzzy find all subdirectories and cd (change directory) into the selected one.</p>
+<h4 id="installing-fuzzy-finder-in-the-zsh-shell">Installing Fuzzy Finder in the .zsh shell</h4>
+<p>Run this command to set up the key bindings.</p>
+<pre class="prettyprint"><code><div>    ~/.fzf/install
+</div></code></pre>
+<p>This will setup <code>fzf</code> and key bindings in the <code>.zshrc</code> setup file.</p>
 <h3 id="ripgrep">Ripgrep</h3>
 <pre class="prettyprint"><code><div>	sudo apt install ripgrep
 </div></code></pre>
@@ -456,6 +443,7 @@ Documents/file.txt</p>
 <p>rg Main -C 2 -t cs</p>
 <p>ls -R *.md | rg &quot;README.md&quot;</p>
 <p>rg text alan.txt</p>
+<p>rg -i Linux Documents/</p>
 <p>rg -i -d 2 '\bPartition\b' -g *.md</p>
 <h2 id="tldr">TLDR</h2>
 <p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
@@ -518,6 +506,25 @@ Documents/file.txt</p>
 <blockquote>
 <p>alanr@lion:~$</p>
 </blockquote>
+<h2 id="replace-apt">Replace APT</h2>
+<p><strong>Note:</strong> I had some minor issues with Nala so I stopped using it.</p>
+<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
+<pre class="prettyprint"><code><div>    sudo apt install nala -y
+</div></code></pre>
+<h2 id="speed-up-your-installs">Speed up your installs</h2>
+<p>Use <code>Fetch</code>. First setup the repository.</p>
+<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+</div></code></pre>
+<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
+<pre class="prettyprint"><code><div>    sudo nala fetch
+</div></code></pre>
+<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
+<blockquote>
+<p>1,2,3,4,5,6,7,8,9,10</p>
+</blockquote>
+<p>This will show you the list and ask for confirmation.</p>
+<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
+<p>You will find that you install software much faster than with APT.</p>
 
 
 </div><!-- starter-template -->

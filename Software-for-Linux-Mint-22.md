@@ -631,7 +631,7 @@ This will setup ``fzf`` and key bindings in the ``.zshrc`` setup file.
 
 ### Ripgrep
 
-```
+```bash
 	sudo apt install ripgrep
 ```
 

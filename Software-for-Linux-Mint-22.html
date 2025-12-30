@@ -373,7 +373,7 @@ code {
 <p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
 <h2 id="install-preload">Install Preload</h2>
 <p>You can speed up the startup times  of your apps by installing <code>preload</code>.</p>
-<pre class="prettyprint"><code><div>    sudo apt install preload
+<pre class="hljs"><code><div>    sudo apt install preload
 </div></code></pre>
 <p>Preload will load applications like Firefox quicker.</p>
 <h2 id="file-manager-changes">File Manager changes</h2>
@@ -383,16 +383,16 @@ code {
 <h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
 <p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
 <p>Copy these files to the home directory.</p>
-<pre class="prettyprint"><code><div>    cp ./colours.sh /home/alanr
+<pre class="hljs"><code><div>    cp ./colours.sh /home/alanr
 </div></code></pre>
 <p>And.</p>
-<pre class="prettyprint"><code><div>    cp ./gc.sh /home/alanr
+<pre class="hljs"><code><div>    cp ./gc.sh /home/alanr
 </div></code></pre>
 <p>And.</p>
-<pre class="prettyprint"><code><div>    cp .bash_aliases /home/alanr
+<pre class="hljs"><code><div>    cp .bash_aliases /home/alanr
 </div></code></pre>
 <p>With my <code>.bashrc</code> file I need to add these lines to the bottom of the file.</p>
-<pre class="prettyprint"><code><div><span class="hljs-comment"># Colour  man page output</span>
+<pre class="hljs"><code><div><span class="hljs-comment"># Colour  man page output</span>
 <span class="hljs-built_in">export</span> PAGER=most
 
 <span class="hljs-comment"># Vertical format for docker ps</span>
@@ -422,31 +422,31 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 </div></code></pre>
 <p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
 <h2 id="install-most">Install most</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install most -y
+<pre class="hljs"><code><div>    sudo apt-get install most -y
 </div></code></pre>
 <p>Exit your terminal and restart it. Type this command.</p>
-<pre class="prettyprint"><code><div>    man ls
+<pre class="hljs"><code><div>    man ls
 </div></code></pre>
 <p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
 <p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
 <h2 id="installing-docker">Installing Docker</h2>
 <p>Do an update.</p>
-<pre class="prettyprint"><code><div>   sudo apt update -y
+<pre class="hljs"><code><div>   sudo apt update -y
 </div></code></pre>
 <p>Then install Docker.</p>
-<pre class="prettyprint"><code><div>   sudo apt install docker* -y
+<pre class="hljs"><code><div>   sudo apt install docker* -y
 </div></code></pre>
 <h3 id="manage-docker-as-a-non-root-user">Manage Docker as a non-root user</h3>
 <p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
 <p>Create the docker group.</p>
-<pre class="prettyprint"><code><div>    sudo groupadd docker
+<pre class="hljs"><code><div>    sudo groupadd docker
 </div></code></pre>
 <p>Add your user to the docker group.</p>
-<pre class="prettyprint"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
+<pre class="hljs"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
 </div></code></pre>
 <p>Reboot your system.</p>
 <p>To test (you shouldn't have to use root privileges).</p>
-<pre class="prettyprint"><code><div>    docker run hello-world
+<pre class="hljs"><code><div>    docker run hello-world
 </div></code></pre>
 <p>If successful you will get this message.</p>
 <blockquote>
@@ -455,19 +455,19 @@ This message shows that your installation appears to be working correctly.
 ...</p>
 </blockquote>
 <p>Test that Docker Compose is working.</p>
-<pre class="prettyprint"><code><div>    docker compose version
+<pre class="hljs"><code><div>    docker compose version
 </div></code></pre>
 <h2 id="install-azure-data-studio">Install Azure Data Studio</h2>
 <p><a href="https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable">Azure Data Studio link</a>.</p>
 <p>From your home folder run this.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
+<pre class="hljs"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
 </div></code></pre>
 <p>My package was.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
+<pre class="hljs"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
 </div></code></pre>
 <p>This installs Azure Data Studio.</p>
 <p>You may have to install the folowing dependancies.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get install libunwind8
+<pre class="hljs"><code><div>    sudo apt-get install libunwind8
 </div></code></pre>
 <p>To run.</p>
 <blockquote>
@@ -475,10 +475,10 @@ This message shows that your installation appears to be working correctly.
 </blockquote>
 <h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
 <p>Install from this link.</p>
-<pre class="prettyprint"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
+<pre class="hljs"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
 </div></code></pre>
 <p>In Downloads.</p>
-<pre class="prettyprint"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
+<pre class="hljs"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
 </div></code></pre>
 <p>My Visual Studio Account.</p>
 <blockquote>
@@ -486,100 +486,82 @@ This message shows that your installation appears to be working correctly.
 </blockquote>
 <h2 id="install-net-core">Install .Net Core</h2>
 <p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
-<pre class="prettyprint"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+<pre class="hljs"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
 sudo dpkg -i packages-microsoft-prod.deb
 
 rm packages-microsoft-prod.deb
 </div></code></pre>
 <p>Then do an update.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get update    
+<pre class="hljs"><code><div>    sudo apt-get update    
 </div></code></pre>
 <p>Then install .Net.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
+<pre class="hljs"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
 <h2 id="install-brave-browser">Install Brave browser</h2>
-<pre class="prettyprint"><code><div>sudo apt install curl
+<pre class="hljs"><code><div>sudo apt install curl
 </div></code></pre>
-<pre class="prettyprint"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+<pre class="hljs"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 </div></code></pre>
-<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 </div></code></pre>
-<pre class="prettyprint"><code><div>sudo apt update
+<pre class="hljs"><code><div>sudo apt update
 </div></code></pre>
-<pre class="prettyprint"><code><div>sudo apt install brave-browser
+<pre class="hljs"><code><div>sudo apt install brave-browser
 </div></code></pre>
 <h2 id="install-winrar">Install WinRar</h2>
-<pre class="prettyprint"><code><div>    sudo apt-get install rar unrar
+<pre class="hljs"><code><div>    sudo apt-get install rar unrar
 </div></code></pre>
 <p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
 <h3 id="extracting-files">Extracting files</h3>
-<pre class="prettyprint"><code><div>    unrar x license.rar
+<pre class="hljs"><code><div>    unrar x license.rar
 </div></code></pre>
 <p>To extract to another directory.</p>
-<pre class="prettyprint"><code><div>    unrar e license.rar /home/alanr/Downloads
+<pre class="hljs"><code><div>    unrar e license.rar /home/alanr/Downloads
 </div></code></pre>
 <p>Listing all files in a rar file.</p>
-<pre class="prettyprint"><code><div>    rar l myfiles.rar
+<pre class="hljs"><code><div>    rar l myfiles.rar
 </div></code></pre>
 <h3 id="testing-rar-files">Testing rar files</h3>
-<pre class="prettyprint"><code><div>    unrar t myfiles.rar
+<pre class="hljs"><code><div>    unrar t myfiles.rar
 </div></code></pre>
 <h3 id="copy-files-to-a-rar-file">Copy files to a rar file</h3>
-<pre class="prettyprint"><code><div>    rar a mytextfiles.rar *.txt
+<pre class="hljs"><code><div>    rar a mytextfiles.rar *.txt
 </div></code></pre>
 <p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
-<pre class="prettyprint"><code><div>    rar u myfiles.rar hello.py
+<pre class="hljs"><code><div>    rar u myfiles.rar hello.py
 </div></code></pre>
 <h2 id="installing-nord-vpn">Installing Nord VPN</h2>
 <p>Install with this command.</p>
-<pre class="prettyprint"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+<pre class="hljs"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 </div></code></pre>
 <p>Add user to nordvpn group.</p>
-<pre class="prettyprint"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
+<pre class="hljs"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
 </div></code></pre>
 <p>Login.</p>
 <p>Reboot Linux.</p>
 <p>When you want to use Nord VPN.</p>
-<pre class="prettyprint"><code><div>    nordvpn connect
+<pre class="hljs"><code><div>    nordvpn connect
 </div></code></pre>
-<h2 id="replace-apt">Replace APT</h2>
-<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
-<pre class="prettyprint"><code><div>    sudo apt install nala -y
-</div></code></pre>
-<h2 id="speed-up-your-installs">Speed up your installs</h2>
-<p>Use <code>Fetch</code>. First setup the repository.</p>
-<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-</div></code></pre>
-<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
-<pre class="prettyprint"><code><div>    sudo nala fetch
-</div></code></pre>
-<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
-<blockquote>
-<p>1,2,3,4,5,6,7,8,9,10</p>
-</blockquote>
-<p>This will show you the list and ask for confirmation.</p>
-<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
-<p>You will find that you install software much faster than with APT.</p>
 <h2 id="improve-ram-usage">Improve RAM usage</h2>
 <p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
 <p>You can check your settings with.</p>
-<pre class="prettyprint"><code><div>    cat /proc/sys/vm/swappiness
+<pre class="hljs"><code><div>    cat /proc/sys/vm/swappiness
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>60</p>
 </blockquote>
 <p>You can change your threshold to 10 to speed up your machine.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/sysctl.con
+<pre class="hljs"><code><div>    sudo nano /etc/sysctl.con
 </div></code></pre>
 <p>Go to the bottom of this file and add this line.</p>
-<pre class="prettyprint"><code><div>    vm.swappiness=10
+<pre class="hljs"><code><div>    vm.swappiness=10
 </div></code></pre>
 <h2 id="install-stacer">Install Stacer</h2>
 <p>Stacer is a really impressive system checker.</p>
-<pre class="prettyprint"><code><div>    sudo nala stacer -y
+<pre class="hljs"><code><div>    sudo nala stacer -y
 </div></code></pre>
 <h2 id="installing-utilities">Installing utilities</h2>
 <p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
@@ -587,19 +569,19 @@ rm packages-microsoft-prod.deb
 <h3 id="bat">Bat</h3>
 <h4 id="installation">Installation</h4>
 <p><code>Linux</code>.</p>
-<pre class="prettyprint"><code><div>    sudo apt install bat
+<pre class="hljs"><code><div>    sudo apt install bat
 </div></code></pre>
 <p><code>Windows</code>.</p>
-<pre class="prettyprint"><code><div>    choco install bat
+<pre class="hljs"><code><div>    choco install bat
 </div></code></pre>
 <p><code>BatCat</code> is a replacement for <code>Cat</code> with an impressive coloured output.</p>
 <p><strong>Note:</strong> we can't use <code>bat</code> as a shortcut because it conflicts with a system application.</p>
 <h4 id="create-an-alias">Create an alias</h4>
 <p>To get around the name conflict we create an alias and add it to <code>.bash_aliases</code>.</p>
-<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
 </div></code></pre>
 <p>Now to test this out.</p>
-<pre class="prettyprint"><code><div>    bc Program.cs
+<pre class="hljs"><code><div>    bc Program.cs
 </div></code></pre>
 <p>Returns.</p>
 <p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
@@ -611,41 +593,41 @@ rm packages-microsoft-prod.deb
 <p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
 <h4 id="installation">Installation</h4>
 <p>To install <code>eza</code> on Ubuntu, you can use the official repository method. First, ensure you have the GPG package installed by running:</p>
-<pre class="prettyprint"><code><div>sudo apt update &amp;&amp; sudo apt install -y gpg
+<pre class="hljs"><code><div>sudo apt update &amp;&amp; sudo apt install -y gpg
 </div></code></pre>
 <p>Then, add the eza repository and its signing key:</p>
-<pre class="prettyprint"><code><div>sudo mkdir -p /etc/apt/keyrings
+<pre class="hljs"><code><div>sudo mkdir -p /etc/apt/keyrings
 </div></code></pre>
 <p>Then.</p>
-<pre class="prettyprint"><code><div>wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+<pre class="hljs"><code><div>wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
 </div></code></pre>
 <p>Next.</p>
-<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"</span> | sudo tee /etc/apt/sources.list.d/gierens.list
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"</span> | sudo tee /etc/apt/sources.list.d/gierens.list
 </div></code></pre>
 <p>Finally.</p>
-<pre class="prettyprint"><code><div>sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+<pre class="hljs"><code><div>sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 </div></code></pre>
 <p>Update the package list and install eza.</p>
-<pre class="prettyprint"><code><div>sudo apt update &amp;&amp; sudo apt install -y eza
+<pre class="hljs"><code><div>sudo apt update &amp;&amp; sudo apt install -y eza
 </div></code></pre>
 <h4 id="bash-aliases">Bash aliases</h4>
 <p>Add to <code>.bash_aliases</code>.</p>
-<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
 </div></code></pre>
 <h4 id="usage">Usage</h4>
-<pre class="prettyprint"><code><div>    eza
+<pre class="hljs"><code><div>    eza
 </div></code></pre>
 <p>Or.</p>
-<pre class="prettyprint"><code><div>    eza -la
+<pre class="hljs"><code><div>    eza -la
 </div></code></pre>
 <p>Returns.</p>
 <p><img src="assets/images/eza-output.jpg" alt="eza output" title="eza output"></p>
 <p>It gets more interesting here.</p>
-<pre class="prettyprint"><code><div>    eza -lT
+<pre class="hljs"><code><div>    eza -lT
 </div></code></pre>
 <p><img src="assets/images/tree-view.jpg" alt="Tree view" title="Tree view"></p>
 <p>This command can be used to provide a similar output to my Windows <code>search</code> command that limits the search to 2 directory levels.</p>
-<pre class="prettyprint"><code><div>    eza -TL 2
+<pre class="hljs"><code><div>    eza -TL 2
 </div></code></pre>
 <p>Windows output.</p>
 <p><img src="assets/images/eza-tree-view.jpg" alt="Eza tree view" title="Eza tree view"></p>
@@ -653,26 +635,26 @@ rm packages-microsoft-prod.deb
 <p>The <code>fd</code> command is a file system utility, serving as a modern, faster, and more user-friendly alternative to the traditional <code>find</code> command in Linux. It offers a simpler syntax and sensible defaults for common use cases.</p>
 <h4 id="installation">Installation</h4>
 <p>Linux.</p>
-<pre class="prettyprint"><code><div>    sudo apt install fd-find
+<pre class="hljs"><code><div>    sudo apt install fd-find
 </div></code></pre>
 <p>Create an alias to use this command as <code>fd</code> in <code>.bash_aliases</code>.</p>
-<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
 </div></code></pre>
 <h4 id="usage">Usage</h4>
 <p>fd PATTERN</p>
 <p><code>fd</code> is case insensitive</p>
-<pre class="prettyprint"><code><div>    fd program.cs
+<pre class="hljs"><code><div>    fd program.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>Documents/Program.cs</p>
 </blockquote>
 <p>Search in a specific directory.</p>
-<pre class="prettyprint"><code><div>    fd Program.cs Documents/
+<pre class="hljs"><code><div>    fd Program.cs Documents/
 </div></code></pre>
 <p><strong>Note:</strong> you can use -i for case insensitive searches.</p>
 <p>Searching for multiple files with the same extension.</p>
-<pre class="prettyprint"><code><div>    fd -g *.cs
+<pre class="hljs"><code><div>    fd -g *.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -680,14 +662,14 @@ rm packages-microsoft-prod.deb
 </blockquote>
 <p><strong>Note:</strong> -g is for file globbing and this allows you to do wildcard searches.</p>
 <p>Only search in the current directory</p>
-<pre class="prettyprint"><code><div>    fd -gd 2 *.cs
+<pre class="hljs"><code><div>    fd -gd 2 *.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>Documents/Program.cs</p>
 </blockquote>
 <p>Search for files with an extension.</p>
-<pre class="prettyprint"><code><div>    fd -e sh
+<pre class="hljs"><code><div>    fd -e sh
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -696,7 +678,7 @@ gc.sh<br>
 status.sh</p>
 </blockquote>
 <p>To list all files in a specific directory, use the wild card symbol <strong>.</strong> as the search pattern.</p>
-<pre class="prettyprint"><code><div>    fd . Documents/
+<pre class="hljs"><code><div>    fd . Documents/
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -707,20 +689,20 @@ Documents/file.txt</p>
 <h3 id="zoxide">zoxide</h3>
 <p><code>zoxide</code> is an alternative to the cd command, offering faster performance and smarter navigation capabilities. Like the tools mentioned below, much of the power of <code>zoxide</code> is in its directory ranking based on your usage. Its ranking algorithm can quickly match partial paths, even single search terms, with one of your most used directories.</p>
 <h4 id="installation">Installation</h4>
-<pre class="prettyprint"><code><div>	sudo apt update &amp;&amp; sudo apt upgrade -y
+<pre class="hljs"><code><div>	sudo apt update &amp;&amp; sudo apt upgrade -y
 </div></code></pre>
 <p>Install with.</p>
-<pre class="prettyprint"><code><div>	sudo apt install zoxide
+<pre class="hljs"><code><div>	sudo apt install zoxide
 </div></code></pre>
 <p>Have your shell initialize <code>zoxide</code> with each shell session. You can do so by adding the following line to the end of your <code>~/.bashrc</code> file.</p>
 <p><strong>File: ~/.bashrc</strong></p>
-<pre class="prettyprint"><code><div>	<span class="hljs-comment">#...</span>
+<pre class="hljs"><code><div>	<span class="hljs-comment">#...</span>
 	<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
 </div></code></pre>
 <h3 id="install-fzf">Install fzf</h3>
 <p>Don't install <code>fzf</code> with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install <code>fzf</code> directly from the GitHub repository using the following commands:</p>
 <p><strong>Note:</strong> Make sure this command is on 2 lines.</p>
-<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 </div></code></pre>
 <p>During the installation process, you will be prompted to enable key bindings, fuzzy completion, and update your shell configuration file; answering <code>'y'</code> for these options will set up the full functionality of fzf.</p>
@@ -730,8 +712,13 @@ Documents/file.txt</p>
 <p><strong>Ctrl+T</strong>: Fuzzy find all files and subdirectories of the working directory and insert the selected items onto the command line.</p>
 <p><strong>Ctrl+R</strong>: Search through your shell command history using fuzzy matching. Pressing Ctrl+R again toggles sorting by relevance.</p>
 <p><strong>Alt+C</strong>: Fuzzy find all subdirectories and cd (change directory) into the selected one.</p>
+<h4 id="installing-fuzzy-finder-in-the-zsh-shell">Installing Fuzzy Finder in the .zsh shell</h4>
+<p>Run this command to set up the key bindings.</p>
+<pre class="hljs"><code><div>    ~/.fzf/install
+</div></code></pre>
+<p>This will setup <code>fzf</code> and key bindings in the <code>.zshrc</code> setup file.</p>
 <h3 id="ripgrep">Ripgrep</h3>
-<pre class="prettyprint"><code><div>	sudo apt install ripgrep
+<pre class="hljs"><code><div>	sudo apt install ripgrep
 </div></code></pre>
 <h4 id="usage">Usage</h4>
 <p>rg --help</p>
@@ -746,64 +733,83 @@ Documents/file.txt</p>
 <h2 id="tldr">TLDR</h2>
 <p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
 <h3 id="install">Install</h3>
-<pre class="prettyprint"><code><div>    sudo apt install tldr
+<pre class="hljs"><code><div>    sudo apt install tldr
 </div></code></pre>
 <h3 id="usage">Usage</h3>
 <ul>
 <li>Print the tldr page for a specific command:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr <span class="hljs-built_in">command</span>
+<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a specific subcommand:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr <span class="hljs-built_in">command</span> subcommand
+<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span> subcommand
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a command in the given language (if available, otherwise fall back to English):</li>
 </ul>
-<pre class="prettyprint"><code><div>  tldr [-L|--language] language_code <span class="hljs-built_in">command</span>
+<pre class="hljs"><code><div>  tldr [-L|--language] language_code <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a command from a specific platform:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
+<pre class="hljs"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Update the local cache of tldr pages:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr [-u|--update]
+<pre class="hljs"><code><div>   tldr [-u|--update]
 </div></code></pre>
 <ul>
 <li>List all pages for the current platform and common:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr [-l|--list]
+<pre class="hljs"><code><div>   tldr [-l|--list]
 </div></code></pre>
 <ul>
 <li>List all available subcommand pages for a command:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr [-l|--list] | grep <span class="hljs-built_in">command</span> | column
+<pre class="hljs"><code><div>   tldr [-l|--list] | grep <span class="hljs-built_in">command</span> | column
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a random command:</li>
 </ul>
-<pre class="prettyprint"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+<pre class="hljs"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
 </div></code></pre>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/hostname
+<pre class="hljs"><code><div>    sudo nano /etc/hostname
 </div></code></pre>
 <p>Change all references to the hostname in this file.</p>
-<pre class="prettyprint"><code><div>    sudo nano /etc/hosts
+<pre class="hljs"><code><div>    sudo nano /etc/hosts
 </div></code></pre>
 <p>Now, you need to tell the operating system that the host name has changed and the PC has been renamed.</p>
-<pre class="prettyprint"><code><div>    sudo hostname lion
+<pre class="hljs"><code><div>    sudo hostname lion
 </div></code></pre>
 <p>I would reboot after this step.</p>
 <p>Now my terminal window reflects my new hostname.</p>
 <blockquote>
 <p>alanr@lion:~$</p>
 </blockquote>
+<h2 id="replace-apt">Replace APT</h2>
+<p><strong>Note:</strong> I had some minor issues with Nala so I stopped using it.</p>
+<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
+<pre class="hljs"><code><div>    sudo apt install nala -y
+</div></code></pre>
+<h2 id="speed-up-your-installs">Speed up your installs</h2>
+<p>Use <code>Fetch</code>. First setup the repository.</p>
+<pre class="hljs"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+</div></code></pre>
+<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
+<pre class="hljs"><code><div>    sudo nala fetch
+</div></code></pre>
+<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
+<blockquote>
+<p>1,2,3,4,5,6,7,8,9,10</p>
+</blockquote>
+<p>This will show you the list and ask for confirmation.</p>
+<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
+<p>You will find that you install software much faster than with APT.</p>
 
 </body>
 </html>
