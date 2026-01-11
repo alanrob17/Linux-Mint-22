@@ -376,6 +376,28 @@ code {
 <pre class="hljs"><code><div>    sudo apt install preload
 </div></code></pre>
 <p>Preload will load applications like Firefox quicker.</p>
+<h2 id="trim-for-ssd-drives">Trim for SSD drives</h2>
+<p><code>Trim</code> can improve the efficiency and life of your SSD.</p>
+<p>Check the status.</p>
+<pre class="hljs"><code><div>sudo systemctl status fstrim.timer
+</div></code></pre>
+<p>If it isn't running you can enable it.</p>
+<pre class="hljs"><code><div>sudo systemctl <span class="hljs-built_in">enable</span> fstrim.timer
+</div></code></pre>
+<p>Start <code>trim</code>.</p>
+<pre class="hljs"><code><div>sudo systemctl start fstrim.timer
+</div></code></pre>
+<p>Trim can tell the system to wipe blocks of data when they aren't being used. Unlike older drives SSD's need to lean blocks before they can write new data. Without <code>trim</code> the SSD doesn't know which blocks are free leading to slower write speeds over time as the drive fills up with stale data.</p>
+<h2 id="install-microsoft-fonts">Install Microsoft fonts</h2>
+<p>Use the Software Manager and search for <strong>mscorefont</strong>. There are a number of applications that rely on these fonts. You can also use these fonts in Libre Office.</p>
+<h2 id="improve-battery-life-on-laptops">Improve battery life on Laptops</h2>
+<p>Battery power settings - install on Samsung Ultra.</p>
+<pre class="hljs"><code><div>	sudo apt tlp
+</div></code></pre>
+<p>After installation TLP will start automatically and run in the background.</p>
+<p>If it doesn't start you can start the daemon with.</p>
+<pre class="hljs"><code><div>	sudo tlp start
+</div></code></pre>
 <h2 id="file-manager-changes">File Manager changes</h2>
 <p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
 <p>In the section, <strong>Executable Text Files</strong> select <em>View executable text files when they are opened</em>.</p>

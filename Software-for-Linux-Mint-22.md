@@ -20,6 +20,50 @@ You can speed up the startup times  of your apps by installing ``preload``.
 
 Preload will load applications like Firefox quicker.
 
+## Trim for SSD drives
+
+``Trim`` can improve the efficiency and life of your SSD.
+
+Check the status.
+
+```bash
+sudo systemctl status fstrim.timer
+```
+
+If it isn't running you can enable it.
+
+```bash
+sudo systemctl enable fstrim.timer
+```
+
+Start ``trim``.
+
+```bash
+sudo systemctl start fstrim.timer
+```
+
+Trim can tell the system to wipe blocks of data when they aren't being used. Unlike older drives SSD's need to lean blocks before they can write new data. Without ``trim`` the SSD doesn't know which blocks are free leading to slower write speeds over time as the drive fills up with stale data.
+
+## Install Microsoft fonts
+
+Use the Software Manager and search for **mscorefont**. There are a number of applications that rely on these fonts. You can also use these fonts in Libre Office.
+
+## Improve battery life on Laptops
+
+Battery power settings - install on Samsung Ultra.
+
+```bash
+	sudo apt tlp
+```
+
+After installation TLP will start automatically and run in the background.
+
+If it doesn't start you can start the daemon with.
+
+```bash
+	sudo tlp start
+```
+
 ## File Manager changes
 
 In File Manager click on the ``Edit`` tab and select Behavior.
