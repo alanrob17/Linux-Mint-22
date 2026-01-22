@@ -463,6 +463,12 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <h3 id="bashaliases">.bash_aliases</h3>
 <p>Open up the <code>.bash_aliases</code> file in the Linux-Mint folder. copy these aliases into the root <code>.bash_aliases</code> file.</p>
 <p>If you are using the <code>.zsh</code> shell copy the aliases into <code>.zsh_aliases</code> as well.</p>
+<h2 id="install-shell-scripts">Install shell scripts</h2>
+<p>Copy the <code>shell_funcs.sh</code> and <code>wipe.sh</code> scripts to the <code>.config</code> folder.</p>
+<p>Set the execute permissions.</p>
+<pre class="hljs"><code><div>    chmod 774 ~/.config/shell_funcs.sh
+    chmod 774 ~/.config/wipe.sh
+</div></code></pre>
 <h2 id="install-cargo">Install Cargo</h2>
 <p>I will install <code>eza</code> with Cargo.</p>
 <p>Download and run <code>rustup</code> installer.</p>
@@ -489,6 +495,13 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <p>Add to <code>PATH</code> if not already (it should be automatically).</p>
 <pre class="hljs"><code><div><span class="hljs-built_in">which</span> eza
 </div></code></pre>
+<h2 id="install-xcp">Install xcp</h2>
+<p><code>xcp</code> is a modern version of the <code>cp</code> copy command. It is a lot more user friendly than <code>cp</code>.</p>
+<p>Installing <code>xcp</code> on Linux Mint 22 is done through Cargo, Rust's package manager.</p>
+<p>You can install <code>xcp</code> with.</p>
+<pre class="hljs"><code><div>	cargo install xcp
+</div></code></pre>
+<p>Installation Directory: The binary is typically installed in <code>~/.cargo/bin/</code>. Make sure this directory is in your shell's PATH (the Rust installer usually sets this up automatically).</p>
 <h2 id="install-docker">Install Docker</h2>
 <p>Do an update.</p>
 <pre class="hljs"><code><div>   sudo apt update -y
@@ -571,13 +584,14 @@ rm packages-microsoft-prod.deb
 <h2 id="install-winrar">Install WinRar</h2>
 <pre class="hljs"><code><div>    sudo apt-get install rar unrar
 </div></code></pre>
-<p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
-<h3 id="extracting-files">Extracting files</h3>
-<pre class="hljs"><code><div>    unrar x license.rar
+<p><strong>Note:</strong> you need a license so extract the <code>rarkey.rar</code> file.</p>
+<pre class="hljs"><code><div>    unrar x rarkey.rar
 </div></code></pre>
-<p>To extract to another directory.</p>
-<pre class="hljs"><code><div>    unrar e license.rar /home/alanr/Downloads
+<p>Move the <code>rarreg.key</code> to the root folder.</p>
+<p>Now run this command.</p>
+<pre class="hljs"><code><div>    rar
 </div></code></pre>
+<p>This should register your version of <code>rar</code>.</p>
 <p>Listing all files in a rar file.</p>
 <pre class="hljs"><code><div>    rar l myfiles.rar
 </div></code></pre>
@@ -749,6 +763,13 @@ Documents/file.txt</p>
 <p>You will need to add this line into your <code>.zshrc</code> file.</p>
 <pre class="hljs"><code><div>[ -f ~/.zsh_aliases ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.zsh_aliases
 </div></code></pre>
+<h4 id="make-zsh-the-default-shell">Make .zsh the default shell</h4>
+<pre class="hljs"><code><div>    chsh -s /usr/bin/zsh
+</div></code></pre>
+<p><strong>Note:</strong> you have to log out of Mint to get this to work. I would reboot to make sure.</p>
+<p>To find the default shell.</p>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+</div></code></pre>
 <h4 id="plugins">Plugins</h4>
 <p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have one plugin installed.</p>
 <pre class="hljs"><code><div> plugins=(git)
@@ -830,6 +851,43 @@ Documents/file.txt</p>
 <li>Print the tldr page for a random command:</li>
 </ul>
 <pre class="hljs"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+</div></code></pre>
+<h2 id="glow">Glow</h2>
+<p>(Glow github page)[https://github.com/charmbracelet/glow].</p>
+<h3 id="installation">Installation</h3>
+<p>Linux.</p>
+<pre class="hljs"><code><div>    sudo mkdir -p /etc/apt/keyrings
+</div></code></pre>
+<p>Get the key.</p>
+<pre class="hljs"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+</div></code></pre>
+<p>.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
+</div></code></pre>
+<p>Update the packages.</p>
+<pre class="hljs"><code><div>    sudo apt update 
+</div></code></pre>
+<p>Install.</p>
+<pre class="hljs"><code><div>    sudo apt install glow
+</div></code></pre>
+<p>Windows.</p>
+<pre class="hljs"><code><div>    choco install glow -y
+</div></code></pre>
+<h3 id="usage">Usage</h3>
+<pre class="hljs"><code><div>    glow
+</div></code></pre>
+<p>This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.</p>
+<p>To select a single file.</p>
+<pre class="hljs"><code><div>    glow -p linux-files.md
+</div></code></pre>
+<p><code>-p</code> will add the paging system you are using</p>
+<h3 id="word-wrapping">Word Wrapping</h3>
+<p>The  <code>-w</code>  flag lets you set a maximum width at which the output will be  wrapped:</p>
+<pre class="hljs"><code><div>    glow -w 60
+</div></code></pre>
+<h3 id="themes">Themes</h3>
+<p>Glow also has themes.</p>
+<pre class="hljs"><code><div>    glow -p -s tokyo-night linux-notes.md
 </div></code></pre>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>

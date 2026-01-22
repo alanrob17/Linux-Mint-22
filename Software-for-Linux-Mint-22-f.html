@@ -102,9 +102,16 @@ blockquote {
 <p>Start <code>trim</code>.</p>
 <pre class="prettyprint"><code><div>sudo systemctl start fstrim.timer
 </div></code></pre>
-<p>Trim can tell the system to wipe blocks of data when they aren't being used. Unlike older drives SSD's need to lean blocks before they can write new data. Without trim the SSD doesn't know which blocks are free leading to slower write speeds over time as the drive fills up with stale data.</p>
+<p>Trim can tell the system to wipe blocks of data when they aren't being used. Unlike older drives SSD's need to lean blocks before they can write new data. Without <code>trim</code> the SSD doesn't know which blocks are free leading to slower write speeds over time as the drive fills up with stale data.</p>
 <h2 id="install-microsoft-fonts">Install Microsoft fonts</h2>
-<p>Use the Software Manager and search for <strong>mscorefont</strong>. There are a number of applications that rely on these fonts. You can also use these fonts in Libre Office.</p>
+<p>There are a number of applications that rely on Microsoft fonts. You can also use these fonts in Libre Office.</p>
+<p>Use this command to Install them. It also installs codecs and other Ubuntu restricted files.</p>
+<pre class="prettyprint"><code><div>    sudo apt install ubuntu-restricted-extras
+</div></code></pre>
+<h3 id="install-jetbrains-mono-fonts">Install Jetbrains mono fonts</h3>
+<pre class="prettyprint"><code><div>    sudo apt install fonts-jetbrains-mono
+</div></code></pre>
+<p>You can use these in the terminal by changing the system font.</p>
 <h2 id="improve-battery-life-on-laptops">Improve battery life on Laptops</h2>
 <p>Battery power settings - install on Samsung Ultra.</p>
 <pre class="prettyprint"><code><div>	sudo apt tlp
@@ -157,6 +164,8 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <span class="hljs-built_in">set</span> FZF_DEFAULT_OPTS <span class="hljs-string">"--layout=reverse --border=bold --border=rounded --margin=3% --color=dark"</span>
 [ -f ~/.fzf.bash ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.fzf.bash
 </div></code></pre>
+<p><strong>Note:</strong> you will have to change this if you are using <code>.zsh</code> as your shell.</p>
+<h2 id="localbin">.local/bin</h2>
 <p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
 <h2 id="install-most">Install most</h2>
 <pre class="prettyprint"><code><div>    sudo apt-get install most -y
@@ -166,7 +175,49 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 </div></code></pre>
 <p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
 <p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
-<h2 id="installing-docker">Installing Docker</h2>
+<h3 id="bashaliases">.bash_aliases</h3>
+<p>Open up the <code>.bash_aliases</code> file in the Linux-Mint folder. copy these aliases into the root <code>.bash_aliases</code> file.</p>
+<p>If you are using the <code>.zsh</code> shell copy the aliases into <code>.zsh_aliases</code> as well.</p>
+<h2 id="install-shell-scripts">Install shell scripts</h2>
+<p>Copy the <code>shell_funcs.sh</code> and <code>wipe.sh</code> scripts to the <code>.config</code> folder.</p>
+<p>Set the execute permissions.</p>
+<pre class="prettyprint"><code><div>    chmod 774 ~/.config/shell_funcs.sh
+    chmod 774 ~/.config/wipe.sh
+</div></code></pre>
+<h2 id="install-cargo">Install Cargo</h2>
+<p>I will install <code>eza</code> with Cargo.</p>
+<p>Download and run <code>rustup</code> installer.</p>
+<pre class="prettyprint"><code><div>curl --proto <span class="hljs-string">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</div></code></pre>
+<p>Follow the prompts (choose option 1 for default installation)</p>
+<p>After installation, load cargo into your current shell:</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.cargo/env
+</div></code></pre>
+<p>Verify installation.</p>
+<pre class="prettyprint"><code><div>    rustc --version
+    cargo --version
+</div></code></pre>
+<p>Update cargo if needed.</p>
+<pre class="prettyprint"><code><div>    rustup update
+</div></code></pre>
+<h3 id="install-eza">Install Eza</h3>
+<p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
+<p>Documentation.</p>
+<p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
+<h3 id="installation">Installation</h3>
+<pre class="prettyprint"><code><div>cargo install eza --locked
+</div></code></pre>
+<p>Add to <code>PATH</code> if not already (it should be automatically).</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">which</span> eza
+</div></code></pre>
+<h2 id="install-xcp">Install xcp</h2>
+<p><code>xcp</code> is a modern version of the <code>cp</code> copy command. It is a lot more user friendly than <code>cp</code>.</p>
+<p>Installing <code>xcp</code> on Linux Mint 22 is done through Cargo, Rust's package manager.</p>
+<p>You can install <code>xcp</code> with.</p>
+<pre class="prettyprint"><code><div>	cargo install xcp
+</div></code></pre>
+<p>Installation Directory: The binary is typically installed in <code>~/.cargo/bin/</code>. Make sure this directory is in your shell's PATH (the Rust installer usually sets this up automatically).</p>
+<h2 id="install-docker">Install Docker</h2>
 <p>Do an update.</p>
 <pre class="prettyprint"><code><div>   sudo apt update -y
 </div></code></pre>
@@ -194,22 +245,6 @@ This message shows that your installation appears to be working correctly.
 <p>Test that Docker Compose is working.</p>
 <pre class="prettyprint"><code><div>    docker compose version
 </div></code></pre>
-<h2 id="install-azure-data-studio">Install Azure Data Studio</h2>
-<p><a href="https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable">Azure Data Studio link</a>.</p>
-<p>From your home folder run this.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-&lt;version string&gt;.deb
-</div></code></pre>
-<p>My package was.</p>
-<pre class="prettyprint"><code><div>    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
-</div></code></pre>
-<p>This installs Azure Data Studio.</p>
-<p>You may have to install the folowing dependancies.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get install libunwind8
-</div></code></pre>
-<p>To run.</p>
-<blockquote>
-<p>azuredatastudio</p>
-</blockquote>
 <h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
 <p>Install from this link.</p>
 <pre class="prettyprint"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
@@ -219,7 +254,7 @@ This message shows that your installation appears to be working correctly.
 </div></code></pre>
 <p>My Visual Studio Account.</p>
 <blockquote>
-<p>Microsoft - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
+<p>Github - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
 </blockquote>
 <h2 id="install-net-core">Install .Net Core</h2>
 <p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
@@ -236,6 +271,20 @@ rm packages-microsoft-prod.deb
 <pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
+<h2 id="install-chrome">Install Chrome</h2>
+<p>This method is supposed to allow automatic updates.</p>
+<p><strong>1.</strong> Download the Google signing key</p>
+<pre class="prettyprint"><code><div>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+</div></code></pre>
+<p><strong>2.</strong> Add the official Google Chrome repository</p>
+<pre class="prettyprint"><code><div>sudo add-apt-repository <span class="hljs-string">"deb http://dl.google.com/linux/chrome/deb/ stable main"</span>
+</div></code></pre>
+<p><strong>3.</strong> Update your package list</p>
+<pre class="prettyprint"><code><div>sudo apt update
+</div></code></pre>
+<p><strong>4.</strong> Install Google Chrome Stable</p>
+<pre class="prettyprint"><code><div>sudo apt install google-chrome-stable
+</div></code></pre>
 <h2 id="install-brave-browser">Install Brave browser</h2>
 <pre class="prettyprint"><code><div>sudo apt install curl
 </div></code></pre>
@@ -250,13 +299,14 @@ rm packages-microsoft-prod.deb
 <h2 id="install-winrar">Install WinRar</h2>
 <pre class="prettyprint"><code><div>    sudo apt-get install rar unrar
 </div></code></pre>
-<p><strong>Note:</strong> you need a license so copy the license.rar file and open in the current directory with.</p>
-<h3 id="extracting-files">Extracting files</h3>
-<pre class="prettyprint"><code><div>    unrar x license.rar
+<p><strong>Note:</strong> you need a license so extract the <code>rarkey.rar</code> file.</p>
+<pre class="prettyprint"><code><div>    unrar x rarkey.rar
 </div></code></pre>
-<p>To extract to another directory.</p>
-<pre class="prettyprint"><code><div>    unrar e license.rar /home/alanr/Downloads
+<p>Move the <code>rarreg.key</code> to the root folder.</p>
+<p>Now run this command.</p>
+<pre class="prettyprint"><code><div>    rar
 </div></code></pre>
+<p>This should register your version of <code>rar</code>.</p>
 <p>Listing all files in a rar file.</p>
 <pre class="prettyprint"><code><div>    rar l myfiles.rar
 </div></code></pre>
@@ -298,7 +348,7 @@ rm packages-microsoft-prod.deb
 </div></code></pre>
 <h2 id="install-stacer">Install Stacer</h2>
 <p>Stacer is a really impressive system checker.</p>
-<pre class="prettyprint"><code><div>    sudo nala stacer -y
+<pre class="prettyprint"><code><div>    sudo apt install stacer -y
 </div></code></pre>
 <h2 id="installing-utilities">Installing utilities</h2>
 <p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
@@ -324,29 +374,6 @@ rm packages-microsoft-prod.deb
 <p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
 <p>This is BatCat running in DOS.</p>
 <p><img src="assets/images/batcat-output2.jpg" alt="DOS BatCat output" title="DOS BatCat output"></p>
-<h3 id="eza">Eza</h3>
-<p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
-<p>Documentation.</p>
-<p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
-<h4 id="installation">Installation</h4>
-<p>To install <code>eza</code> on Ubuntu, you can use the official repository method. First, ensure you have the GPG package installed by running:</p>
-<pre class="prettyprint"><code><div>sudo apt update &amp;&amp; sudo apt install -y gpg
-</div></code></pre>
-<p>Then, add the eza repository and its signing key:</p>
-<pre class="prettyprint"><code><div>sudo mkdir -p /etc/apt/keyrings
-</div></code></pre>
-<p>Then.</p>
-<pre class="prettyprint"><code><div>wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-</div></code></pre>
-<p>Next.</p>
-<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"</span> | sudo tee /etc/apt/sources.list.d/gierens.list
-</div></code></pre>
-<p>Finally.</p>
-<pre class="prettyprint"><code><div>sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-</div></code></pre>
-<p>Update the package list and install eza.</p>
-<pre class="prettyprint"><code><div>sudo apt update &amp;&amp; sudo apt install -y eza
-</div></code></pre>
 <h4 id="bash-aliases">Bash aliases</h4>
 <p>Add to <code>.bash_aliases</code>.</p>
 <pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
@@ -451,6 +478,13 @@ Documents/file.txt</p>
 <p>You will need to add this line into your <code>.zshrc</code> file.</p>
 <pre class="prettyprint"><code><div>[ -f ~/.zsh_aliases ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.zsh_aliases
 </div></code></pre>
+<h4 id="make-zsh-the-default-shell">Make .zsh the default shell</h4>
+<pre class="prettyprint"><code><div>    chsh -s /usr/bin/zsh
+</div></code></pre>
+<p><strong>Note:</strong> you have to log out of Mint to get this to work. I would reboot to make sure.</p>
+<p>To find the default shell.</p>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+</div></code></pre>
 <h4 id="plugins">Plugins</h4>
 <p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have one plugin installed.</p>
 <pre class="prettyprint"><code><div> plugins=(git)
@@ -533,6 +567,43 @@ Documents/file.txt</p>
 </ul>
 <pre class="prettyprint"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
 </div></code></pre>
+<h2 id="glow">Glow</h2>
+<p>(Glow github page)[https://github.com/charmbracelet/glow].</p>
+<h3 id="installation">Installation</h3>
+<p>Linux.</p>
+<pre class="prettyprint"><code><div>    sudo mkdir -p /etc/apt/keyrings
+</div></code></pre>
+<p>Get the key.</p>
+<pre class="prettyprint"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+</div></code></pre>
+<p>.</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
+</div></code></pre>
+<p>Update the packages.</p>
+<pre class="prettyprint"><code><div>    sudo apt update 
+</div></code></pre>
+<p>Install.</p>
+<pre class="prettyprint"><code><div>    sudo apt install glow
+</div></code></pre>
+<p>Windows.</p>
+<pre class="prettyprint"><code><div>    choco install glow -y
+</div></code></pre>
+<h3 id="usage">Usage</h3>
+<pre class="prettyprint"><code><div>    glow
+</div></code></pre>
+<p>This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.</p>
+<p>To select a single file.</p>
+<pre class="prettyprint"><code><div>    glow -p linux-files.md
+</div></code></pre>
+<p><code>-p</code> will add the paging system you are using</p>
+<h3 id="word-wrapping">Word Wrapping</h3>
+<p>The  <code>-w</code>  flag lets you set a maximum width at which the output will be  wrapped:</p>
+<pre class="prettyprint"><code><div>    glow -w 60
+</div></code></pre>
+<h3 id="themes">Themes</h3>
+<p>Glow also has themes.</p>
+<pre class="prettyprint"><code><div>    glow -p -s tokyo-night linux-notes.md
+</div></code></pre>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="prettyprint"><code><div>    sudo nano /etc/hostname
@@ -548,25 +619,6 @@ Documents/file.txt</p>
 <blockquote>
 <p>alanr@lion:~$</p>
 </blockquote>
-<h2 id="replace-apt">Replace APT</h2>
-<p><strong>Note:</strong> I had some minor issues with Nala so I stopped using it.</p>
-<p>There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.</p>
-<pre class="prettyprint"><code><div>    sudo apt install nala -y
-</div></code></pre>
-<h2 id="speed-up-your-installs">Speed up your installs</h2>
-<p>Use <code>Fetch</code>. First setup the repository.</p>
-<pre class="prettyprint"><code><div>    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-</div></code></pre>
-<p>Once this is added to your repository list you can install <code>Fetch</code>.</p>
-<pre class="prettyprint"><code><div>    sudo nala fetch
-</div></code></pre>
-<p>This will create a list of the fastest servers for you. From this list <code>Fast</code> will select the fastest repository servers for you. Select the top 10 from the list with.</p>
-<blockquote>
-<p>1,2,3,4,5,6,7,8,9,10</p>
-</blockquote>
-<p>This will show you the list and ask for confirmation.</p>
-<p><img src="assets/images/mirrors.jpg" alt="Nala mirrors" title="Nala mirrors"></p>
-<p>You will find that you install software much faster than with APT.</p>
 
 
 </div><!-- starter-template -->

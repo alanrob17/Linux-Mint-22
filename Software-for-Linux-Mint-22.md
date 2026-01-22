@@ -230,6 +230,20 @@ Add to ``PATH`` if not already (it should be automatically).
 which eza
 ```
 
+## Install xcp
+
+``xcp`` is a modern version of the ``cp`` copy command. It is a lot more user friendly than ``cp``.
+
+Installing ``xcp`` on Linux Mint 22 is done through Cargo, Rust's package manager.
+
+You can install ``xcp`` with.
+
+```bash
+	cargo install xcp
+```
+
+Installation Directory: The binary is typically installed in ``~/.cargo/bin/``. Make sure this directory is in your shell's PATH (the Rust installer usually sets this up automatically).
+
 ## Install Docker
 
 Do an update.
@@ -380,19 +394,21 @@ sudo apt install brave-browser
     sudo apt-get install rar unrar
 ```
 
-**Note:** you need a license so copy the license.rar file and open in the current directory with.
-
-### Extracting files
+**Note:** you need a license so extract the ``rarkey.rar`` file.
 
 ```bash
-    unrar x license.rar
+    unrar x rarkey.rar
 ```
 
-To extract to another directory.
+ Move the ``rarreg.key`` to the root folder.
+
+Now run this command.
 
 ```bash
-    unrar e license.rar /home/alanr/Downloads
+    rar
 ```
+
+This should register your version of ``rar``.
 
 Listing all files in a rar file.
 
@@ -851,6 +867,80 @@ The Linux ``tldr`` (Too Long; Didn't Read) application is a command-line tool pr
 
 ```bash
    tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+```
+
+## Glow
+
+(Glow github page)[https://github.com/charmbracelet/glow].
+
+### Installation
+
+Linux.
+
+```bash
+    sudo mkdir -p /etc/apt/keyrings
+```
+
+Get the key.
+
+```bash
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+```
+
+.
+
+```bash
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+```
+
+Update the packages.
+
+```bash
+    sudo apt update 
+```
+
+Install.
+
+```bash
+    sudo apt install glow
+```
+
+Windows.
+
+```bash
+    choco install glow -y
+```
+
+### Usage
+
+```bash
+    glow
+```
+
+This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.
+
+To select a single file.
+
+```bash
+    glow -p linux-files.md
+```
+
+``-p`` will add the paging system you are using
+
+### Word Wrapping
+
+  The  ``-w``  flag lets you set a maximum width at which the output will be  wrapped:
+
+```bash
+    glow -w 60
+```
+
+### Themes
+
+Glow also has themes.
+
+```bash
+    glow -p -s tokyo-night linux-notes.md
 ```
 
 ## Change the hostname
