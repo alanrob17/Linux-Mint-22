@@ -1,6 +1,7 @@
-alias lla='eza -la --group-directories-first'
-alias lt='eza --size -1 -S --classify'
-alias ls='eza'
+alias lt='eza -1 -S --classify'
+alias ls='eza --group-directories-first'
+alias la='eza -a --group-directories-first'
+alias ll='eza -la --group-directories-first --git'
 alias gh='history|grep'
 alias cls='clear'
 alias upd='sudo apt-get update && sudo apt-get upgrade -y'
@@ -23,5 +24,5 @@ alias nan='nano $(fzf --preview="batcat --color=always {}")'
 alias gcom='git log --oneline | fzf --preview "git show --name-only {1}"'
 alias pf='fzf --preview="less {}" --bind shift-up:preview-page-up,shift-down:preview-page-down'
 alias f=fzf
-alias la=eza
 alias co=code
+alias cp='xcp'

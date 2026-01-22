@@ -46,7 +46,21 @@ Trim can tell the system to wipe blocks of data when they aren't being used. Unl
 
 ## Install Microsoft fonts
 
-Use the Software Manager and search for **mscorefont**. There are a number of applications that rely on these fonts. You can also use these fonts in Libre Office.
+There are a number of applications that rely on Microsoft fonts. You can also use these fonts in Libre Office.
+
+Use this command to Install them. It also installs codecs and other Ubuntu restricted files.
+
+```bash
+    sudo apt install ubuntu-restricted-extras
+```
+
+### Install Jetbrains mono fonts
+
+```bash
+    sudo apt install fonts-jetbrains-mono
+```
+
+You can use these in the terminal by changing the system font.
 
 ## Improve battery life on Laptops
 
@@ -126,6 +140,10 @@ set FZF_DEFAULT_OPTS "--layout=reverse --border=bold --border=rounded --margin=3
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ```
 
+**Note:** you will have to change this if you are using ``.zsh`` as your shell.
+
+## .local/bin
+
 Make sure ``/home/alanr/.local/bin`` exists.
 
 ## Install most
@@ -144,7 +162,75 @@ This opens the man page for ``ls``. If you installed the ``.bashrc`` and ``most`
 
 Now type, ``gh man``. You should see a list of ``man`` pages you have opened up. This tells you that ``.bash_aliases`` has been installed correctly.
 
-## Installing Docker
+### .bash_aliases
+
+Open up the ``.bash_aliases`` file in the Linux-Mint folder. copy these aliases into the root ``.bash_aliases`` file.
+
+If you are using the ``.zsh`` shell copy the aliases into ``.zsh_aliases`` as well.
+
+## Install shell scripts
+
+Copy the ``shell_funcs.sh`` and ``wipe.sh`` scripts to the ``.config`` folder.
+
+Set the execute permissions.
+
+```bash
+    chmod 774 ~/.config/shell_funcs.sh
+    chmod 774 ~/.config/wipe.sh
+```
+
+## Install Cargo
+
+I will install ``eza`` with Cargo.
+
+Download and run ``rustup`` installer.
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Follow the prompts (choose option 1 for default installation)
+
+After installation, load cargo into your current shell:
+
+```bash
+    source $HOME/.cargo/env
+```
+
+Verify installation.
+
+```bash
+    rustc --version
+    cargo --version
+```
+
+Update cargo if needed.
+
+```bash
+    rustup update
+```
+
+### Install Eza
+
+``eza`` is a coloured replacement for ``ls``. It seems to have all of the options that ``ls`` has plus a lot of extras. Once again this works on a Windows PC.
+
+Documentation.
+
+(Eza community Github site)[https://github.com/eza-community/eza].
+
+### Installation
+
+```bash
+cargo install eza --locked
+```
+
+Add to ``PATH`` if not already (it should be automatically).
+
+```bash
+which eza
+```
+
+## Install Docker
 
 Do an update.
 
@@ -194,34 +280,6 @@ Test that Docker Compose is working.
     docker compose version
 ```
 
-## Install Azure Data Studio
-
-[Azure Data Studio link](https://azuredatastudio-update.azurewebsites.net/latest/linux-deb-x64/stable).
-
-From your home folder run this.
-
-```bash
-    sudo dpkg -i ./Downloads/azuredatastudio-linux-<version string>.deb
-```
-
-My package was.
-
-```bash
-    sudo dpkg -i ./Downloads/azuredatastudio-linux-1.49.0.deb
-```
-
-This installs Azure Data Studio.
-
-You may have to install the folowing dependancies.
-
-```bash
-    sudo apt-get install libunwind8
-```
-
-To run.
-
-> azuredatastudio
-
 ## Install Visual Studio Code
 
 Install from this link.
@@ -238,7 +296,7 @@ In Downloads.
 
 My Visual Studio Account.
 
-> Microsoft - <alanr@live.com.au>
+> Github - <alanr@live.com.au>
 
 ## Install .Net Core
 
@@ -265,6 +323,34 @@ Then install .Net.
 ```
 
 This will install the .Net core runtime and the SDK.
+
+## Install Chrome
+
+This method is supposed to allow automatic updates.
+
+**1.** Download the Google signing key
+
+```bash
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+```
+
+**2.** Add the official Google Chrome repository
+
+```bash
+sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main"
+```
+
+**3.** Update your package list
+
+```bash
+sudo apt update
+```
+
+**4.** Install Google Chrome Stable
+
+```bash
+sudo apt install google-chrome-stable
+```
 
 ## Install Brave browser
 
@@ -387,7 +473,7 @@ Go to the bottom of this file and add this line.
 Stacer is a really impressive system checker.
 
 ```bash
-    sudo nala stacer -y
+    sudo apt install stacer -y
 ```
 
 ## Installing utilities
@@ -437,52 +523,6 @@ Returns.
 This is BatCat running in DOS.
 
 ![DOS BatCat output](assets/images/batcat-output2.jpg "DOS BatCat output")
-
-### Eza
-
-``eza`` is a coloured replacement for ``ls``. It seems to have all of the options that ``ls`` has plus a lot of extras. Once again this works on a Windows PC.
-
-Documentation.
-
-(Eza community Github site)[https://github.com/eza-community/eza].
-
-#### Installation
-
-To install ``eza`` on Ubuntu, you can use the official repository method. First, ensure you have the GPG package installed by running:
-
-```bash
-sudo apt update && sudo apt install -y gpg
-```
-
-Then, add the eza repository and its signing key:
-
-```bash
-sudo mkdir -p /etc/apt/keyrings
-```
-
-Then.
-
-```bash
-wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-```
-
-Next.
-
-```bash
-echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-```
-
-Finally.
-
-```bash
-sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-```
-
-Update the package list and install eza.
-
-```bash
-sudo apt update && sudo apt install -y eza
-```
 
 #### Bash aliases
 
@@ -668,6 +708,20 @@ You will need to add this line into your ``.zshrc`` file.
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 ```
 
+#### Make .zsh the default shell
+
+```bash
+    chsh -s /usr/bin/zsh
+```
+
+**Note:** you have to log out of Mint to get this to work. I would reboot to make sure.
+
+To find the default shell.
+
+```bash
+    echo $SHELL
+```
+
 #### Plugins
 
 Zsh allows you to add plugins to it ``.zshrc`` startup file. I have one plugin installed.
@@ -824,37 +878,3 @@ I would reboot after this step.
 Now my terminal window reflects my new hostname.
 
 > alanr@lion:~$
-
-## Replace APT
-
-**Note:** I had some minor issues with Nala so I stopped using it.
-
-There are faster installers than APT. Nala is a good option because it is coloured and faster than APT. To install.
-
-```bash
-    sudo apt install nala -y
-```
-
-## Speed up your installs
-
-Use ``Fetch``. First setup the repository.
-
-```bash
-    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-```
-
-Once this is added to your repository list you can install ``Fetch``.
-
-```bash
-    sudo nala fetch
-```
-
-This will create a list of the fastest servers for you. From this list ``Fast`` will select the fastest repository servers for you. Select the top 10 from the list with.
-
-> 1,2,3,4,5,6,7,8,9,10
-
-This will show you the list and ask for confirmation.
-
-![Nala mirrors](assets/images/mirrors.jpg "Nala mirrors")
-
-You will find that you install software much faster than with APT.
