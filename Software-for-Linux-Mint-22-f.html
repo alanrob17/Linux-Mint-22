@@ -604,6 +604,35 @@ Documents/file.txt</p>
 <p>Glow also has themes.</p>
 <pre class="prettyprint"><code><div>    glow -p -s tokyo-night linux-notes.md
 </div></code></pre>
+<h2 id="install-and-configure-vnstat">Install and Configure vnstat</h2>
+<p><code>vnstat</code> is a lightweight, command-line network traffic monitor for Linux and BSD that logs hourly, daily, and monthly usage directly from kernel interface statistics without sniffing packets. It runs as a daemon (<code>vnstatd</code>), ensuring low system resource usage.</p>
+<p><code>vnstat</code> is database-driven it stores traffic data in <code>/var/lib/vnstat</code>.</p>
+<pre class="prettyprint"><code><div>    sudo apt update
+    sudo apt install vnstat
+</div></code></pre>
+<p>After installation, vnstat starts logging automatically. First, ensure it's monitoring your correct network interface (like enp3s0 or wlp2s0):</p>
+<p><strong>1.</strong> Find your active network interface name</p>
+<pre class="prettyprint"><code><div>    ip addr show | grep <span class="hljs-string">"state UP"</span> | awk <span class="hljs-string">'{print $2}'</span> | sed <span class="hljs-string">'s/:$//'</span>
+</div></code></pre>
+<p><strong>2.</strong> Tell vnstat to use that interface (replace 'eth0' with your interface)</p>
+<pre class="prettyprint"><code><div>    sudo vnstat -u -i eth0
+</div></code></pre>
+<h3 id="using">Using</h3>
+<p>Check Your Total Data Usage (in GB). Use these simple commands to see your totals.</p>
+<p>Commands.</p>
+<pre class="prettyprint"><code><div>**vnstat**	    A quick summary of today<span class="hljs-string">'s and this month'</span>s total data.
+**vnstat** -d	Daily totals <span class="hljs-keyword">for</span> the last 30 days.
+**vnstat** -m	Monthly totals <span class="hljs-keyword">for</span> the past year.
+**vnstat** -hg	Hourly graph of usage.
+</div></code></pre>
+<p>Example output from vnstat -d:</p>
+<pre class="prettyprint"><code><div>        eth0  /  daily
+         day         rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+      Today        4.67 GiB  |   1.23 GiB  |   5.90 GiB  |   68.42 kbit/s
+      Yesterday    12.5 GiB  |   3.1 GiB   |   15.6 GiB  |  151.23 kbit/s
+</div></code></pre>
+<p><strong>Note:</strong> <code>rx</code> is download, <code>tx</code> is uploaded.</p>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="prettyprint"><code><div>    sudo nano /etc/hostname

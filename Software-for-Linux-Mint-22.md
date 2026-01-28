@@ -943,6 +943,56 @@ Glow also has themes.
     glow -p -s tokyo-night linux-notes.md
 ```
 
+## Install and Configure vnstat
+
+``vnstat`` is a lightweight, command-line network traffic monitor for Linux and BSD that logs hourly, daily, and monthly usage directly from kernel interface statistics without sniffing packets. It runs as a daemon (``vnstatd``), ensuring low system resource usage.
+
+``vnstat`` is database-driven it stores traffic data in ``/var/lib/vnstat``.
+
+```bash
+    sudo apt update
+    sudo apt install vnstat
+```
+
+After installation, vnstat starts logging automatically. First, ensure it's monitoring your correct network interface (like enp3s0 or wlp2s0):
+
+**1.** Find your active network interface name
+
+```bash
+    ip addr show | grep "state UP" | awk '{print $2}' | sed 's/:$//'
+```
+
+**2.** Tell vnstat to use that interface (replace 'eth0' with your interface)
+
+```bash
+    sudo vnstat -u -i eth0
+```
+
+### Using
+
+Check Your Total Data Usage (in GB). Use these simple commands to see your totals.
+
+Commands.
+
+```bash
+**vnstat**	    A quick summary of today's and this month's total data.
+**vnstat** -d	Daily totals for the last 30 days.
+**vnstat** -m	Monthly totals for the past year.
+**vnstat** -hg	Hourly graph of usage.
+```
+
+Example output from vnstat -d:
+
+```bash
+        eth0  /  daily
+         day         rx      |     tx      |    total    |   avg. rate
+     ------------------------+-------------+-------------+---------------
+      Today        4.67 GiB  |   1.23 GiB  |   5.90 GiB  |   68.42 kbit/s
+      Yesterday    12.5 GiB  |   3.1 GiB   |   15.6 GiB  |  151.23 kbit/s
+```
+
+**Note:** ``rx`` is download, ``tx`` is uploaded.
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.
