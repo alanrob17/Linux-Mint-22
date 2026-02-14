@@ -373,37 +373,37 @@ code {
 <p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
 <h2 id="install-preload">Install Preload</h2>
 <p>You can speed up the startup times  of your apps by installing <code>preload</code>.</p>
-<pre class="hljs"><code><div>    sudo apt install preload
+<pre class="prettyprint"><code><div>    sudo apt install preload
 </div></code></pre>
 <p>Preload will load applications like Firefox quicker.</p>
 <h2 id="trim-for-ssd-drives">Trim for SSD drives</h2>
 <p><code>Trim</code> can improve the efficiency and life of your SSD.</p>
 <p>Check the status.</p>
-<pre class="hljs"><code><div>sudo systemctl status fstrim.timer
+<pre class="prettyprint"><code><div>sudo systemctl status fstrim.timer
 </div></code></pre>
 <p>If it isn't running you can enable it.</p>
-<pre class="hljs"><code><div>sudo systemctl <span class="hljs-built_in">enable</span> fstrim.timer
+<pre class="prettyprint"><code><div>sudo systemctl <span class="hljs-built_in">enable</span> fstrim.timer
 </div></code></pre>
 <p>Start <code>trim</code>.</p>
-<pre class="hljs"><code><div>sudo systemctl start fstrim.timer
+<pre class="prettyprint"><code><div>sudo systemctl start fstrim.timer
 </div></code></pre>
 <p>Trim can tell the system to wipe blocks of data when they aren't being used. Unlike older drives SSD's need to lean blocks before they can write new data. Without <code>trim</code> the SSD doesn't know which blocks are free leading to slower write speeds over time as the drive fills up with stale data.</p>
 <h2 id="install-microsoft-fonts">Install Microsoft fonts</h2>
 <p>There are a number of applications that rely on Microsoft fonts. You can also use these fonts in Libre Office.</p>
 <p>Use this command to Install them. It also installs codecs and other Ubuntu restricted files.</p>
-<pre class="hljs"><code><div>    sudo apt install ubuntu-restricted-extras
+<pre class="prettyprint"><code><div>    sudo apt install ubuntu-restricted-extras
 </div></code></pre>
 <h3 id="install-jetbrains-mono-fonts">Install Jetbrains mono fonts</h3>
-<pre class="hljs"><code><div>    sudo apt install fonts-jetbrains-mono
+<pre class="prettyprint"><code><div>    sudo apt install fonts-jetbrains-mono
 </div></code></pre>
 <p>You can use these in the terminal by changing the system font.</p>
 <h2 id="improve-battery-life-on-laptops">Improve battery life on Laptops</h2>
 <p>Battery power settings - install on Samsung Ultra.</p>
-<pre class="hljs"><code><div>	sudo apt tlp
+<pre class="prettyprint"><code><div>	sudo apt tlp
 </div></code></pre>
 <p>After installation TLP will start automatically and run in the background.</p>
 <p>If it doesn't start you can start the daemon with.</p>
-<pre class="hljs"><code><div>	sudo tlp start
+<pre class="prettyprint"><code><div>	sudo tlp start
 </div></code></pre>
 <h2 id="file-manager-changes">File Manager changes</h2>
 <p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
@@ -412,16 +412,16 @@ code {
 <h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
 <p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
 <p>Copy these files to the home directory.</p>
-<pre class="hljs"><code><div>    cp ./colours.sh /home/alanr
+<pre class="prettyprint"><code><div>    cp ./colours.sh /home/alanr
 </div></code></pre>
 <p>And.</p>
-<pre class="hljs"><code><div>    cp ./gc.sh /home/alanr
+<pre class="prettyprint"><code><div>    cp ./gc.sh /home/alanr
 </div></code></pre>
 <p>And.</p>
-<pre class="hljs"><code><div>    cp .bash_aliases /home/alanr
+<pre class="prettyprint"><code><div>    cp .bash_aliases /home/alanr
 </div></code></pre>
 <p>With my <code>.bashrc</code> file I need to add these lines to the bottom of the file.</p>
-<pre class="hljs"><code><div><span class="hljs-comment"># Colour  man page output</span>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Colour  man page output</span>
 <span class="hljs-built_in">export</span> PAGER=most
 
 <span class="hljs-comment"># Vertical format for docker ps</span>
@@ -453,10 +453,10 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <h2 id="localbin">.local/bin</h2>
 <p>Make sure <code>/home/alanr/.local/bin</code> exists.</p>
 <h2 id="install-most">Install most</h2>
-<pre class="hljs"><code><div>    sudo apt-get install most -y
+<pre class="prettyprint"><code><div>    sudo apt-get install most -y
 </div></code></pre>
 <p>Exit your terminal and restart it. Type this command.</p>
-<pre class="hljs"><code><div>    man ls
+<pre class="prettyprint"><code><div>    man ls
 </div></code></pre>
 <p>This opens the man page for <code>ls</code>. If you installed the <code>.bashrc</code> and <code>most</code> correctly you should see colour text for the <code>ls</code> command. This tells you that your changes are working correctly.</p>
 <p>Now type, <code>gh man</code>. You should see a list of <code>man</code> pages you have opened up. This tells you that <code>.bash_aliases</code> has been installed correctly.</p>
@@ -466,60 +466,60 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <h2 id="install-shell-scripts">Install shell scripts</h2>
 <p>Copy the <code>shell_funcs.sh</code> and <code>wipe.sh</code> scripts to the <code>.config</code> folder.</p>
 <p>Set the execute permissions.</p>
-<pre class="hljs"><code><div>    chmod 774 ~/.config/shell_funcs.sh
+<pre class="prettyprint"><code><div>    chmod 774 ~/.config/shell_funcs.sh
     chmod 774 ~/.config/wipe.sh
 </div></code></pre>
 <h2 id="install-cargo">Install Cargo</h2>
 <p>I will install <code>eza</code> with Cargo.</p>
 <p>Download and run <code>rustup</code> installer.</p>
-<pre class="hljs"><code><div>curl --proto <span class="hljs-string">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
+<pre class="prettyprint"><code><div>curl --proto <span class="hljs-string">'=https'</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
 </div></code></pre>
 <p>Follow the prompts (choose option 1 for default installation)</p>
 <p>After installation, load cargo into your current shell:</p>
-<pre class="hljs"><code><div>    <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.cargo/env
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.cargo/env
 </div></code></pre>
 <p>Verify installation.</p>
-<pre class="hljs"><code><div>    rustc --version
+<pre class="prettyprint"><code><div>    rustc --version
     cargo --version
 </div></code></pre>
 <p>Update cargo if needed.</p>
-<pre class="hljs"><code><div>    rustup update
+<pre class="prettyprint"><code><div>    rustup update
 </div></code></pre>
 <h3 id="install-eza">Install Eza</h3>
 <p><code>eza</code> is a coloured replacement for <code>ls</code>. It seems to have all of the options that <code>ls</code> has plus a lot of extras. Once again this works on a Windows PC.</p>
 <p>Documentation.</p>
 <p>(Eza community Github site)[https://github.com/eza-community/eza].</p>
 <h3 id="installation">Installation</h3>
-<pre class="hljs"><code><div>cargo install eza --locked
+<pre class="prettyprint"><code><div>cargo install eza --locked
 </div></code></pre>
 <p>Add to <code>PATH</code> if not already (it should be automatically).</p>
-<pre class="hljs"><code><div><span class="hljs-built_in">which</span> eza
+<pre class="prettyprint"><code><div><span class="hljs-built_in">which</span> eza
 </div></code></pre>
 <h2 id="install-xcp">Install xcp</h2>
 <p><code>xcp</code> is a modern version of the <code>cp</code> copy command. It is a lot more user friendly than <code>cp</code>.</p>
 <p>Installing <code>xcp</code> on Linux Mint 22 is done through Cargo, Rust's package manager.</p>
 <p>You can install <code>xcp</code> with.</p>
-<pre class="hljs"><code><div>	cargo install xcp
+<pre class="prettyprint"><code><div>	cargo install xcp
 </div></code></pre>
 <p>Installation Directory: The binary is typically installed in <code>~/.cargo/bin/</code>. Make sure this directory is in your shell's PATH (the Rust installer usually sets this up automatically).</p>
 <h2 id="install-docker">Install Docker</h2>
 <p>Do an update.</p>
-<pre class="hljs"><code><div>   sudo apt update -y
+<pre class="prettyprint"><code><div>   sudo apt update -y
 </div></code></pre>
 <p>Then install Docker.</p>
-<pre class="hljs"><code><div>   sudo apt install docker* -y
+<pre class="prettyprint"><code><div>   sudo apt install docker* -y
 </div></code></pre>
 <h3 id="manage-docker-as-a-non-root-user">Manage Docker as a non-root user</h3>
 <p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
 <p>Create the docker group.</p>
-<pre class="hljs"><code><div>    sudo groupadd docker
+<pre class="prettyprint"><code><div>    sudo groupadd docker
 </div></code></pre>
 <p>Add your user to the docker group.</p>
-<pre class="hljs"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
+<pre class="prettyprint"><code><div>    sudo usermod -aG docker <span class="hljs-variable">$USER</span>
 </div></code></pre>
 <p>Reboot your system.</p>
 <p>To test (you shouldn't have to use root privileges).</p>
-<pre class="hljs"><code><div>    docker run hello-world
+<pre class="prettyprint"><code><div>    docker run hello-world
 </div></code></pre>
 <p>If successful you will get this message.</p>
 <blockquote>
@@ -528,14 +528,14 @@ This message shows that your installation appears to be working correctly.
 ...</p>
 </blockquote>
 <p>Test that Docker Compose is working.</p>
-<pre class="hljs"><code><div>    docker compose version
+<pre class="prettyprint"><code><div>    docker compose version
 </div></code></pre>
 <h2 id="install-visual-studio-code">Install Visual Studio Code</h2>
 <p>Install from this link.</p>
-<pre class="hljs"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
+<pre class="prettyprint"><code><div>    https://go.microsoft.com/fwlink/?LinkID=760868
 </div></code></pre>
 <p>In Downloads.</p>
-<pre class="hljs"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
+<pre class="prettyprint"><code><div>    sudo apt install ./code_1.92.1-1723066302_amd64.deb
 </div></code></pre>
 <p>My Visual Studio Account.</p>
 <blockquote>
@@ -543,97 +543,97 @@ This message shows that your installation appears to be working correctly.
 </blockquote>
 <h2 id="install-net-core">Install .Net Core</h2>
 <p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
-<pre class="hljs"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+<pre class="prettyprint"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
 sudo dpkg -i packages-microsoft-prod.deb
 
 rm packages-microsoft-prod.deb
 </div></code></pre>
 <p>Then do an update.</p>
-<pre class="hljs"><code><div>    sudo apt-get update    
+<pre class="prettyprint"><code><div>    sudo apt-get update    
 </div></code></pre>
 <p>Then install .Net.</p>
-<pre class="hljs"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
+<pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
 <h2 id="install-chrome">Install Chrome</h2>
 <p>This method is supposed to allow automatic updates.</p>
 <p><strong>1.</strong> Download the Google signing key</p>
-<pre class="hljs"><code><div>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+<pre class="prettyprint"><code><div>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 </div></code></pre>
 <p><strong>2.</strong> Add the official Google Chrome repository</p>
-<pre class="hljs"><code><div>sudo add-apt-repository <span class="hljs-string">"deb http://dl.google.com/linux/chrome/deb/ stable main"</span>
+<pre class="prettyprint"><code><div>sudo add-apt-repository <span class="hljs-string">"deb http://dl.google.com/linux/chrome/deb/ stable main"</span>
 </div></code></pre>
 <p><strong>3.</strong> Update your package list</p>
-<pre class="hljs"><code><div>sudo apt update
+<pre class="prettyprint"><code><div>sudo apt update
 </div></code></pre>
 <p><strong>4.</strong> Install Google Chrome Stable</p>
-<pre class="hljs"><code><div>sudo apt install google-chrome-stable
+<pre class="prettyprint"><code><div>sudo apt install google-chrome-stable
 </div></code></pre>
 <h2 id="install-brave-browser">Install Brave browser</h2>
-<pre class="hljs"><code><div>sudo apt install curl
+<pre class="prettyprint"><code><div>sudo apt install curl
 </div></code></pre>
-<pre class="hljs"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+<pre class="prettyprint"><code><div>sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 </div></code></pre>
-<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"</span>|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 </div></code></pre>
-<pre class="hljs"><code><div>sudo apt update
+<pre class="prettyprint"><code><div>sudo apt update
 </div></code></pre>
-<pre class="hljs"><code><div>sudo apt install brave-browser
+<pre class="prettyprint"><code><div>sudo apt install brave-browser
 </div></code></pre>
 <h2 id="install-winrar">Install WinRar</h2>
-<pre class="hljs"><code><div>    sudo apt-get install rar unrar
+<pre class="prettyprint"><code><div>    sudo apt-get install rar unrar
 </div></code></pre>
 <p><strong>Note:</strong> you need a license so extract the <code>rarkey.rar</code> file.</p>
-<pre class="hljs"><code><div>    unrar x rarkey.rar
+<pre class="prettyprint"><code><div>    unrar x rarkey.rar
 </div></code></pre>
 <p>Move the <code>rarreg.key</code> to the root folder.</p>
 <p>Now run this command.</p>
-<pre class="hljs"><code><div>    rar
+<pre class="prettyprint"><code><div>    rar
 </div></code></pre>
 <p>This should register your version of <code>rar</code>.</p>
 <p>Listing all files in a rar file.</p>
-<pre class="hljs"><code><div>    rar l myfiles.rar
+<pre class="prettyprint"><code><div>    rar l myfiles.rar
 </div></code></pre>
 <h3 id="testing-rar-files">Testing rar files</h3>
-<pre class="hljs"><code><div>    unrar t myfiles.rar
+<pre class="prettyprint"><code><div>    unrar t myfiles.rar
 </div></code></pre>
 <h3 id="copy-files-to-a-rar-file">Copy files to a rar file</h3>
-<pre class="hljs"><code><div>    rar a mytextfiles.rar *.txt
+<pre class="prettyprint"><code><div>    rar a mytextfiles.rar *.txt
 </div></code></pre>
 <p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
-<pre class="hljs"><code><div>    rar u myfiles.rar hello.py
+<pre class="prettyprint"><code><div>    rar u myfiles.rar hello.py
 </div></code></pre>
 <h2 id="installing-nord-vpn">Installing Nord VPN</h2>
 <p>Install with this command.</p>
-<pre class="hljs"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+<pre class="prettyprint"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 </div></code></pre>
 <p>Add user to nordvpn group.</p>
-<pre class="hljs"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
+<pre class="prettyprint"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
 </div></code></pre>
 <p>Login.</p>
 <p>Reboot Linux.</p>
 <p>When you want to use Nord VPN.</p>
-<pre class="hljs"><code><div>    nordvpn connect
+<pre class="prettyprint"><code><div>    nordvpn connect
 </div></code></pre>
 <h2 id="improve-ram-usage">Improve RAM usage</h2>
 <p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>
 <p>You can check your settings with.</p>
-<pre class="hljs"><code><div>    cat /proc/sys/vm/swappiness
+<pre class="prettyprint"><code><div>    cat /proc/sys/vm/swappiness
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>60</p>
 </blockquote>
 <p>You can change your threshold to 10 to speed up your machine.</p>
-<pre class="hljs"><code><div>    sudo nano /etc/sysctl.con
+<pre class="prettyprint"><code><div>    sudo nano /etc/sysctl.con
 </div></code></pre>
 <p>Go to the bottom of this file and add this line.</p>
-<pre class="hljs"><code><div>    vm.swappiness=10
+<pre class="prettyprint"><code><div>    vm.swappiness=10
 </div></code></pre>
 <h2 id="install-stacer">Install Stacer</h2>
 <p>Stacer is a really impressive system checker.</p>
-<pre class="hljs"><code><div>    sudo apt install stacer -y
+<pre class="prettyprint"><code><div>    sudo apt install stacer -y
 </div></code></pre>
 <h2 id="installing-utilities">Installing utilities</h2>
 <p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
@@ -641,19 +641,19 @@ rm packages-microsoft-prod.deb
 <h3 id="bat">Bat</h3>
 <h4 id="installation">Installation</h4>
 <p><code>Linux</code>.</p>
-<pre class="hljs"><code><div>    sudo apt install bat
+<pre class="prettyprint"><code><div>    sudo apt install bat
 </div></code></pre>
 <p><code>Windows</code>.</p>
-<pre class="hljs"><code><div>    choco install bat
+<pre class="prettyprint"><code><div>    choco install bat
 </div></code></pre>
 <p><code>BatCat</code> is a replacement for <code>Cat</code> with an impressive coloured output.</p>
 <p><strong>Note:</strong> we can't use <code>bat</code> as a shortcut because it conflicts with a system application.</p>
 <h4 id="create-an-alias">Create an alias</h4>
 <p>To get around the name conflict we create an alias and add it to <code>.bash_aliases</code>.</p>
-<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> bc=<span class="hljs-string">'batcat'</span>
 </div></code></pre>
 <p>Now to test this out.</p>
-<pre class="hljs"><code><div>    bc Program.cs
+<pre class="prettyprint"><code><div>    bc Program.cs
 </div></code></pre>
 <p>Returns.</p>
 <p><img src="assets/images/batcat-output.jpg" alt="BatCat output" title="BatCat output"></p>
@@ -661,22 +661,22 @@ rm packages-microsoft-prod.deb
 <p><img src="assets/images/batcat-output2.jpg" alt="DOS BatCat output" title="DOS BatCat output"></p>
 <h4 id="bash-aliases">Bash aliases</h4>
 <p>Add to <code>.bash_aliases</code>.</p>
-<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> ls=eza
 </div></code></pre>
 <h4 id="usage">Usage</h4>
-<pre class="hljs"><code><div>    eza
+<pre class="prettyprint"><code><div>    eza
 </div></code></pre>
 <p>Or.</p>
-<pre class="hljs"><code><div>    eza -la
+<pre class="prettyprint"><code><div>    eza -la
 </div></code></pre>
 <p>Returns.</p>
 <p><img src="assets/images/eza-output.jpg" alt="eza output" title="eza output"></p>
 <p>It gets more interesting here.</p>
-<pre class="hljs"><code><div>    eza -lT
+<pre class="prettyprint"><code><div>    eza -lT
 </div></code></pre>
 <p><img src="assets/images/tree-view.jpg" alt="Tree view" title="Tree view"></p>
 <p>This command can be used to provide a similar output to my Windows <code>search</code> command that limits the search to 2 directory levels.</p>
-<pre class="hljs"><code><div>    eza -TL 2
+<pre class="prettyprint"><code><div>    eza -TL 2
 </div></code></pre>
 <p>Windows output.</p>
 <p><img src="assets/images/eza-tree-view.jpg" alt="Eza tree view" title="Eza tree view"></p>
@@ -684,26 +684,26 @@ rm packages-microsoft-prod.deb
 <p>The <code>fd</code> command is a file system utility, serving as a modern, faster, and more user-friendly alternative to the traditional <code>find</code> command in Linux. It offers a simpler syntax and sensible defaults for common use cases.</p>
 <h4 id="installation">Installation</h4>
 <p>Linux.</p>
-<pre class="hljs"><code><div>    sudo apt install fd-find
+<pre class="prettyprint"><code><div>    sudo apt install fd-find
 </div></code></pre>
 <p>Create an alias to use this command as <code>fd</code> in <code>.bash_aliases</code>.</p>
-<pre class="hljs"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">alias</span> fd=<span class="hljs-string">'fdfind'</span>
 </div></code></pre>
 <h4 id="usage">Usage</h4>
 <p>fd PATTERN</p>
 <p><code>fd</code> is case insensitive</p>
-<pre class="hljs"><code><div>    fd program.cs
+<pre class="prettyprint"><code><div>    fd program.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>Documents/Program.cs</p>
 </blockquote>
 <p>Search in a specific directory.</p>
-<pre class="hljs"><code><div>    fd Program.cs Documents/
+<pre class="prettyprint"><code><div>    fd Program.cs Documents/
 </div></code></pre>
 <p><strong>Note:</strong> you can use -i for case insensitive searches.</p>
 <p>Searching for multiple files with the same extension.</p>
-<pre class="hljs"><code><div>    fd -g *.cs
+<pre class="prettyprint"><code><div>    fd -g *.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -711,14 +711,14 @@ rm packages-microsoft-prod.deb
 </blockquote>
 <p><strong>Note:</strong> -g is for file globbing and this allows you to do wildcard searches.</p>
 <p>Only search in the current directory</p>
-<pre class="hljs"><code><div>    fd -gd 2 *.cs
+<pre class="prettyprint"><code><div>    fd -gd 2 *.cs
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
 <p>Documents/Program.cs</p>
 </blockquote>
 <p>Search for files with an extension.</p>
-<pre class="hljs"><code><div>    fd -e sh
+<pre class="prettyprint"><code><div>    fd -e sh
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -727,7 +727,7 @@ gc.sh<br>
 status.sh</p>
 </blockquote>
 <p>To list all files in a specific directory, use the wild card symbol <strong>.</strong> as the search pattern.</p>
-<pre class="hljs"><code><div>    fd . Documents/
+<pre class="prettyprint"><code><div>    fd . Documents/
 </div></code></pre>
 <p>Returns.</p>
 <blockquote>
@@ -738,47 +738,47 @@ Documents/file.txt</p>
 <h3 id="zoxide">zoxide</h3>
 <p><code>zoxide</code> is an alternative to the cd command, offering faster performance and smarter navigation capabilities. Like the tools mentioned below, much of the power of <code>zoxide</code> is in its directory ranking based on your usage. Its ranking algorithm can quickly match partial paths, even single search terms, with one of your most used directories.</p>
 <h4 id="installation">Installation</h4>
-<pre class="hljs"><code><div>	sudo apt update &amp;&amp; sudo apt upgrade -y
+<pre class="prettyprint"><code><div>	sudo apt update &amp;&amp; sudo apt upgrade -y
 </div></code></pre>
 <p>Install with.</p>
-<pre class="hljs"><code><div>	sudo apt install zoxide
+<pre class="prettyprint"><code><div>	sudo apt install zoxide
 </div></code></pre>
 <p>Have your shell initialize <code>zoxide</code> with each shell session. You can do so by adding the following line to the end of your <code>~/.bashrc</code> file.</p>
 <p><strong>File: ~/.bashrc</strong></p>
-<pre class="hljs"><code><div>	<span class="hljs-comment">#...</span>
+<pre class="prettyprint"><code><div>	<span class="hljs-comment">#...</span>
 	<span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(zoxide init bash)</span>"</span>
 </div></code></pre>
 <h3 id="install-zsh">Install zsh</h3>
 <p>I have been testing the <code>zsh</code> shell and have found that I prefer it to <code>bash</code>.</p>
 <p>I can change the <code>bash</code> shell for <code>zsh</code> with this command.</p>
-<pre class="hljs"><code><div>    sudo apt install zsh -y
+<pre class="prettyprint"><code><div>    sudo apt install zsh -y
 </div></code></pre>
 <p>The next thing to do is install <code>OhMyZsh</code>.</p>
-<pre class="hljs"><code><div>sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
+<pre class="prettyprint"><code><div>sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
 </div></code></pre>
 <p>When you install <code>OhMyZsh</code> it will ask you if you want to make it your default shell. Type <code>y</code> to allow this.</p>
 <p><strong>Note:</strong> you also have the option to replace the <code>.zshrc</code> file. If you accept this option it will do the replace and save the original <code>.zshrc</code> file as <code>.zshrc.pre-oh-my-zshrc</code>. You will need this to add back your changes to the <code>.zshrc</code> file that you previously had in the original file.</p>
 <h4 id="zsh-aliases">.zsh aliases</h4>
 <p>You could load your aliases in the <code>.zshrc</code> file but a better idea is to add them to a file named <code>.zshrc_aliases</code>. Now just add all of the aliases from your original <code>.bash_aliases</code> file.</p>
 <p>You will need to add this line into your <code>.zshrc</code> file.</p>
-<pre class="hljs"><code><div>[ -f ~/.zsh_aliases ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.zsh_aliases
+<pre class="prettyprint"><code><div>[ -f ~/.zsh_aliases ] &amp;&amp; <span class="hljs-built_in">source</span> ~/.zsh_aliases
 </div></code></pre>
 <h4 id="make-zsh-the-default-shell">Make .zsh the default shell</h4>
-<pre class="hljs"><code><div>    chsh -s /usr/bin/zsh
+<pre class="prettyprint"><code><div>    chsh -s /usr/bin/zsh
 </div></code></pre>
 <p><strong>Note:</strong> you have to log out of Mint to get this to work. I would reboot to make sure.</p>
 <p>To find the default shell.</p>
-<pre class="hljs"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+<pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
 </div></code></pre>
 <h4 id="plugins">Plugins</h4>
 <p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have one plugin installed.</p>
-<pre class="hljs"><code><div> plugins=(git)
+<pre class="prettyprint"><code><div> plugins=(git)
 </div></code></pre>
 <p>This is where you can find a list of <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins">zsh plugins</a>.</p>
 <h3 id="install-fzf">Install fzf</h3>
 <p>Don't install <code>fzf</code> with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install <code>fzf</code> directly from the GitHub repository using the following commands:</p>
 <p><strong>Note:</strong> Make sure this command is on 2 lines.</p>
-<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 </div></code></pre>
 <p>During the installation process, you will be prompted to enable key bindings, fuzzy completion, and update your shell configuration file; answering <code>'y'</code> for these options will set up the full functionality of fzf.</p>
@@ -790,11 +790,11 @@ Documents/file.txt</p>
 <p><strong>Alt+C</strong>: Fuzzy find all subdirectories and cd (change directory) into the selected one.</p>
 <h4 id="installing-fuzzy-finder-in-the-zsh-shell">Installing Fuzzy Finder in the .zsh shell</h4>
 <p>Run this command to set up the key bindings.</p>
-<pre class="hljs"><code><div>    ~/.fzf/install
+<pre class="prettyprint"><code><div>    ~/.fzf/install
 </div></code></pre>
 <p>This will setup <code>fzf</code> and key bindings in the <code>.zshrc</code> setup file.</p>
 <h3 id="ripgrep">Ripgrep</h3>
-<pre class="hljs"><code><div>	sudo apt install ripgrep
+<pre class="prettyprint"><code><div>	sudo apt install ripgrep
 </div></code></pre>
 <h4 id="usage">Usage</h4>
 <p>rg --help</p>
@@ -809,124 +809,145 @@ Documents/file.txt</p>
 <h2 id="tldr">TLDR</h2>
 <p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
 <h3 id="install">Install</h3>
-<pre class="hljs"><code><div>    sudo apt install tldr
+<pre class="prettyprint"><code><div>    sudo apt install tldr
 </div></code></pre>
 <h3 id="usage">Usage</h3>
 <ul>
 <li>Print the tldr page for a specific command:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span>
+<pre class="prettyprint"><code><div>   tldr <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a specific subcommand:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr <span class="hljs-built_in">command</span> subcommand
+<pre class="prettyprint"><code><div>   tldr <span class="hljs-built_in">command</span> subcommand
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a command in the given language (if available, otherwise fall back to English):</li>
 </ul>
-<pre class="hljs"><code><div>  tldr [-L|--language] language_code <span class="hljs-built_in">command</span>
+<pre class="prettyprint"><code><div>  tldr [-L|--language] language_code <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a command from a specific platform:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
+<pre class="prettyprint"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
 </div></code></pre>
 <ul>
 <li>Update the local cache of tldr pages:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr [-u|--update]
+<pre class="prettyprint"><code><div>   tldr [-u|--update]
 </div></code></pre>
 <ul>
 <li>List all pages for the current platform and common:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr [-l|--list]
+<pre class="prettyprint"><code><div>   tldr [-l|--list]
 </div></code></pre>
 <ul>
 <li>List all available subcommand pages for a command:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr [-l|--list] | grep <span class="hljs-built_in">command</span> | column
+<pre class="prettyprint"><code><div>   tldr [-l|--list] | grep <span class="hljs-built_in">command</span> | column
 </div></code></pre>
 <ul>
 <li>Print the tldr page for a random command:</li>
 </ul>
-<pre class="hljs"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
+<pre class="prettyprint"><code><div>   tldr [-l|--list] | shuf [-n|--head-count] 1 | xargs tldr
 </div></code></pre>
 <h2 id="glow">Glow</h2>
 <p>(Glow github page)[https://github.com/charmbracelet/glow].</p>
 <h3 id="installation">Installation</h3>
 <p>Linux.</p>
-<pre class="hljs"><code><div>    sudo mkdir -p /etc/apt/keyrings
+<pre class="prettyprint"><code><div>    sudo mkdir -p /etc/apt/keyrings
 </div></code></pre>
 <p>Get the key.</p>
-<pre class="hljs"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+<pre class="prettyprint"><code><div>curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 </div></code></pre>
 <p>.</p>
-<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
+<pre class="prettyprint"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *"</span> | sudo tee /etc/apt/sources.list.d/charm.list
 </div></code></pre>
 <p>Update the packages.</p>
-<pre class="hljs"><code><div>    sudo apt update 
+<pre class="prettyprint"><code><div>    sudo apt update 
 </div></code></pre>
 <p>Install.</p>
-<pre class="hljs"><code><div>    sudo apt install glow
+<pre class="prettyprint"><code><div>    sudo apt install glow
 </div></code></pre>
 <p>Windows.</p>
-<pre class="hljs"><code><div>    choco install glow -y
+<pre class="prettyprint"><code><div>    choco install glow -y
 </div></code></pre>
 <h3 id="usage">Usage</h3>
-<pre class="hljs"><code><div>    glow
+<pre class="prettyprint"><code><div>    glow
 </div></code></pre>
 <p>This will give you a list of all markdown files in the directory and sub directories. Select one to view and you will be able to page through the markdown file.</p>
 <p>To select a single file.</p>
-<pre class="hljs"><code><div>    glow -p linux-files.md
+<pre class="prettyprint"><code><div>    glow -p linux-files.md
 </div></code></pre>
 <p><code>-p</code> will add the paging system you are using</p>
 <h3 id="word-wrapping">Word Wrapping</h3>
 <p>The  <code>-w</code>  flag lets you set a maximum width at which the output will be  wrapped:</p>
-<pre class="hljs"><code><div>    glow -w 60
+<pre class="prettyprint"><code><div>    glow -w 60
 </div></code></pre>
 <h3 id="themes">Themes</h3>
 <p>Glow also has themes.</p>
-<pre class="hljs"><code><div>    glow -p -s tokyo-night linux-notes.md
+<pre class="prettyprint"><code><div>    glow -p -s tokyo-night linux-notes.md
 </div></code></pre>
 <h2 id="install-and-configure-vnstat">Install and Configure vnstat</h2>
-<p><code>Vnstat</code> is a lightweight, command-line network traffic monitor for Linux and BSD that logs hourly, daily, and monthly usage directly from kernel interface statistics without sniffing packets. It runs as a daemon (<code>vnstatd</code>), ensuring low system resource usage.</p>
+<p><code>vnstat</code> is a lightweight, command-line network traffic monitor for Linux and BSD that logs hourly, daily, and monthly usage directly from kernel interface statistics without sniffing packets. It runs as a daemon (<code>vnstatd</code>), ensuring low system resource usage.</p>
 <p><code>vnstat</code> is database-driven it stores traffic data in <code>/var/lib/vnstat</code>.</p>
-<pre class="hljs"><code><div>    sudo apt update
+<pre class="prettyprint"><code><div>    sudo apt update
     sudo apt install vnstat
 </div></code></pre>
 <p>After installation, vnstat starts logging automatically. First, ensure it's monitoring your correct network interface (like enp3s0 or wlp2s0):</p>
 <p><strong>1.</strong> Find your active network interface name</p>
-<pre class="hljs"><code><div>    ip addr show | grep <span class="hljs-string">"state UP"</span> | awk <span class="hljs-string">'{print $2}'</span> | sed <span class="hljs-string">'s/:$//'</span>
+<pre class="prettyprint"><code><div>    ip addr show | grep <span class="hljs-string">"state UP"</span> | awk <span class="hljs-string">'{print $2}'</span> | sed <span class="hljs-string">'s/:$//'</span>
 </div></code></pre>
 <p><strong>2.</strong> Tell vnstat to use that interface (replace 'eth0' with your interface)</p>
-<pre class="hljs"><code><div>    sudo vnstat -u -i eth0
+<pre class="prettyprint"><code><div>    sudo vnstat -u -i eth0
 </div></code></pre>
 <h3 id="using">Using</h3>
 <p>Check Your Total Data Usage (in GB). Use these simple commands to see your totals.</p>
 <p>Commands.</p>
-<pre class="hljs"><code><div>**vnstat**	    A quick summary of today<span class="hljs-string">'s and this month'</span>s total data.
+<pre class="prettyprint"><code><div>**vnstat**	    A quick summary of today<span class="hljs-string">'s and this month'</span>s total data.
 **vnstat** -d	Daily totals <span class="hljs-keyword">for</span> the last 30 days.
 **vnstat** -m	Monthly totals <span class="hljs-keyword">for</span> the past year.
 **vnstat** -hg	Hourly graph of usage.
 </div></code></pre>
 <p>Example output from vnstat -d:</p>
-<pre class="hljs"><code><div>        eth0  /  daily
+<pre class="prettyprint"><code><div>        eth0  /  daily
          day         rx      |     tx      |    total    |   avg. rate
      ------------------------+-------------+-------------+---------------
       Today        4.67 GiB  |   1.23 GiB  |   5.90 GiB  |   68.42 kbit/s
       Yesterday    12.5 GiB  |   3.1 GiB   |   15.6 GiB  |  151.23 kbit/s
 </div></code></pre>
 <p><strong>Note:</strong> <code>rx</code> is download, <code>tx</code> is uploaded.</p>
+<h2 id="zsh-auto-suggestions">zsh auto suggestions</h2>
+<h3 id="install">Install</h3>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions
+</div></code></pre>
+<p>Add the plugin in the <code>.zshrc</code> file:</p>
+<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions)
+</div></code></pre>
+<h2 id="zsh-syntax-highlighting">zsh syntax highlighting</h2>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting/tree/master">zsh-syntax-highlighting</a></p>
+<h3 id="install">Install</h3>
+<p>Navigate to the plugins repository <code>/home/alanr/.oh-my-zsh/plugins</code>.</p>
+<p>Run.</p>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting
+</div></code></pre>
+<p>Add the plugin in the <code>.zshrc</code> file:</p>
+<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+</div></code></pre>
+<p>Save the file and restart Zsh as follows:</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">source</span> ~/.zshrc
+</div></code></pre>
+<p>This will show a coloured command line.</p>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
-<pre class="hljs"><code><div>    sudo nano /etc/hostname
+<pre class="prettyprint"><code><div>    sudo nano /etc/hostname
 </div></code></pre>
 <p>Change all references to the hostname in this file.</p>
-<pre class="hljs"><code><div>    sudo nano /etc/hosts
+<pre class="prettyprint"><code><div>    sudo nano /etc/hosts
 </div></code></pre>
 <p>Now, you need to tell the operating system that the host name has changed and the PC has been renamed.</p>
-<pre class="hljs"><code><div>    sudo hostname lion
+<pre class="prettyprint"><code><div>    sudo hostname lion
 </div></code></pre>
 <p>I would reboot after this step.</p>
 <p>Now my terminal window reflects my new hostname.</p>

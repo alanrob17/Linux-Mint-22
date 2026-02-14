@@ -993,6 +993,50 @@ Example output from vnstat -d:
 
 **Note:** ``rx`` is download, ``tx`` is uploaded.
 
+## zsh auto suggestions
+
+### Install
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+Add the plugin in the ``.zshrc`` file:
+
+```bash
+plugins=(git zsh-autosuggestions)
+```
+
+
+
+## zsh syntax highlighting
+
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
+
+### Install
+
+Navigate to the plugins repository ``/home/alanr/.oh-my-zsh/plugins``.
+
+Run.
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Add the plugin in the ``.zshrc`` file:
+
+```bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+Save the file and restart Zsh as follows:
+
+```bash
+source ~/.zshrc
+```
+
+This will show a coloured command line.
+
 ## Change the hostname
 
 Change the hostname in this file. My current name is **Lion** and I want to change the case to **lion**.

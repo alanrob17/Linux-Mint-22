@@ -633,6 +633,27 @@ Documents/file.txt</p>
       Yesterday    12.5 GiB  |   3.1 GiB   |   15.6 GiB  |  151.23 kbit/s
 </div></code></pre>
 <p><strong>Note:</strong> <code>rx</code> is download, <code>tx</code> is uploaded.</p>
+<h2 id="zsh-auto-suggestions">zsh auto suggestions</h2>
+<h3 id="install">Install</h3>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions
+</div></code></pre>
+<p>Add the plugin in the <code>.zshrc</code> file:</p>
+<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions)
+</div></code></pre>
+<h2 id="zsh-syntax-highlighting">zsh syntax highlighting</h2>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting/tree/master">zsh-syntax-highlighting</a></p>
+<h3 id="install">Install</h3>
+<p>Navigate to the plugins repository <code>/home/alanr/.oh-my-zsh/plugins</code>.</p>
+<p>Run.</p>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting
+</div></code></pre>
+<p>Add the plugin in the <code>.zshrc</code> file:</p>
+<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+</div></code></pre>
+<p>Save the file and restart Zsh as follows:</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">source</span> ~/.zshrc
+</div></code></pre>
+<p>This will show a coloured command line.</p>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="prettyprint"><code><div>    sudo nano /etc/hostname
