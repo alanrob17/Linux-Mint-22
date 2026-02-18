@@ -108,10 +108,6 @@ blockquote {
 <p>Use this command to Install them. It also installs codecs and other Ubuntu restricted files.</p>
 <pre class="prettyprint"><code><div>    sudo apt install ubuntu-restricted-extras
 </div></code></pre>
-<h3 id="install-jetbrains-mono-fonts">Install Jetbrains mono fonts</h3>
-<pre class="prettyprint"><code><div>    sudo apt install fonts-jetbrains-mono
-</div></code></pre>
-<p>You can use these in the terminal by changing the system font.</p>
 <h2 id="improve-battery-life-on-laptops">Improve battery life on Laptops</h2>
 <p>Battery power settings - install on Samsung Ultra.</p>
 <pre class="prettyprint"><code><div>	sudo apt tlp
@@ -124,6 +120,29 @@ blockquote {
 <p>In File Manager click on the <code>Edit</code> tab and select Behavior.</p>
 <p>In the section, <strong>Executable Text Files</strong> select <em>View executable text files when they are opened</em>.</p>
 <p>This stops the display dialog from appearing when you click on an executable text file from Windows.</p>
+<h2 id="install-git">Install Git</h2>
+<pre class="prettyprint"><code><div>    sudo apt install git
+</div></code></pre>
+<h3 id="configure-git">Configure Git</h3>
+<pre class="prettyprint"><code><div>    git config --global user.name <span class="hljs-string">"Alan Robson"</span>
+    git config --global user.email <span class="hljs-string">"alan.robson@gmail.com"</span>
+</div></code></pre>
+<h3 id="set-default-branch-name">Set default branch name</h3>
+<pre class="prettyprint"><code><div>    git config --global init.defaultBranch main
+</div></code></pre>
+<h3 id="set-line-ending-preferences">Set line ending preferences</h3>
+<pre class="prettyprint"><code><div>    git config --global core.autocrlf input <span class="hljs-comment"># for Mac/Linux</span>
+</div></code></pre>
+<h3 id="enable-colourful-output">Enable colourful output</h3>
+<pre class="prettyprint"><code><div>git config --global color.ui auto
+</div></code></pre>
+<h3 id="list-all-global-settings">List all global settings</h3>
+<pre class="prettyprint"><code><div>git config --global --list
+</div></code></pre>
+<p>Git global configuration is stored in:</p>
+<blockquote>
+<p>~/.gitconfig or ~/.config/git/config</p>
+</blockquote>
 <h2 id="install-bashrc-and-bashaliases">Install .bashrc and .bash_aliases</h2>
 <p>I have a directory named <code>linux-scripts</code>. Navigate to this directory and run these commands.</p>
 <p>Copy these files to the home directory.</p>
@@ -256,6 +275,10 @@ This message shows that your installation appears to be working correctly.
 <blockquote>
 <p>Github - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
 </blockquote>
+<h3 id="set-default-text-editor">Set default text editor</h3>
+<p>Once you have installed VS Code you can set the default text editor for Git:</p>
+<pre class="prettyprint"><code><div>    git config --global core.editor <span class="hljs-string">"code --wait"</span>
+</div></code></pre>
 <h2 id="install-net-core">Install .Net Core</h2>
 <p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
 <pre class="prettyprint"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb

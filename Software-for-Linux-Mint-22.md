@@ -54,14 +54,6 @@ Use this command to Install them. It also installs codecs and other Ubuntu restr
     sudo apt install ubuntu-restricted-extras
 ```
 
-### Install Jetbrains mono fonts
-
-```bash
-    sudo apt install fonts-jetbrains-mono
-```
-
-You can use these in the terminal by changing the system font.
-
 ## Improve battery life on Laptops
 
 Battery power settings - install on Samsung Ultra.
@@ -85,6 +77,47 @@ In File Manager click on the ``Edit`` tab and select Behavior.
 In the section, **Executable Text Files** select *View executable text files when they are opened*.
 
 This stops the display dialog from appearing when you click on an executable text file from Windows.
+
+## Install Git
+
+```bash
+    sudo apt install git
+```
+
+### Configure Git
+
+```bash
+    git config --global user.name "Alan Robson"
+    git config --global user.email "alan.robson@gmail.com"
+```
+
+### Set default branch name
+
+```bash
+    git config --global init.defaultBranch main
+```
+
+### Set line ending preferences
+
+```bash
+    git config --global core.autocrlf input # for Mac/Linux
+```
+
+### Enable colourful output
+
+```bash
+git config --global color.ui auto
+```
+
+### List all global settings
+
+```bash
+git config --global --list
+```
+
+Git global configuration is stored in:
+
+> ~/.gitconfig or ~/.config/git/config
 
 ## Install .bashrc and .bash_aliases
 
@@ -311,6 +344,14 @@ In Downloads.
 My Visual Studio Account.
 
 > Github - <alanr@live.com.au>
+
+### Set default text editor
+
+Once you have installed VS Code you can set the default text editor for Git:
+
+```bash
+    git config --global core.editor "code --wait"
+```
 
 ## Install .Net Core
 
