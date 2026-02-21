@@ -9,7 +9,7 @@ alias gs='git status'
 alias ga='git add .'
 alias gp='git push'
 alias gc=~/gc.sh
-alias gl='git log'
+alias gl='git log --oneline --graph'
 # alias cn='sudo mount.cifs //tiger/virtual ~/share -o user=alanr'
 # alias cn='sudo mount.cifs //tiger/virtual ~/share -o user=alanr'
 alias dc='docker'
