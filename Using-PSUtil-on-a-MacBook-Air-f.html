@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Using PSUtil on a MacBook Air</title>
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/starter-template.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+<style type="text/css">
+html {
+	font-size: 90.0%;
+}
+
+h2 {
+	margin-top: 60px;
+}
+
+h4, h3 {
+	padding-top: 40px!;		
+}
+
+p {
+	font-size: 1.2em;
+}
+h4 {
+	font-size: 1.4em;
+}
+
+img, pre.prettyprint {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+    color:#007bff;
+
+}
+blockquote {
+    border-left: 4px solid #999;
+    padding-left: 1rem;
+    page-break-inside: avoid;
+}
+:target:before {
+  content: "";
+  display: block;
+  height: 80px; /* adjust this value to your needs */
+  margin: -80px 0 0; /* this should be a negative value of the height above */
+}
+</style>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Using PSUtil on a MacBook Air</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">PSUtil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="starter-template">
+
+
+<h1 id="using-psutil-on-a-macbook-air">Using PSUtil on a MacBook Air</h1>
+<p>These are my notes on using <code>mbpfan</code> to control the fans on a MacBook Air and then using <code>PSUtil</code>, a Python program to check what temperatures your MacBook is running at.</p>
+<h2 id="question-how-do-i-install-psutil-package-on-zorin">Question: How do I install PSUtil package on Zorin?</h2>
+<p>Since Zorin OS is based on Ubuntu, you can install the <code>psutil</code> Python package in two main ways. The recommended method for most users is using <code>pip</code>,  <a href="https://hg-edge.mozilla.org/integration/autoland/diff/b1aa588704613c6d72f4c609f16527e4f417e09d/third_party/python/psutil/INSTALL.rst">the Python package installer</a>.</p>
+<p>Here are the steps to get it installed.</p>
+<h2 id="%F0%9F%90%8D-installation-via-pip-recommended">🐍 Installation via pip (Recommended)</h2>
+<p>This is usually installed on Linux systems.</p>
+<ol>
+<li>
+<p><strong>Open a terminal.</strong> You can do this by pressing <code>Ctrl+Alt+T</code>.</p>
+</li>
+<li>
+<p>First, ensure <code>pip</code> is installed for Python 3:</p>
+</li>
+</ol>
+<pre class="prettyprint"><code><div>   sudo apt update
+   sudo apt install python3-pip
+   
+   <span class="hljs-comment"># Also install the full python3 package.</span>
+   sudo apt install python3-full
+</div></code></pre>
+<ol start="3">
+<li>
+<p><strong>Install <code>psutil</code>.</strong> It's best practice to install it for your user only to avoid interfering with system packages -- <a href="https://hg-edge.mozilla.org/integration/autoland/diff/b1aa588704613c6d72f4c609f16527e4f417e09d/third_party/python/psutil/INSTALL.rst">Installing PSUtil</a>:</p>
+<pre class="prettyprint"><code><div>pip3 install --user psutil
+</div></code></pre>
+</li>
+</ol>
+<p>If you need to install it for all users on the system (typically not recommended), you can use 
+<code>sudo</code>:</p>
+<pre class="prettyprint"><code><div>sudo pip3 install psutil
+</div></code></pre>
+<p>After installation, you can verify it worked by running <code>pip3 list</code> in your terminal. You should see <code>psutil</code> in the list of installed packages <a href="https://forum.zorin.com/t/unnecesary-pip-packages/46813/4">-- more on pip3 list</a>.</p>
+<h2 id="%F0%9F%93%A6-alternative-installation-via-apt">📦 Alternative: Installation via apt</h2>
+<p>Zorin's repositories also include <code>psutil</code>, so you can install it with <code>apt</code> -- <a href="https://forum.zorin.com/t/unnecesary-pip-packages/46813/4">PSUtil installation</a>. This method integrates the package with your system's package manager.</p>
+<ol>
+<li>
+<p>Open a terminal.</p>
+</li>
+<li>
+<p>Update your package list and install the package:</p>
+</li>
+</ol>
+<pre class="prettyprint"><code><div>sudo apt update
+sudo apt install python3-psutil
+</div></code></pre>
+<h3 id="%E2%9A%99%EF%B8%8F-if-you-run-into-issues">⚙️ If You Run Into Issues</h3>
+<p><code>psutil</code> interacts directly with system internals, so it may require some build tools to compile correctly. If the commands above fail, you might need to install the Python development headers and a C compiler first -- <a href="https://hg-edge.mozilla.org/integration/autoland/diff/b1aa588704613c6d72f4c609f16527e4f417e09d/third_party/python/psutil/INSTALL.rst">Recompiling PSUtil</a>:</p>
+<pre class="prettyprint"><code><div>sudo apt install python3-dev gcc
+</div></code></pre>
+<p>After installing these, try the <code>pip3 install --user psutil</code> command again.</p>
+<h2 id="how-do-i-use-psutil">how do I use PSUtil?</h2>
+<p>Great! Let me show you how to use <code>psutil</code> with some common examples. It's a powerful library for system monitoring and process management.</p>
+<h2 id="%F0%9F%9A%80-basic-usage-examples">🚀 Basic Usage Examples</h2>
+<h3 id="1-cpu-information">1. <strong>CPU Information</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-comment"># CPU times</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU times: {psutil.cpu_times()}"</span>)
+
+<span class="hljs-comment"># CPU percentage (overall)</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU usage: {psutil.cpu_percent(interval=1)}%"</span>)
+
+<span class="hljs-comment"># CPU percentage per core</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Per CPU usage: {psutil.cpu_percent(interval=1, percpu=True)}%"</span>)
+
+<span class="hljs-comment"># CPU count</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Physical cores: {psutil.cpu_count(logical=False)}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Logical cores: {psutil.cpu_count(logical=True)}"</span>)
+
+<span class="hljs-comment"># CPU frequency</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU frequency: {psutil.cpu_freq()}"</span>)
+</div></code></pre>
+<h3 id="2-memory-information">2. <strong>Memory Information</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-comment"># Virtual memory</span>
+mem = psutil.virtual_memory()
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Total memory: {mem.total / (1024**3):.2f} GB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Available memory: {mem.available / (1024**3):.2f} GB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Used memory: {mem.used / (1024**3):.2f} GB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Memory usage: {mem.percent}%"</span>)
+
+<span class="hljs-comment"># Swap memory</span>
+swap = psutil.swap_memory()
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Swap total: {swap.total / (1024**3):.2f} GB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Swap used: {swap.used / (1024**3):.2f} GB"</span>)
+</div></code></pre>
+<h3 id="3-disk-information">3. <strong>Disk Information</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-comment"># Disk partitions</span>
+partitions = psutil.disk_partitions()
+<span class="hljs-keyword">for</span> partition <span class="hljs-keyword">in</span> partitions:
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Device: {partition.device}"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Mountpoint: {partition.mountpoint}"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"File system: {partition.fstype}"</span>)
+    
+    <span class="hljs-comment"># Disk usage</span>
+    usage = psutil.disk_usage(partition.mountpoint)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Total: {usage.total / (1024**3):.2f} GB"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Used: {usage.used / (1024**3):.2f} GB"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Free: {usage.free / (1024**3):.2f} GB"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Usage: {usage.percent}%"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"-"</span> * 40)
+
+<span class="hljs-comment"># Disk I/O counters</span>
+disk_io = psutil.disk_io_counters()
+<span class="hljs-keyword">if</span> disk_io:
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Read bytes: {disk_io.read_bytes / (1024**3):.2f} GB"</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Write bytes: {disk_io.write_bytes / (1024**3):.2f} GB"</span>)
+</div></code></pre>
+<h3 id="4-network-information">4. <strong>Network Information</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-comment"># Network interfaces</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Network interfaces:"</span>)
+<span class="hljs-built_in">print</span>(psutil.net_if_addrs())
+<span class="hljs-built_in">print</span>()
+
+<span class="hljs-comment"># Network I/O counters</span>
+net_io = psutil.net_io_counters()
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Bytes sent: {net_io.bytes_sent / (1024**2):.2f} MB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Bytes received: {net_io.bytes_recv / (1024**2):.2f} MB"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Packets sent: {net_io.packets_sent}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Packets received: {net_io.packets_recv}"</span>)
+
+<span class="hljs-comment"># Network connections (requires root/sudo for some info)</span>
+<span class="hljs-comment"># connections = psutil.net_connections()</span>
+</div></code></pre>
+<h3 id="5-process-management">5. <strong>Process Management</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-comment"># Get all process IDs</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Running processes: {len(psutil.pids())}"</span>)
+
+<span class="hljs-comment"># Get process by PID (e.g., PID 1)</span>
+p = psutil.Process(1)  <span class="hljs-comment"># init/systemd process</span>
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Process name: {p.name()}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Process status: {p.status()}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU usage: {p.cpu_percent()}%"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Memory usage: {p.memory_percent():.2f}%"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Create time: {p.create_time()}"</span>)
+
+<span class="hljs-comment"># List all running processes</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\nTop 5 processes by CPU:"</span>)
+processes = []
+<span class="hljs-keyword">for</span> proc <span class="hljs-keyword">in</span> psutil.process_iter([<span class="hljs-string">'pid'</span>, <span class="hljs-string">'name'</span>, <span class="hljs-string">'cpu_percent'</span>]):
+    try:
+        processes.append(proc.info)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+        pass
+
+<span class="hljs-comment"># Sort by CPU usage and show top 5</span>
+processes.sort(key=lambda x: x[<span class="hljs-string">'cpu_percent'</span>], reverse=True)
+<span class="hljs-keyword">for</span> proc <span class="hljs-keyword">in</span> processes[:5]:
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"PID: {proc['pid']}, Name: {proc['name']}, CPU: {proc['cpu_percent']}%"</span>)
+</div></code></pre>
+<h3 id="6-system-boot-time-and-users">6. <strong>System Boot Time and Users</strong></h3>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+import datetime
+
+<span class="hljs-comment"># Boot time</span>
+boot_time = datetime.datetime.fromtimestamp(psutil.boot_time())
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"System boot time: {boot_time}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"System uptime: {datetime.datetime.now() - boot_time}"</span>)
+
+<span class="hljs-comment"># Users logged in</span>
+users = psutil.users()
+<span class="hljs-keyword">for</span> user <span class="hljs-keyword">in</span> users:
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"User: {user.name}, Terminal: {user.terminal}, Host: {user.host}"</span>)
+</div></code></pre>
+<h2 id="%F0%9F%92%A1-real-world-example-system-monitor-script">💡 Real-World Example: System Monitor Script</h2>
+<p>Here's a simple system monitor that updates every 2 seconds:</p>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+import time
+import os
+
+def clear_screen():
+    os.system(<span class="hljs-string">'clear'</span> <span class="hljs-keyword">if</span> os.name == <span class="hljs-string">'posix'</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'cls'</span>)
+
+def get_size(bytes):
+    <span class="hljs-string">""</span><span class="hljs-string">"Convert bytes to human readable format"</span><span class="hljs-string">""</span>
+    <span class="hljs-keyword">for</span> unit <span class="hljs-keyword">in</span> [<span class="hljs-string">'B'</span>, <span class="hljs-string">'KB'</span>, <span class="hljs-string">'MB'</span>, <span class="hljs-string">'GB'</span>, <span class="hljs-string">'TB'</span>]:
+        <span class="hljs-keyword">if</span> bytes &lt; 1024.0:
+            <span class="hljs-built_in">return</span> f<span class="hljs-string">"{bytes:.2f} {unit}"</span>
+        bytes /= 1024.0
+
+<span class="hljs-keyword">while</span> True:
+    clear_screen()
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"="</span> * 50)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"SYSTEM MONITOR"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"="</span> * 50)
+    
+    <span class="hljs-comment"># CPU</span>
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU Usage: {psutil.cpu_percent()}%"</span>)
+    
+    <span class="hljs-comment"># Memory</span>
+    mem = psutil.virtual_memory()
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Memory: {mem.percent}% ({get_size(mem.used)} / {get_size(mem.total)})"</span>)
+    
+    <span class="hljs-comment"># Disk</span>
+    disk = psutil.disk_usage(<span class="hljs-string">'/'</span>)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Disk: {disk.percent}% ({get_size(disk.used)} / {get_size(disk.total)})"</span>)
+    
+    <span class="hljs-comment"># Top 3 CPU processes</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"\nTop 3 CPU Processes:"</span>)
+    processes = []
+    <span class="hljs-keyword">for</span> proc <span class="hljs-keyword">in</span> psutil.process_iter([<span class="hljs-string">'pid'</span>, <span class="hljs-string">'name'</span>, <span class="hljs-string">'cpu_percent'</span>]):
+        try:
+            processes.append(proc.info)
+        except:
+            pass
+    
+    processes.sort(key=lambda x: x[<span class="hljs-string">'cpu_percent'</span>], reverse=True)
+    <span class="hljs-keyword">for</span> proc <span class="hljs-keyword">in</span> processes[:3]:
+        <span class="hljs-built_in">print</span>(f<span class="hljs-string">"  {proc['name']}: {proc['cpu_percent']}%"</span>)
+    
+    time.sleep(2)
+</div></code></pre>
+<h2 id="%F0%9F%94%A7-installation-check">🔧 Installation Check</h2>
+<p>To verify your installation works:</p>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>import psutil
+
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"psutil version: {psutil.__version__}"</span>)
+<span class="hljs-built_in">print</span>(f<span class="hljs-string">"Python version: {psutil.PY3}"</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Installation successful!"</span>)
+</div></code></pre>
+<h2 id="%F0%9F%93%9A-common-use-cases">📚 Common Use Cases</h2>
+<ul>
+<li>
+<p><strong>System monitoring tools</strong></p>
+</li>
+<li>
+<p><strong>Resource usage tracking</strong></p>
+</li>
+<li>
+<p><strong>Process management utilities</strong></p>
+</li>
+<li>
+<p><strong>Performance testing</strong></p>
+</li>
+<li>
+<p><strong>Server health checks</strong></p>
+</li>
+<li>
+<p><strong>Debugging tools</strong></p>
+</li>
+</ul>
+<h2 id="question-i-want-to-use-it-to-control-the-fans-on-my-macbook-air-using-zorin">Question: I want to use it to control the fans on my MacBook Air using Zorin</h2>
+<p>Controlling fans on a MacBook running Linux is definitely possible. Let me clarify what <code>psutil</code> can and cannot do for you, and then show you the proper tools for the job.</p>
+<h2 id="%F0%9F%94%8D-what-psutil-can-actually-do">🔍 What <code>psutil</code> Can Actually Do</h2>
+<p>First, let's check what <code>psutil</code> can see on your MacBook:</p>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div>
+import psutil
+
+<span class="hljs-comment"># Check temperatures (psutil CAN do this)</span>
+<span class="hljs-keyword">if</span> hasattr(psutil, <span class="hljs-string">"sensors_temperatures"</span>):
+    temps = psutil.sensors_temperatures()
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Temperatures:"</span>, temps)
+<span class="hljs-comment"># Check fan speeds (psutil CAN read these on Linux) [citation:5][citation:7]</span>
+<span class="hljs-keyword">if</span> hasattr(psutil, <span class="hljs-string">"sensors_fans"</span>):
+    fans = psutil.sensors_fans()
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Fan speeds:"</span>, fans)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"sensors_fans() not available"</span>)
+</div></code></pre>
+<p>Run this script first. <strong>Important:</strong> <code>psutil.sensors_fans()</code> was added in version 5.2.0 and works on Linux - <a href="https://marc.info/?l=python-announce-list&amp;m=148871605327466&amp;w=2">Check this post</a><a href="https://mail.python.org/archives/list/python-announce-list@python.org/message/STDU765SDIIOOVJF4X2T5IRKOQUIARCK/"></a>. Since Zorin is Linux-based, it should work - but on MacBooks specifically, the <code>applesmc</code> kernel module needs to be loaded.</p>
+<h2 id="%F0%9F%8E%AF-the-right-tool-mbpfan">🎯 The Right Tool: mbpfan</h2>
+<p>For MacBook fan control on Linux, the dedicated tool is <strong><code>mbpfan</code></strong> (MacBook Pro Fan). This is specifically designed for Apple MacBooks <a href="https://linux-packages.com/kali-linux/package/mbpfan"></a>.</p>
+<h3 id="installation-on-zorin">Installation on Zorin:</h3>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Install mbpfan</span>
+sudo apt update
+sudo apt install mbpfan
+
+<span class="hljs-comment"># After installation, configure it</span>
+sudo nano /etc/mbpfan.conf
+</div></code></pre>
+<h3 id="configuration-example-etcmbpfanconf">Configuration Example (<code>/etc/mbpfan.conf</code>):</h3>
+<pre class="prettyprint"><code><div>min_fan_speed = 2000
+<span class="hljs-comment"># Maximum fan speed (RPM)</span>
+max_fan_speed = 6200
+<span class="hljs-comment"># Temperature thresholds (°C)</span>
+low_temp = 55
+high_temp = 63
+max_temp = 85
+<span class="hljs-comment"># Polling interval (seconds)</span>
+polling_interval = 1
+</div></code></pre>
+<h3 id="start-the-service">Start the service:</h3>
+<pre class="prettyprint"><code><div>sudo systemctl start mbpfan
+sudo systemctl <span class="hljs-built_in">enable</span> mbpfan  <span class="hljs-comment"># Auto-start on boot</span>
+</div></code></pre>
+<h2 id="%F0%9F%92%BB-combined-approach-python--mbpfan">💻 Combined Approach: Python + mbpfan</h2>
+<p>While <code>mbpfan</code> handles the fan control automatically, you can still use <code>psutil</code> to monitor temperatures and create your own custom fan curves if desired:</p>
+<p><strong>Python</strong>:</p>
+<pre class="prettyprint"><code><div><span class="hljs-comment">#!/usr/bin/env python3</span>
+import psutil
+import subprocess
+import time
+import os
+
+def get_cpu_temperature():
+    <span class="hljs-string">""</span><span class="hljs-string">"Get CPU temperature using psutil"</span><span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> hasattr(psutil, <span class="hljs-string">"sensors_temperatures"</span>):
+        temps = psutil.sensors_temperatures()
+        <span class="hljs-comment"># Look for common MacBook temperature sensors</span>
+        <span class="hljs-keyword">for</span> sensor <span class="hljs-keyword">in</span> [<span class="hljs-string">'coretemp'</span>, <span class="hljs-string">'k10temp'</span>, <span class="hljs-string">'applesmc'</span>]:
+            <span class="hljs-keyword">if</span> sensor <span class="hljs-keyword">in</span> temps:
+                <span class="hljs-built_in">return</span> temps[sensor][0].current
+    <span class="hljs-built_in">return</span> None
+
+def set_fan_speed(manual_control=False, speed_percent=50):
+    <span class="hljs-string">""</span><span class="hljs-string">"
+    Control fan speed (requires mbpfan to be stopped first)
+    Only use this if you want manual control instead of mbpfan
+    "</span><span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> manual_control:
+        <span class="hljs-comment"># This is a simplified example - actual fan control requires</span>
+        <span class="hljs-comment"># writing to /sys/devices/platform/applesmc.768/fan*_manual</span>
+        <span class="hljs-comment"># and /sys/devices/platform/applesmc.768/fan*_output</span>
+        try:
+            <span class="hljs-comment"># First, disable automatic control</span>
+            with open(<span class="hljs-string">'/sys/devices/platform/applesmc.768/fan1_manual'</span>, <span class="hljs-string">'w'</span>) as f:
+                f.write(<span class="hljs-string">'1'</span>)
+            
+            <span class="hljs-comment"># Set fan speed (RPM)</span>
+            min_rpm = 2000
+            max_rpm = 6200
+            target_rpm = int(min_rpm + (max_rpm - min_rpm) * (speed_percent / 100))
+            
+            with open(<span class="hljs-string">'/sys/devices/platform/applesmc.768/fan1_output'</span>, <span class="hljs-string">'w'</span>) as f:
+                f.write(str(target_rpm))
+                
+            <span class="hljs-built_in">return</span> f<span class="hljs-string">"Fan set to {target_rpm} RPM ({speed_percent}%)"</span>
+        except Exception as e:
+            <span class="hljs-built_in">return</span> f<span class="hljs-string">"Error: {e}"</span>
+    <span class="hljs-built_in">return</span> <span class="hljs-string">"Automatic mode (mbpfan running)"</span>
+
+def monitor_system():
+    <span class="hljs-string">""</span><span class="hljs-string">"Monitor temperatures and fan speeds"</span><span class="hljs-string">""</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"MacBook Fan Monitor (press Ctrl+C to stop)"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"-"</span> * 50)
+    
+    try:
+        <span class="hljs-keyword">while</span> True:
+            <span class="hljs-comment"># Get temperature</span>
+            temp = get_cpu_temperature()
+            
+            <span class="hljs-comment"># Get fan speeds using psutil [citation:3][citation:6]</span>
+            fans = psutil.sensors_fans() <span class="hljs-keyword">if</span> hasattr(psutil, <span class="hljs-string">"sensors_fans"</span>) <span class="hljs-keyword">else</span> {}
+            
+            <span class="hljs-comment"># Clear screen for cleaner output</span>
+            os.system(<span class="hljs-string">'clear'</span> <span class="hljs-keyword">if</span> os.name == <span class="hljs-string">'posix'</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'cls'</span>)
+            
+            <span class="hljs-built_in">print</span>(f<span class="hljs-string">"Time: {time.strftime('%H:%M:%S')}"</span>)
+            <span class="hljs-keyword">if</span> temp:
+                <span class="hljs-built_in">print</span>(f<span class="hljs-string">"CPU Temperature: {temp:.1f}°C"</span>)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"CPU Temperature: Unable to read"</span>)
+            
+            <span class="hljs-comment"># Display fan speeds</span>
+            <span class="hljs-keyword">if</span> fans:
+                <span class="hljs-keyword">for</span> fan_name, entries <span class="hljs-keyword">in</span> fans.items():
+                    <span class="hljs-keyword">for</span> entry <span class="hljs-keyword">in</span> entries:
+                        <span class="hljs-built_in">print</span>(f<span class="hljs-string">"{entry.label or fan_name}: {entry.current} RPM"</span>)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Fan speeds: Unable to read"</span>)
+            
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\nControl Status: Using mbpfan automatic control"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"To manually control fans, stop mbpfan first:"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"  sudo systemctl stop mbpfan"</span>)
+            
+            time.sleep(2)
+            
+    except KeyboardInterrupt:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"\nMonitoring stopped."</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    monitor_system()
+</div></code></pre>
+<h2 id="%E2%9A%99%EF%B8%8F-important-prerequisites">⚙️ Important Prerequisites</h2>
+<p>For fan control to work on a MacBook, you need:</p>
+<ol>
+<li><strong>applesmc kernel module</strong> (should load automatically):</li>
+</ol>
+<pre class="prettyprint"><code><div>lsmod | grep applesmc
+
+<span class="hljs-comment"># If not loaded:</span>
+sudo modprobe applesmc
+</div></code></pre>
+<ol start="2">
+<li><strong>Check if fan control files exist</strong>:</li>
+</ol>
+<pre class="prettyprint"><code><div>ls -la /sys/devices/platform/applesmc.768/
+</div></code></pre>
+<p>This is a set of around 50 files.</p>
+<h2 id="%F0%9F%93%9D-summary--recommendations">📝 Summary &amp; Recommendations</h2>
+<ol>
+<li>
+<p><strong>For automatic fan control</strong>: Use <code>mbpfan</code> - it's purpose-built for MacBooks, works out of the box, and requires minimal configuration <a href="https://linux-packages.com/kali-linux/package/mbpfan">-- more package details</a>.</p>
+</li>
+<li>
+<p><strong>For monitoring</strong>: Use <code>psutil</code> to read temperatures and fan speeds. The example script above combines both.</p>
+</li>
+<li>
+<p><strong>For custom solutions</strong>: If you want to build your own fan controller, you can:</p>
+<ul>
+<li>
+<p>Stop the <code>mbpfan</code> service</p>
+</li>
+<li>
+<p>Use <code>psutil</code> to monitor temperatures</p>
+</li>
+<li>
+<p>Write directly to the <code>applesmc sysfs</code> interface (as shown in the manual control example)</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>The <code>psutil</code> library is excellent for <strong>reading</strong> sensor data, but actual <strong>control</strong> requires interacting with kernel interfaces or using dedicated tools like <code>mbpfan</code>.</p>
+
+
+
+</div><!-- starter-template -->
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"/>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
