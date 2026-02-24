@@ -374,7 +374,21 @@ Then do an update.
 Then install .Net.
 
 ```bash
-    sudo apt-get install -y dotnet-sdk-9.0
+    sudo apt-get install -y dotnet-sdk-10.0
+```
+
+## Add paths to .bashrc
+
+```bash
+export DOTNET_ROOT=$HOME/.dotnet
+
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+```
+
+Run this command:
+
+```bash
+    dotnet tool install -g dotnet-scripts	
 ```
 
 This will install the .Net core runtime and the SDK.
@@ -1077,6 +1091,28 @@ source ~/.zshrc
 ```
 
 This will show a coloured command line.
+
+## Install Bottom
+
+``Bottom`` is like ``Top`` and ``HTop`` and measures system performance including sensor temperatures. I need this to check that my MacBook Air isn't overheating when running Linux.
+
+### Installation
+
+You might need to update the stable version of Rust first.
+
+```bash
+    rustup update stable
+```
+
+Install the binary from crates.io.
+
+```bash
+    cargo install bottom --locked
+```
+
+To run Bottom:
+
+> btm
 
 ## Change the hostname
 

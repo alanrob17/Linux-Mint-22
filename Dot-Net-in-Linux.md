@@ -2,26 +2,34 @@
 
 ## Install .Net Core
 
-Add the Microsoft package signing key to your list of trusted keys and add the package repository.
+Install .Net.
 
 ```bash
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
 
 sudo dpkg -i packages-microsoft-prod.deb
 
-rm packages-microsoft-prod.deb
+sudo apt update
 ```
 
-Then do an update.
+Now install the SDK:
 
 ```bash
-    sudo apt-get update    
+    sudo apt-get install -y dotnet-sdk-10.0
 ```
 
-Then install .Net.
+## Add paths to .bashrc
 
 ```bash
-    sudo apt-get install -y dotnet-sdk-9.0
+export DOTNET_ROOT=$HOME/.dotnet
+
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+```
+
+Run this command:
+
+```bash
+    dotnet tool install -g dotnet-scripts	
 ```
 
 This will install the .Net core runtime and the SDK.
@@ -260,3 +268,48 @@ If the Output Shows:
 > /usr/bin/test or similar: Your command is being overridden by a system binary.
 
 ``test`` is a shell builtin and this is why my executable wasn't running.
+
+## Running .Net Core 10 as a script
+
+Create a ``.cs`` file named ``app.cs``.
+
+```bash
+#!/usr/bin/env dotnet-script
+
+using System;
+using System.IO;
+
+Console.WriteLine("Hello World!");
+```
+
+Change the permissions:
+
+```bash
+    chmod 744 ./app.cs
+```
+
+This makes it executable.
+
+Run from the current directory:
+
+> ./app.cs
+
+**Note:** you don't have to use the ``.cs`` extension.
+
+If you don't want to change the file permissions you can run the ``app.cs`` file with:
+
+ ```bash
+    dotnet script ./app.cs
+ ```
+
+For more information see:
+
+> [https://github.com/dotnet-script/dotnet-script](https://github.com/dotnet-script/dotnet-script).
+
+Another way to run app.cs as a script is:
+
+```bash
+    dotnet run /.app.cs
+```
+
+**Note:** this will also run on Windows.

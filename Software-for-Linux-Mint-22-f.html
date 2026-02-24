@@ -291,7 +291,15 @@ rm packages-microsoft-prod.deb
 <pre class="prettyprint"><code><div>    sudo apt-get update    
 </div></code></pre>
 <p>Then install .Net.</p>
-<pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-9.0
+<pre class="prettyprint"><code><div>    sudo apt-get install -y dotnet-sdk-10.0
+</div></code></pre>
+<h2 id="add-paths-to-bashrc">Add paths to .bashrc</h2>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">export</span> DOTNET_ROOT=<span class="hljs-variable">$HOME</span>/.dotnet
+
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$DOTNET_ROOT</span>:<span class="hljs-variable">$DOTNET_ROOT</span>/tools
+</div></code></pre>
+<p>Run this command:</p>
+<pre class="prettyprint"><code><div>    dotnet tool install -g dotnet-scripts	
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
 <h2 id="install-chrome">Install Chrome</h2>
@@ -677,6 +685,19 @@ Documents/file.txt</p>
 <pre class="prettyprint"><code><div><span class="hljs-built_in">source</span> ~/.zshrc
 </div></code></pre>
 <p>This will show a coloured command line.</p>
+<h2 id="install-bottom">Install Bottom</h2>
+<p><code>Bottom</code> is like <code>Top</code> and <code>HTop</code> and measures system performance including sensor temperatures. I need this to check that my MacBook Air isn't overheating when running Linux.</p>
+<h3 id="installation">Installation</h3>
+<p>You might need to update the stable version of Rust first.</p>
+<pre class="prettyprint"><code><div>    rustup update stable
+</div></code></pre>
+<p>Install the binary from crates.io.</p>
+<pre class="prettyprint"><code><div>    cargo install bottom --locked
+</div></code></pre>
+<p>To run Bottom:</p>
+<blockquote>
+<p>btm</p>
+</blockquote>
 <h2 id="change-the-hostname">Change the hostname</h2>
 <p>Change the hostname in this file. My current name is <strong>Lion</strong> and I want to change the case to <strong>lion</strong>.</p>
 <pre class="prettyprint"><code><div>    sudo nano /etc/hostname
@@ -692,6 +713,7 @@ Documents/file.txt</p>
 <blockquote>
 <p>alanr@lion:~$</p>
 </blockquote>
+
 
 
 </div><!-- starter-template -->
