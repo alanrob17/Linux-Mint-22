@@ -503,14 +503,26 @@ Add user to nordvpn group.
     sudo usermod -aG nordvpn $USER
 ```
 
-Login.
+### Logging in
+
+You need an alternative way to log in to the Linux application:
+
+To obtain a token login to your Nord account. Scroll down until you see the advanced settings tab. Click ``Get access token``:
+
+You will get an email verification code. You can create a temporary token, which will expire after 30 days.
+
+Use the following command:
+
+```bash
+	nordvpn login --token <token>
+```
 
 Reboot Linux.
 
 When you want to use Nord VPN.
 
 ```bash
-    nordvpn connect
+    nordvpn connect Australia, Sydney
 ```
 
 ## Improve RAM usage

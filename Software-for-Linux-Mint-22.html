@@ -642,10 +642,16 @@ rm packages-microsoft-prod.deb
 <p>Add user to nordvpn group.</p>
 <pre class="hljs"><code><div>    sudo usermod -aG nordvpn <span class="hljs-variable">$USER</span>
 </div></code></pre>
-<p>Login.</p>
+<h3 id="logging-in">Logging in</h3>
+<p>You need an alternative way to log in to the Linux application:</p>
+<p>To obtain a token login to your Nord account. Scroll down until you see the advanced settings tab. Click <code>Get access token</code>:</p>
+<p>You will get an email verification code. You can create a temporary token, which will expire after 30 days.</p>
+<p>Use the following command:</p>
+<pre class="hljs"><code><div>	nordvpn login --token &lt;token&gt;
+</div></code></pre>
 <p>Reboot Linux.</p>
 <p>When you want to use Nord VPN.</p>
-<pre class="hljs"><code><div>    nordvpn connect
+<pre class="hljs"><code><div>    nordvpn connect Australia, Sydney
 </div></code></pre>
 <h2 id="improve-ram-usage">Improve RAM usage</h2>
 <p>When you have used 60% of your RAM your swapspace will be used to store memory. This is slower than RAM.</p>

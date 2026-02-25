@@ -26,3 +26,4 @@ alias pf='fzf --preview="less {}" --bind shift-up:preview-page-up,shift-down:pre
 alias f=fzf
 alias co=code
 alias cp='xcp'
+alias nord='nordvpn connect Australia, Sydney'
