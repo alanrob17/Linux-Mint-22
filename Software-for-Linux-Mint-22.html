@@ -395,7 +395,7 @@ code {
 </div></code></pre>
 <h2 id="improve-battery-life-on-laptops">Improve battery life on Laptops</h2>
 <p>Battery power settings - install on Samsung Ultra.</p>
-<pre class="hljs"><code><div>	sudo apt tlp
+<pre class="hljs"><code><div>	sudo apt install tlp
 </div></code></pre>
 <p>After installation TLP will start automatically and run in the background.</p>
 <p>If it doesn't start you can start the daemon with.</p>
@@ -483,10 +483,10 @@ find . -<span class="hljs-built_in">type</span> f -name <span class="hljs-string
 <p>Open up the <code>.bash_aliases</code> file in the Linux-Mint folder. copy these aliases into the root <code>.bash_aliases</code> file.</p>
 <p>If you are using the <code>.zsh</code> shell copy the aliases into <code>.zsh_aliases</code> as well.</p>
 <h2 id="install-shell-scripts">Install shell scripts</h2>
-<p>Copy the <code>shell_funcs.sh</code> and <code>wipe.sh</code> scripts to the <code>.config</code> folder.</p>
+<p>Copy the <code>shell_funcs.sh</code> and <code>wipe</code> scripts to the <code>~/.local/bin</code> folder.</p>
 <p>Set the execute permissions.</p>
-<pre class="hljs"><code><div>    chmod 774 ~/.config/shell_funcs.sh
-    chmod 774 ~/.config/wipe.sh
+<pre class="hljs"><code><div>    chmod 774 ~/.<span class="hljs-built_in">local</span>/bin/shell_funcs.sh
+    chmod 774 ~/.<span class="hljs-built_in">local</span>/bin/wipe
 </div></code></pre>
 <h2 id="install-cargo">Install Cargo</h2>
 <p>I will install <code>eza</code> with Cargo.</p>

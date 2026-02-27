@@ -59,7 +59,7 @@ Use this command to Install them. It also installs codecs and other Ubuntu restr
 Battery power settings - install on Samsung Ultra.
 
 ```bash
-	sudo apt tlp
+	sudo apt install tlp
 ```
 
 After installation TLP will start automatically and run in the background.
@@ -203,13 +203,13 @@ If you are using the ``.zsh`` shell copy the aliases into ``.zsh_aliases`` as we
 
 ## Install shell scripts
 
-Copy the ``shell_funcs.sh`` and ``wipe.sh`` scripts to the ``.config`` folder.
+Copy the ``shell_funcs.sh`` and ``wipe`` scripts to the ``~/.local/bin`` folder.
 
 Set the execute permissions.
 
 ```bash
-    chmod 774 ~/.config/shell_funcs.sh
-    chmod 774 ~/.config/wipe.sh
+    chmod 774 ~/.local/bin/shell_funcs.sh
+    chmod 774 ~/.local/bin/wipe
 ```
 
 ## Install Cargo
