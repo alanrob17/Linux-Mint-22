@@ -558,35 +558,45 @@ This message shows that your installation appears to be working correctly.
 </div></code></pre>
 <p>My Visual Studio Account.</p>
 <blockquote>
-<p>Github - <a href="mailto:alanr@live.com.au">alanr@live.com.au</a></p>
+<p>Github - alanrob17</p>
 </blockquote>
 <h3 id="set-default-text-editor">Set default text editor</h3>
 <p>Once you have installed VS Code you can set the default text editor for Git:</p>
 <pre class="hljs"><code><div>    git config --global core.editor <span class="hljs-string">"code --wait"</span>
 </div></code></pre>
 <h2 id="install-net-core">Install .Net Core</h2>
-<p>Add the Microsoft package signing key to your list of trusted keys and add the package repository.</p>
-<pre class="hljs"><code><div>wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+<p>Go to this page to download .Net Core 10.0</p>
+<p><a href="https://dotnet.microsoft.com/en-us/download/dotnet/10.0">.Net Core 10.0</a></p>
+<p>In Downloads run:</p>
+<pre class="hljs"><code><div>mkdir -p <span class="hljs-variable">$HOME</span>/dotnet &amp;&amp; tar zxf dotnet-sdk-10.0.103-linux-x64.tar.gz -C <span class="hljs-variable">$HOME</span>/dotnet
+</div></code></pre>
+<p>Add this to <code>.bashrc</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HOME</span>/dotnet
 
-sudo dpkg -i packages-microsoft-prod.deb
-
-rm packages-microsoft-prod.deb
-</div></code></pre>
-<p>Then do an update.</p>
-<pre class="hljs"><code><div>    sudo apt-get update    
-</div></code></pre>
-<p>Then install .Net.</p>
-<pre class="hljs"><code><div>    sudo apt-get install -y dotnet-sdk-10.0
-</div></code></pre>
-<h2 id="add-paths-to-bashrc">Add paths to .bashrc</h2>
-<pre class="hljs"><code><div><span class="hljs-built_in">export</span> DOTNET_ROOT=<span class="hljs-variable">$HOME</span>/.dotnet
-
-<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$DOTNET_ROOT</span>:<span class="hljs-variable">$DOTNET_ROOT</span>/tools
-</div></code></pre>
-<p>Run this command:</p>
-<pre class="hljs"><code><div>    dotnet tool install -g dotnet-scripts	
+<span class="hljs-built_in">export</span> DOTNET_ROOT=<span class="hljs-variable">$HOME</span>/dotnet
 </div></code></pre>
 <p>This will install the .Net core runtime and the SDK.</p>
+<p>Write this code and make sure it has Unix (lf) line endings.</p>
+<h3 id="hellocsx">hello.csx</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">#!/usr/bin/env dotnet</span>
+
+using System;
+
+Console.WriteLine(<span class="hljs-string">"Hello from C# script!"</span>);
+Console.WriteLine($<span class="hljs-string">"Current time: {DateTime.Now}"</span>);
+
+// You can use LINQ and other .NET features
+var numbers = new[] { 1, 2, 3, 4, 5 };
+var evenNumbers = numbers.Where(n =&gt; n % 2 == 0);
+Console.WriteLine($<span class="hljs-string">"Even numbers: {string.Join("</span>, <span class="hljs-string">", evenNumbers)}"</span>);
+</div></code></pre>
+<p>Run:</p>
+<pre class="hljs"><code><div>    chmod 744 ./hello.csx
+</div></code></pre>
+<p>Then run the script:</p>
+<blockquote>
+<p>./hello.csx</p>
+</blockquote>
 <h2 id="install-chrome">Install Chrome</h2>
 <p>This method is supposed to allow automatic updates.</p>
 <p><strong>1.</strong> Download the Google signing key</p>

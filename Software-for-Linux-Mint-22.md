@@ -343,7 +343,7 @@ In Downloads.
 
 My Visual Studio Account.
 
-> Github - <alanr@live.com.au>
+> Github - alanrob17
 
 ### Set default text editor
 
@@ -355,43 +355,53 @@ Once you have installed VS Code you can set the default text editor for Git:
 
 ## Install .Net Core
 
-Add the Microsoft package signing key to your list of trusted keys and add the package repository.
+Go to this page to download .Net Core 10.0
+
+[.Net Core 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+
+In Downloads run:
 
 ```bash
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-
-sudo dpkg -i packages-microsoft-prod.deb
-
-rm packages-microsoft-prod.deb
+mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-10.0.103-linux-x64.tar.gz -C $HOME/dotnet
 ```
 
-Then do an update.
+Add this to ``.bashrc``.
 
 ```bash
-    sudo apt-get update    
-```
+export PATH=$PATH:$HOME/dotnet
 
-Then install .Net.
-
-```bash
-    sudo apt-get install -y dotnet-sdk-10.0
-```
-
-## Add paths to .bashrc
-
-```bash
-export DOTNET_ROOT=$HOME/.dotnet
-
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-```
-
-Run this command:
-
-```bash
-    dotnet tool install -g dotnet-scripts	
+export DOTNET_ROOT=$HOME/dotnet
 ```
 
 This will install the .Net core runtime and the SDK.
+
+Write this code and make sure it has Unix (lf) line endings.
+
+### hello.csx
+
+```bash
+#!/usr/bin/env dotnet
+
+using System;
+
+Console.WriteLine("Hello from C# script!");
+Console.WriteLine($"Current time: {DateTime.Now}");
+
+// You can use LINQ and other .NET features
+var numbers = new[] { 1, 2, 3, 4, 5 };
+var evenNumbers = numbers.Where(n => n % 2 == 0);
+Console.WriteLine($"Even numbers: {string.Join(", ", evenNumbers)}");
+```
+
+Run:
+
+```bash
+    chmod 744 ./hello.csx
+```
+
+Then run the script:
+
+> ./hello.csx
 
 ## Install Chrome
 
