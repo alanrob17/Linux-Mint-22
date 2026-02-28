@@ -6,6 +6,10 @@ assets/firewall-settings.png
 
 Change **status** to ON.
 
+## MackBook Air mbpfan notes
+
+Are at the bottom of this page and are for use on a MacBook Air.
+
 ## Driver Manager
 
 You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.
@@ -483,7 +487,7 @@ To update or add files to the existing archive file, use the ``rar u`` command, 
     rar u myfiles.rar hello.py
 ```
 
-## Installing Nord VPN
+## Installing NordVPN
 
 Install with this command.
 
@@ -543,14 +547,6 @@ Go to the bottom of this file and add this line.
 
 ```bash
     vm.swappiness=10
-```
-
-## Install Stacer
-
-Stacer is a really impressive system checker.
-
-```bash
-    sudo apt install stacer -y
 ```
 
 ## Installing utilities
@@ -801,13 +797,43 @@ To find the default shell.
 
 #### Plugins
 
-Zsh allows you to add plugins to it ``.zshrc`` startup file. I have one plugin installed.
+Zsh allows you to add plugins to it ``.zshrc`` startup file. I have 3 plugins installed.
 
 ```bash
- plugins=(git)
+    plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 ```
 
 This is where you can find a list of [zsh plugins](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins).
+
+### zsh auto suggestions
+
+#### Install
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+### zsh syntax highlighting
+
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
+
+#### Install
+
+Navigate to the plugins repository ``/home/alanr/.oh-my-zsh/plugins``.
+
+Run.
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Save the file and restart Zsh as follows:
+
+```bash
+source ~/.zshrc
+```
+
+This will show a coloured command line.
 
 ### Install fzf
 
@@ -874,15 +900,23 @@ rg -i -d 2 '\bPartition\b' -g *.md
 
 The Linux ``tldr`` (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder. 
 
+**Important note:** ``tldr`` is a Python application that isn't being supported any more. A better alternative is ``tealdeer`` a Rust application.
+
 ### Install
 
 ```bash
-    sudo apt install tldr
+    cargo install tealdeer
+```
+
+Update the local cache of ``tldr`` pages:
+
+```bash
+   tldr [-u|--update]
 ```
 
 ### Usage
 
-- Print the tldr page for a specific command:
+- Print the ``tldr`` page for a specific command:
 
 ```bash
    tldr command
@@ -904,12 +938,6 @@ The Linux ``tldr`` (Too Long; Didn't Read) application is a command-line tool pr
 
 ```bash
    tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows command
-```
-
-- Update the local cache of tldr pages:
-
-```bash
-   tldr [-u|--update]
 ```
 
 - List all pages for the current platform and common:
@@ -1054,50 +1082,6 @@ Example output from vnstat -d:
 
 **Note:** ``rx`` is download, ``tx`` is uploaded.
 
-## zsh auto suggestions
-
-### Install
-
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
-
-Add the plugin in the ``.zshrc`` file:
-
-```bash
-plugins=(git zsh-autosuggestions)
-```
-
-
-
-## zsh syntax highlighting
-
-[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
-
-### Install
-
-Navigate to the plugins repository ``/home/alanr/.oh-my-zsh/plugins``.
-
-Run.
-
-```bash
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-Add the plugin in the ``.zshrc`` file:
-
-```bash
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-```
-
-Save the file and restart Zsh as follows:
-
-```bash
-source ~/.zshrc
-```
-
-This will show a coloured command line.
-
 ## Install Bottom
 
 ``Bottom`` is like ``Top`` and ``HTop`` and measures system performance including sensor temperatures. I need this to check that my MacBook Air isn't overheating when running Linux.
@@ -1145,3 +1129,123 @@ I would reboot after this step.
 Now my terminal window reflects my new hostname.
 
 > alanr@lion:~$
+
+## Installing mbpfan
+
+``mbpfan`` (MacBook Pro Fan) is an essential tool for MacBooks running Linux to properly control fan speeds based on temperature sensors. Here's some information about managing ``mbpfan`` on your MacBook Air with Linux Mint:
+
+### Check if mbpfan is Running
+
+First, let's verify that ``mbpfan`` is installed and running correctly:
+
+```bash
+# Check mbpfan service status
+sudo systemctl status mbpfan
+
+# Check current fan speeds
+sensors | grep -i fan
+
+# Or use -- doesn't exist on my machine.
+cat /proc/acpi/ibm/fan  # If available, though MacBooks might use different paths
+```
+
+If it isn't installed:
+
+```bash
+    sudo apt install mbpfan
+```
+
+### Basic mbpfan Configuration
+
+The configuration file is typically located at ``/etc/mbpfan.conf``. You can view and adjust fan control parameters:
+
+```bash
+# View current configuration
+cat /etc/mbpfan.conf
+
+# Edit configuration (if needed)
+sudo nano /etc/mbpfan.conf
+```
+
+#### Key settings you might want to adjust:
+
+low_temp: Temperature (°C) where fans run at minimum speed
+
+high_temp: Temperature (°C) where fans start increasing speed
+
+max_temp: Maximum temperature before fans run at full speed
+
+polling_interval: How often ``mbpfan`` checks temperatures (in seconds)
+
+Example configuration:
+
+Temperature units in celcius.
+
+```bash
+low_temp = 55           # if temperature is below this, fans will run at minimum speed
+high_temp = 60          # if temperature is above this, fan speed will gradually increase
+max_temp = 80           # if temperature is above this, fans will run at maximum speed
+polling_interval = 1    # default is 1 seconds
+```
+
+Add these to:
+
+```bash
+# Restart mbpfam after configuration changes
+sudo systemctl restart mbpfan
+
+# Enable mbpfan to start  on boot
+sudo systemctl enable mbpfan
+
+# View mbpfan logs
+sudo journalctl -u mbpfan -f
+
+# Check sensors
+sensors
+```
+
+### To keep an eye on your MacBook's temperatures:
+
+```bash
+# Install lm-sensors if not already installed
+sudo apt install lm-sensors
+
+# Run sensors detection
+sudo sensors-detect
+
+# Monitor temperatures continuously
+watch -n 1 sensors
+```
+
+### Optional: GUI Temperature Monitor
+
+If you'd like a graphical temperature monitor:
+
+```bash
+# Install psensor
+	sudo apt install psensor
+```
+
+Then run ``psensor`` from the menu or terminal.
+
+### Troubleshooting
+
+If ``mbpfan`` isn't controlling fans properly:
+
+Check if the ``coretemp`` kernel module is loaded:
+
+```bash
+	lsmod | grep coretemp
+```
+
+If not, load it:
+
+```bash
+	sudo modprobe coretemp
+```
+
+Make it permanent:
+
+```bash
+	echo "coretemp" | sudo tee -a /etc/modules
+```

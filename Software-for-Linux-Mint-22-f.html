@@ -84,6 +84,8 @@ blockquote {
 <h2 id="setup-your-firewall">Setup your Firewall</h2>
 <p>assets/firewall-settings.png</p>
 <p>Change <strong>status</strong> to ON.</p>
+<h2 id="mackbook-air-mbpfan-notes">MackBook Air mbpfan notes</h2>
+<p>Are at the bottom of this page and are for use on a MacBook Air.</p>
 <h2 id="driver-manager">Driver Manager</h2>
 <p>You need to occasionally check the Driver Manager dialog to see if there are any drivers that can be changed from installed to recommended drivers.</p>
 <h2 id="install-preload">Install Preload</h2>
@@ -352,7 +354,7 @@ Console.WriteLine($<span class="hljs-string">"Even numbers: {string.Join("</span
 <p>To update or add files to the existing archive file, use the <code>rar u</code> command, which allows you to add files to an existing RAR archive or update files within the archive.</p>
 <pre class="prettyprint"><code><div>    rar u myfiles.rar hello.py
 </div></code></pre>
-<h2 id="installing-nord-vpn">Installing Nord VPN</h2>
+<h2 id="installing-nordvpn">Installing NordVPN</h2>
 <p>Install with this command.</p>
 <pre class="prettyprint"><code><div>    sh &lt;(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 </div></code></pre>
@@ -384,10 +386,6 @@ Console.WriteLine($<span class="hljs-string">"Even numbers: {string.Join("</span
 </div></code></pre>
 <p>Go to the bottom of this file and add this line.</p>
 <pre class="prettyprint"><code><div>    vm.swappiness=10
-</div></code></pre>
-<h2 id="install-stacer">Install Stacer</h2>
-<p>Stacer is a really impressive system checker.</p>
-<pre class="prettyprint"><code><div>    sudo apt install stacer -y
 </div></code></pre>
 <h2 id="installing-utilities">Installing utilities</h2>
 <p>There are a number of Rust utilities that can be used in Linux or Windows. I will install and document these applications.</p>
@@ -525,10 +523,25 @@ Documents/file.txt</p>
 <pre class="prettyprint"><code><div>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
 </div></code></pre>
 <h4 id="plugins">Plugins</h4>
-<p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have one plugin installed.</p>
-<pre class="prettyprint"><code><div> plugins=(git)
+<p>Zsh allows you to add plugins to it <code>.zshrc</code> startup file. I have 3 plugins installed.</p>
+<pre class="prettyprint"><code><div>    plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 </div></code></pre>
 <p>This is where you can find a list of <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins">zsh plugins</a>.</p>
+<h3 id="zsh-auto-suggestions">zsh auto suggestions</h3>
+<h4 id="install">Install</h4>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions
+</div></code></pre>
+<h3 id="zsh-syntax-highlighting">zsh syntax highlighting</h3>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting/tree/master">zsh-syntax-highlighting</a></p>
+<h4 id="install">Install</h4>
+<p>Navigate to the plugins repository <code>/home/alanr/.oh-my-zsh/plugins</code>.</p>
+<p>Run.</p>
+<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting
+</div></code></pre>
+<p>Save the file and restart Zsh as follows:</p>
+<pre class="prettyprint"><code><div><span class="hljs-built_in">source</span> ~/.zshrc
+</div></code></pre>
+<p>This will show a coloured command line.</p>
 <h3 id="install-fzf">Install fzf</h3>
 <p>Don't install <code>fzf</code> with the standard install command. It's important to note that the version provided by the Ubuntu package manager may not be the latest available. For the most up-to-date version with the latest features and bug fixes, it is recommended to install <code>fzf</code> directly from the GitHub repository using the following commands:</p>
 <p><strong>Note:</strong> Make sure this command is on 2 lines.</p>
@@ -562,12 +575,16 @@ Documents/file.txt</p>
 <p>rg -i -d 2 '\bPartition\b' -g *.md</p>
 <h2 id="tldr">TLDR</h2>
 <p>The Linux <code>tldr</code> (Too Long; Didn't Read) application is a command-line tool providing simplified, community-driven cheat sheets for common Linux/Unix commands, acting as an easy-to-read alternative to lengthy man pages by focusing on practical examples. It helps users quickly understand commands like ls or tar with concise, ready-to-use examples, making it great for beginners and experienced users who need a fast reminder.</p>
+<p><strong>Important note:</strong> <code>tldr</code> is a Python application that isn't being supported any more. A better alternative is <code>tealdeer</code> a Rust application.</p>
 <h3 id="install">Install</h3>
-<pre class="prettyprint"><code><div>    sudo apt install tldr
+<pre class="prettyprint"><code><div>    cargo install tealdeer
+</div></code></pre>
+<p>Update the local cache of <code>tldr</code> pages:</p>
+<pre class="prettyprint"><code><div>   tldr [-u|--update]
 </div></code></pre>
 <h3 id="usage">Usage</h3>
 <ul>
-<li>Print the tldr page for a specific command:</li>
+<li>Print the <code>tldr</code> page for a specific command:</li>
 </ul>
 <pre class="prettyprint"><code><div>   tldr <span class="hljs-built_in">command</span>
 </div></code></pre>
@@ -585,11 +602,6 @@ Documents/file.txt</p>
 <li>Print the tldr page for a command from a specific platform:</li>
 </ul>
 <pre class="prettyprint"><code><div>   tldr [-p|--platform] android|cisco-ios|common|dos|freebsd|linux|netbsd|openbsd|osx|sunos|windows <span class="hljs-built_in">command</span>
-</div></code></pre>
-<ul>
-<li>Update the local cache of tldr pages:</li>
-</ul>
-<pre class="prettyprint"><code><div>   tldr [-u|--update]
 </div></code></pre>
 <ul>
 <li>List all pages for the current platform and common:</li>
@@ -672,27 +684,6 @@ Documents/file.txt</p>
       Yesterday    12.5 GiB  |   3.1 GiB   |   15.6 GiB  |  151.23 kbit/s
 </div></code></pre>
 <p><strong>Note:</strong> <code>rx</code> is download, <code>tx</code> is uploaded.</p>
-<h2 id="zsh-auto-suggestions">zsh auto suggestions</h2>
-<h3 id="install">Install</h3>
-<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions
-</div></code></pre>
-<p>Add the plugin in the <code>.zshrc</code> file:</p>
-<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions)
-</div></code></pre>
-<h2 id="zsh-syntax-highlighting">zsh syntax highlighting</h2>
-<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting/tree/master">zsh-syntax-highlighting</a></p>
-<h3 id="install">Install</h3>
-<p>Navigate to the plugins repository <code>/home/alanr/.oh-my-zsh/plugins</code>.</p>
-<p>Run.</p>
-<pre class="prettyprint"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting
-</div></code></pre>
-<p>Add the plugin in the <code>.zshrc</code> file:</p>
-<pre class="prettyprint"><code><div>plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-</div></code></pre>
-<p>Save the file and restart Zsh as follows:</p>
-<pre class="prettyprint"><code><div><span class="hljs-built_in">source</span> ~/.zshrc
-</div></code></pre>
-<p>This will show a coloured command line.</p>
 <h2 id="install-bottom">Install Bottom</h2>
 <p><code>Bottom</code> is like <code>Top</code> and <code>HTop</code> and measures system performance including sensor temperatures. I need this to check that my MacBook Air isn't overheating when running Linux.</p>
 <h3 id="installation">Installation</h3>
@@ -721,6 +712,82 @@ Documents/file.txt</p>
 <blockquote>
 <p>alanr@lion:~$</p>
 </blockquote>
+<h2 id="installing-mbpfan">Installing mbpfan</h2>
+<p><code>mbpfan</code> (MacBook Pro Fan) is an essential tool for MacBooks running Linux to properly control fan speeds based on temperature sensors. Here's some information about managing <code>mbpfan</code> on your MacBook Air with Linux Mint:</p>
+<h3 id="check-if-mbpfan-is-running">Check if mbpfan is Running</h3>
+<p>First, let's verify that <code>mbpfan</code> is installed and running correctly:</p>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Check mbpfan service status</span>
+sudo systemctl status mbpfan
+
+<span class="hljs-comment"># Check current fan speeds</span>
+sensors | grep -i fan
+
+<span class="hljs-comment"># Or use -- doesn't exist on my machine.</span>
+cat /proc/acpi/ibm/fan  <span class="hljs-comment"># If available, though MacBooks might use different paths</span>
+</div></code></pre>
+<p>If it isn't installed:</p>
+<pre class="prettyprint"><code><div>    sudo apt install mbpfan
+</div></code></pre>
+<h3 id="basic-mbpfan-configuration">Basic mbpfan Configuration</h3>
+<p>The configuration file is typically located at <code>/etc/mbpfan.conf</code>. You can view and adjust fan control parameters:</p>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># View current configuration</span>
+cat /etc/mbpfan.conf
+
+<span class="hljs-comment"># Edit configuration (if needed)</span>
+sudo nano /etc/mbpfan.conf
+</div></code></pre>
+<h4 id="key-settings-you-might-want-to-adjust">Key settings you might want to adjust:</h4>
+<p>low_temp: Temperature (°C) where fans run at minimum speed</p>
+<p>high_temp: Temperature (°C) where fans start increasing speed</p>
+<p>max_temp: Maximum temperature before fans run at full speed</p>
+<p>polling_interval: How often <code>mbpfan</code> checks temperatures (in seconds)</p>
+<p>Example configuration:</p>
+<p>Temperature units in celcius.</p>
+<pre class="prettyprint"><code><div>low_temp = 55           <span class="hljs-comment"># if temperature is below this, fans will run at minimum speed</span>
+high_temp = 60          <span class="hljs-comment"># if temperature is above this, fan speed will gradually increase</span>
+max_temp = 80           <span class="hljs-comment"># if temperature is above this, fans will run at maximum speed</span>
+polling_interval = 1    <span class="hljs-comment"># default is 1 seconds</span>
+</div></code></pre>
+<p>Add these to:</p>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Restart mbpfam after configuration changes</span>
+sudo systemctl restart mbpfan
+
+<span class="hljs-comment"># Enable mbpfan to start  on boot</span>
+sudo systemctl <span class="hljs-built_in">enable</span> mbpfan
+
+<span class="hljs-comment"># View mbpfan logs</span>
+sudo journalctl -u mbpfan -f
+
+<span class="hljs-comment"># Check sensors</span>
+sensors
+</div></code></pre>
+<h3 id="to-keep-an-eye-on-your-macbooks-temperatures">To keep an eye on your MacBook's temperatures:</h3>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Install lm-sensors if not already installed</span>
+sudo apt install lm-sensors
+
+<span class="hljs-comment"># Run sensors detection</span>
+sudo sensors-detect
+
+<span class="hljs-comment"># Monitor temperatures continuously</span>
+watch -n 1 sensors
+</div></code></pre>
+<h3 id="optional-gui-temperature-monitor">Optional: GUI Temperature Monitor</h3>
+<p>If you'd like a graphical temperature monitor:</p>
+<pre class="prettyprint"><code><div><span class="hljs-comment"># Install psensor</span>
+	sudo apt install psensor
+</div></code></pre>
+<p>Then run <code>psensor</code> from the menu or terminal.</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>If <code>mbpfan</code> isn't controlling fans properly:</p>
+<p>Check if the <code>coretemp</code> kernel module is loaded:</p>
+<pre class="prettyprint"><code><div>	lsmod | grep coretemp
+</div></code></pre>
+<p>If not, load it:</p>
+<pre class="prettyprint"><code><div>	sudo modprobe coretemp
+</div></code></pre>
+<p>Make it permanent:</p>
+<pre class="prettyprint"><code><div>	<span class="hljs-built_in">echo</span> <span class="hljs-string">"coretemp"</span> | sudo tee -a /etc/modules
+</div></code></pre>
 
 
 
