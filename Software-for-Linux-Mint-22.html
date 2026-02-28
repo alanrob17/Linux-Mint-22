@@ -598,19 +598,11 @@ Console.WriteLine($<span class="hljs-string">"Even numbers: {string.Join("</span
 <p>./hello.csx</p>
 </blockquote>
 <h2 id="install-chrome">Install Chrome</h2>
-<p>This method is supposed to allow automatic updates.</p>
-<p><strong>1.</strong> Download the Google signing key</p>
-<pre class="hljs"><code><div>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+<p>Navigate to <a href="https://google.com/chrome">google.com/chrome</a>.</p>
+<p>Download the <code>.deb</code> package.</p>
+<pre class="hljs"><code><div>    sudo dpkg -i google-chrome-stable_current_amd64.deb
 </div></code></pre>
-<p><strong>2.</strong> Add the official Google Chrome repository</p>
-<pre class="hljs"><code><div>sudo add-apt-repository <span class="hljs-string">"deb http://dl.google.com/linux/chrome/deb/ stable main"</span>
-</div></code></pre>
-<p><strong>3.</strong> Update your package list</p>
-<pre class="hljs"><code><div>sudo apt update
-</div></code></pre>
-<p><strong>4.</strong> Install Google Chrome Stable</p>
-<pre class="hljs"><code><div>sudo apt install google-chrome-stable
-</div></code></pre>
+<p>After you have installed <code>Google Chrome</code> it will automatically add itself to your system's update manager, ensuring it stays updated.</p>
 <h2 id="install-brave-browser">Install Brave browser</h2>
 <pre class="hljs"><code><div>sudo apt install curl
 </div></code></pre>

@@ -405,31 +405,15 @@ Then run the script:
 
 ## Install Chrome
 
-This method is supposed to allow automatic updates.
+Navigate to [google.com/chrome](https://google.com/chrome).
 
-**1.** Download the Google signing key
-
-```bash
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-```
-
-**2.** Add the official Google Chrome repository
+Download the ``.deb`` package.
 
 ```bash
-sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main"
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
-**3.** Update your package list
-
-```bash
-sudo apt update
-```
-
-**4.** Install Google Chrome Stable
-
-```bash
-sudo apt install google-chrome-stable
-```
+After you have installed ``Google Chrome`` it will automatically add itself to your system's update manager, ensuring it stays updated.
 
 ## Install Brave browser
 
