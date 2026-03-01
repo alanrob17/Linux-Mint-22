@@ -2,7 +2,7 @@
 
 ## Setup your Firewall
 
-assets/firewall-settings.png
+![Firewall settings](assets/images/firewall.jpg "Firewall settings")
 
 Change **status** to ON.
 
@@ -253,7 +253,7 @@ Update cargo if needed.
 
 Documentation.
 
-(Eza community Github site)[https://github.com/eza-community/eza].
+[Eza community Github site](https://github.com/eza-community/eza).
 
 ### Installation
 
@@ -1103,6 +1103,10 @@ Install the binary from crates.io.
 To run Bottom:
 
 > btm
+
+## Install Qbittorrent
+
+Install this from the Software Manager.
 
 ## Change the hostname
 
